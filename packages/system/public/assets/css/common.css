@@ -27,12 +27,12 @@
     width: 100%
 }
 footer {
-	position: fixed;
+	position: static;
 	left: 0;
 	bottom: 0;
 	height: 30px;
 	width: 100%;
-	background: #ddd;
+	background: #65dd28;
 	-webkit-box-shadow: 0 8px 6px 6px black;
 	-moz-box-shadow: 0 8px 6px 6px black;
 	box-shadow: 0 8px 6px 6px black
