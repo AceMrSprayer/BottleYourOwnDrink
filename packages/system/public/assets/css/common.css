@@ -33,16 +33,19 @@ footer {
 	height: 30px;
 	width: 100%;
 	background: #65dd28;
-	-webkit-box-shadow: 0 8px 6px 6px black;
-	-moz-box-shadow: 0 8px 6px 6px black;
-	box-shadow: 0 8px 6px 6px black
 }
 footer p {
-	padding: 5px 0 12px 10px
+    text-align: center;
 }
 
 .featuredpic img{
   width:510px;
+}
+
+.BYODlogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 /*.ng-invalid.ng-dirty{*/
     /*border-color:#FA787E;*/

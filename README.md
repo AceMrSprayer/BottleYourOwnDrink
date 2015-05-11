@@ -12,6 +12,7 @@ SETUP:
 
 1. Clone the directory into a folder on your system.
 2. Configure both MongoDB and Node.js according to the tutorials on their websites.
-3. Start the MongoDB service -> leave this command window open.
-4. Open up a command line in the BottleYourOwnDrink root folder.
-5. Run the command "gulp" and the application will start up -> leave this command window open as well.
+3. Make sure the node_modules are installed. If not run 'npm install' in the project root.
+4. Start the MongoDB service -> leave this command window open.
+5. Open up a command line in the BottleYourOwnDrink root folder.
+6. Run the command "gulp" and the application will start up -> leave this command window open as well.
