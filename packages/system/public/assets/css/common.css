@@ -27,22 +27,25 @@
     width: 100%
 }
 footer {
-	position: fixed;
+	position: static;
 	left: 0;
 	bottom: 0;
 	height: 30px;
 	width: 100%;
-	background: #ddd;
-	-webkit-box-shadow: 0 8px 6px 6px black;
-	-moz-box-shadow: 0 8px 6px 6px black;
-	box-shadow: 0 8px 6px 6px black
+	background: #65dd28;
 }
 footer p {
-	padding: 5px 0 12px 10px
+    text-align: center;
 }
 
 .featuredpic img{
   width:510px;
+}
+
+.BYODlogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 /*.ng-invalid.ng-dirty{*/
     /*border-color:#FA787E;*/
