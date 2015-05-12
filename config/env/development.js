@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
+  db: 'mongodb://' + (process.env.DB_PORT_27017_TCP_ADDR || 'localhost') + '/byod-dev',
   debug: true,
   logging: {
     format: 'tiny'
@@ -12,16 +12,16 @@ module.exports = {
     debug: false
   },
   app: {
-    name: 'MEAN - FullStack JS - Development'
+    name: 'BYOD - Bottle your own Drink'
   },
   facebook: {
-    clientID: 'DEFAULT_APP_ID',
-    clientSecret: 'APP_SECRET',
+    clientID: '1601111536767519',
+    clientSecret: '1fcd55b0ba8237f8f5079054d12f8127',
     callbackURL: 'http://localhost:3000/auth/facebook/callback'
   },
   twitter: {
-    clientID: 'DEFAULT_CONSUMER_KEY',
-    clientSecret: 'CONSUMER_SECRET',
+    clientID: '1601111536767519',
+    clientSecret: '1fcd55b0ba8237f8f5079054d12f8127',
     callbackURL: 'http://localhost:3000/auth/twitter/callback'
   },
   github: {
