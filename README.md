@@ -18,7 +18,7 @@ SETUP:
 6. Start the MongoDB service -> leave this command window open.
 7. Open up a command line in the BottleYourOwnDrink root folder.
 8. Run the command "gulp" and the application will start up -> leave this command window open as well.
-9.
+9. The application will now be started on http://localhost:1337.
 
 Possible problems:
 
