@@ -22,6 +22,8 @@ SETUP:
 
 Possible problems:
 
+Common troubleshooting answers can be found here: http://meanjs.org/docs.html
+
 -ERR: Git is not found. Check if the Git PATH variable is correct and not corrupt.
--ERR: ECONRESET. Then you should npm config set registry http://registry.npmjs.org. This will change HTTPS to HTTP.
--
+-ERR: ECONRESET. Then you should npm config set registry 'http://registry.npmjs.org'. This will change HTTPS to HTTP.
+
