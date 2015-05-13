@@ -52,11 +52,11 @@ exports.create = function(req, res, next) {
   user.provider = 'local';
 
   // because we set our user.provider to local our models/user.js validation will always be true
-  req.assert('name', 'You must enter a name').notEmpty();
-  req.assert('email', 'You must enter a valid email address').isEmail();
-  req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
-  req.assert('username', 'Username cannot be more than 20 characters').len(1, 20);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('name', 'Je moet een naam invullen').notEmpty();
+  req.assert('email', 'Je moet een valide e-mail opgeven').isEmail();
+  req.assert('password', 'Wachtwoord moet tussen de 8-20 karakters zijn.').len(8, 20);
+  req.assert('username', 'Gebruikersnaam kan niet langer zijn dan 20 karakters').len(1, 20);
+  req.assert('confirmPassword', 'Wachtwoorden zijn niet gelijk').equals(req.body.password);
 
   var errors = req.validationErrors();
   if (errors) {
@@ -71,7 +71,7 @@ exports.create = function(req, res, next) {
         case 11000:
         case 11001:
           res.status(400).json([{
-            msg: 'Username already taken',
+            msg: 'Gebruikersnaam is al in gebruik',
             param: 'username'
           }]);
           break;
@@ -118,7 +118,7 @@ exports.user = function(req, res, next, id) {
     })
     .exec(function(err, user) {
       if (err) return next(err);
-      if (!user) return next(new Error('Failed to load User ' + id));
+      if (!user) return next(new Error('Gebruiker kan niet geladen worden: ' + id));
       req.profile = user;
       next();
     });
@@ -145,8 +145,8 @@ exports.resetpassword = function(req, res, next) {
         msg: 'Token invalid or expired'
       });
     }
-    req.assert('password', 'Password must be between 8-20 characters long').len(8, 20);
-    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+    req.assert('password', 'WAchtwoord moet tussen de 8 en 20 karakters zijn').len(8, 20);
+    req.assert('confirmPassword', 'Wachtwoorden zijn niet gelijk').equals(req.body.password);
     var errors = req.validationErrors();
     if (errors) {
       return res.status(400).send(errors);
@@ -219,11 +219,11 @@ exports.forgotpassword = function(req, res, next) {
     ],
     function(err, status) {
       var response = {
-        message: 'Mail successfully sent',
+        message: 'Mail is verstuurd',
         status: 'success'
       };
       if (err) {
-        response.message = 'User does not exist';
+        response.message = 'Gebruiker bestaat niet';
         response.status = 'danger';
       }
       res.json(response);
