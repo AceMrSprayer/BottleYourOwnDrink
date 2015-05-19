@@ -18,7 +18,11 @@
   <meta property="fb:admins" content="APP_ADMIN">
 
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <script src="js/transition.js"></script>
+  <!-- Custom css file for integrating page transitions.-->
+
+  <!--Script for enabling angular JS animations-->
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-animate/angular-animate.js"></script>
 
   {% for file in aggregatedassets.header.css %}
     <link rel="stylesheet" href="{{file}}">

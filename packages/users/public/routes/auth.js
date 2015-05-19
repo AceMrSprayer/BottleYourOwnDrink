@@ -30,6 +30,10 @@ angular.module('mean.users').config(['$meanStateProvider',
         url: '/auth',
         templateUrl: 'users/views/index.html'
       })
+      .state('profile', {
+        url: '/auth/profile',
+        templateUrl: 'users/views/profile.html'
+      })
       .state('auth.login', {
         url: '/login',
         templateUrl: 'users/views/login.html',

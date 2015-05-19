@@ -5,6 +5,7 @@ angular.module('mean.BYOD')
 	  function($scope, Global) {
 // Original scaffolded code.
       $scope.global = Global;
+      $scope.pageIndex = 'page-byod';
       $scope.package = {
         name: 'BYOD'
       };
