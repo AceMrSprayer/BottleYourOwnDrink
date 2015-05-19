@@ -1,0 +1,18 @@
+<section class="welcome container-fluid" data-ng-controller="BYODControllerStep1">
+    <div class="col-md-12 row">
+        <h1>Pick your bottle</h1>
+        <ul>
+            <li ng-repeat="bottle in bottles">
+             <span>
+                  <figure>
+                      <img ng-click="bottles.isClicked($event)" class="deselected" src="{{bottle.image}}"
+                           id="{{bottle.name}}" width="20" height="40">
+                      <figcaption>{{bottle.name}}</figcaption>
+                  </figure>
+             </span>
+            </li>
+        </ul>
+        <a href="#!/step2"> Design chosen bottle </a>
+    </div>
+
+</section>

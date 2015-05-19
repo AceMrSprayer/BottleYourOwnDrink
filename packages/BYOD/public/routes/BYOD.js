@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('mean.BYOD').config(['$meanStateProvider',
-  function($meanStateProvider) {
-    $meanStateProvider.state('BYOD example page', {
-      url: '/BYOD',
-      templateUrl: 'BYOD/views/index.html'
-    });
-  }
+    function ($meanStateProvider) {
+        $meanStateProvider.state('Home page', {
+            url: '/home',
+            templateUrl: 'BYOD/views/index.html'
+        });
+        $meanStateProvider.state('pick your bottle', {
+            url: '/step1',
+            templateUrl: 'BYOD/views/pickBottle.html'
+        });
+        $meanStateProvider.state('create your bottle', {
+            url: '/step2',
+            templateUrl: 'BYOD/views/createBottle.html'
+        });
+    }
 ]);
