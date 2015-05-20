@@ -18,10 +18,8 @@ BYOD.register(function(app, auth, database) {
   //We enable routing. By default the Package Object is passed to the routes
   BYOD.routes(app, auth, database);
 
-  BYOD.angularDependencies(['ngAnimate']);
-
   BYOD.aggregateAsset('css', 'BYOD.css');
-  BYOD.angularDependencies(['mean.system']);
+  BYOD.angularDependencies(['mean.system', 'ngAnimate']);
 
   return BYOD;
 });
