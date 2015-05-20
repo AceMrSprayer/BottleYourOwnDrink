@@ -1,9 +1,7 @@
 <div class="page-header" data-ng-controller="HeaderController">
     <div class="logo pull-left">
-        <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
+        <a class="navbar-brand" href="/#!" ui-sref="home" mean-token="'site-title'">BYOD</a>
     </div>
-
-
 
     <div class="account">
         <div class="text-edit">
@@ -11,7 +9,7 @@
             <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
         </div>
         <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-            <li><a ui-sref='auth.register'>Register</a>
+            <li><a ui-sref='auth.register'>Registreer</a>
             </li>
             <li class="divider-vertical"></li>
             <li><a ui-sref='auth.login'>Log In</a>
@@ -25,6 +23,7 @@
                     {{global.user.name}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
+                    <li><a href="/#!/auth/profile/overzicht">Profiel</a></li>
                     <li><a href="/logout">Log Out</a></li>
                 </ul>
             </li>

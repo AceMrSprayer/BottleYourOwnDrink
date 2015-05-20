@@ -1,0 +1,45 @@
+<section>
+    <div class="page {{ pageIndex }}" ng-view></div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1" data-ng-controller="ProfileCtrl">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Profiel van {{global.user.name}}</h3>
+                    <span class="pull-right">
+                        <!-- Tabs -->
+                        <ul class="nav panel-tabs">
+                            <li><a href="/#!/auth/profile/overzicht" data-toggle="tab">Overzicht</a></li>
+                            <li class="active"><a href="/#!/auth/profile/wachtwoord" data-toggle="tab">Wachtwoord veranderen</a></li>
+                            <li><a href="/#!/auth/profile/bestellingen" data-toggle="tab">Bestelling historie</a></li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="tab2">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> Hier kan je een nieuw wachtwoord invoeren.</div>
+                                <label for="oldPass">Oud wachtwoord: </label>
+                                <input required id="oldPass" type="password" name="oldPass"
+                                       placeholder="Oud wachtwoord">
+                                <br/>
+                                <label for="newPass">Nieuw wachtwoord: </label>
+                                <input required id="newPass" type="password" name="newPass"
+                                       placeholder="Nieuw wachtwoord">
+                                <br/>
+                                <label for="newPassConfirm">Bevestig nieuw wachtwoord: </label>
+                                <input required id="newPassConfirm" type="password" name="newPassConfirm"
+                                       placeholder="Bevestig wachtwoord">
+                                <hr>
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

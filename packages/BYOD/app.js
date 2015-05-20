@@ -19,7 +19,7 @@ BYOD.register(function(app, auth, database) {
   BYOD.routes(app, auth, database);
 
   BYOD.aggregateAsset('css', 'BYOD.css');
-  BYOD.angularDependencies(['mean.system']);
+  BYOD.angularDependencies(['mean.system', 'ngAnimate']);
 
   return BYOD;
 });

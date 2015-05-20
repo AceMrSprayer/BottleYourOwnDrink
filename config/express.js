@@ -15,6 +15,8 @@ var mean = require('meanio'),
 
 module.exports = function(app, db) {
 
+  //Custom dependicies
+
   app.set('showStackError', true);
 
   // Prettify HTML
