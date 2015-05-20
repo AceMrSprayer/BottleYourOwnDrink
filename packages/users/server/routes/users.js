@@ -6,7 +6,7 @@ var users = require('../controllers/users'),
 
 module.exports = function(MeanUser, app, auth, database, passport) {
 
-  //Custom route for getting the users information on the profile page.
+  //Custom route for getting the user's information on the profile page.
   app.route('/auth/profile')
       .get(users.me);
 
