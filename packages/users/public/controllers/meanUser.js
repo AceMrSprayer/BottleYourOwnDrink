@@ -137,6 +137,15 @@ angular.module('mean.users')
       };
     }
   ])
+  .controller('ProfileCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function($scope, $rootScope, $http, $location, Global) {
+      $scope.user = {};
+      $scope.global = Global;
+
+
+
+    }
+  ])
   .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
     function($scope, $rootScope, $http, $location, $stateParams, Global) {
       $scope.user = {};
@@ -169,22 +178,5 @@ angular.module('mean.users')
           });
       };
     }
-    .controller('ProfileCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
-      function($scope, $rootScope, $http, $location, Global) {
-        $scope.user = {};
-        $scope.global = Global;
-        $scope.forgotpassword = function() {
-          $http.post('/forgot-password', {
-            text: $scope.user.email
-          })
-              .success(function(response) {
-                $scope.response = response;
-              })
-              .error(function(error) {
-                $scope.response = error;
-              });
-        };
-      }
-    ])
-
     ]);
+

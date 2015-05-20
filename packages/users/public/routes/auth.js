@@ -22,8 +22,6 @@ angular.module('mean.users').config(['$meanStateProvider',
 
       return deferred.promise;
     };
-
-
     // states for my app
     $meanStateProvider
       .state('auth', {
