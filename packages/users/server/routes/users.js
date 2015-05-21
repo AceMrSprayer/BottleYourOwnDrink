@@ -7,8 +7,11 @@ var users = require('../controllers/users'),
 module.exports = function(MeanUser, app, auth, database, passport) {
 
   //Custom route for getting the user's information on the profile page.
-  app.route('/auth/profile')
+  app.route('/auth/profile/overzicht')
       .get(users.me);
+
+  app.route('/auth/profile/bestellingen')
+      .get(users.getBetellingen);
 
   app.route('/logout')
     .get(users.signout);

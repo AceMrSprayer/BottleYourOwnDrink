@@ -10,7 +10,8 @@
                         <ul class="nav panel-tabs">
                             <li><a href="/#!/auth/profile/overzicht" data-toggle="tab">Overzicht</a></li>
                             <li><a href="/#!/auth/profile/wachtwoord" data-toggle="tab">Wachtwoord veranderen</a></li>
-                            <li class="active"><a href="/#!/auth/profile/bestellingen" data-toggle="tab">Bestelling historie</a></li>
+                            <li class="active"><a href="/#!/auth/profile/bestellingen" data-toggle="tab">Bestelling
+                                historie</a></li>
                         </ul>
                     </span>
                 </div>
@@ -31,23 +32,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>01-01-2015</td>
-                                        <td>1</td>
-                                        <td>20,-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>04-05-2014</td>
-                                        <td>2</td>
-                                        <td>120,-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>03-06-2015</td>
-                                        <td>3</td>
-                                        <td>30,-</td>
+                                    <tr ng-repeat="order in orderList">
+                                        <td>{{order.id}}</td>
+                                        <td>{{order.date}}</td>
+                                        <td>{{order.amount}}</td>
+                                        <td>{{order.cost}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

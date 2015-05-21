@@ -12,6 +12,36 @@ var mongoose = require('mongoose'),
   templates = require('../template');
 
 /**
+ * Get all the bestellingen
+ */
+exports.getBetellingen = function(req, res) {
+  //
+  console.log('received a bestelling get request');
+
+  var order1 ={
+    id: '1',
+    date: '01-01-2015',
+    amount: '1',
+    cost: '10'
+  };
+  var order2 ={
+    id: '2',
+    date: '01-01-2015',
+    amount: '3',
+    cost: '30'
+  };
+  var order3 ={
+    id: '3',
+    date: '01-01-2015',
+    amount: '2',
+    cost: '20'
+  };
+
+  var orderList = [order1, order2, order3];
+  res.json(orderList);
+};
+
+/**
  * Auth callback
  */
 exports.authCallback = function(req, res) {
@@ -105,6 +135,7 @@ exports.create = function(req, res, next) {
  * Send User
  */
 exports.me = function(req, res) {
+
   res.json(req.user || null);
 };
 

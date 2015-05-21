@@ -142,8 +142,13 @@ angular.module('mean.users')
       $scope.user = {};
       $scope.global = Global;
 
-
-
+    //Get all the bestellingen from the backend
+    $http.get('/auth/profile/bestellingen').success(function(response){
+      console.log('Bestellingen zijn binnen');
+      $scope.orderList = response;
+    }).error(function(){
+      console.log('Er zijn geen bestellingen binnengekomen');
+    });
     }
   ])
   .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
