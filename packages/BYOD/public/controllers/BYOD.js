@@ -2,62 +2,64 @@
 
 angular.module('mean.BYOD')
     .controller('BYODController', ['$scope', 'Global', function ($scope, Global) {
-// Original scaffolded code.
         $scope.global = Global;
-        $scope.package = {
-            name: 'BYOD'
-        };
     }
     ])
-    .controller('BYODControllerStep1', ['$scope', 'Global', function ($scope, Global) {
-// Original scaffolded code.
+    .controller('BYODControllerStep1', ['$scope', 'Global','BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-        $scope.package = {
-            name: 'BYOD'
-        };
 
-        $scope.bottles = [
-            {
+        $scope.bottles = [{
                 'name': 'X-02',
                 'image': '/BYOD/assets/img/bottle1.PNG',
-                'description': '250ml',
-                'material': 'Plastic'
-            },
-            {
+                'material': 'Plastic',
+                'cap_colour': 'default',
+                'base_colour': 'default',
+                'bottom_colour': 'default',
+                'base_text': ''
+            },{
                 'name': 'Energizer',
                 'image': '/BYOD/assets/img/bottle2.PNG',
-                'description': '500ml',
-                'material': 'Metal'
-            },
-            {
+                'material': 'Metal',
+                'cap_colour': 'default',
+                'base_colour': 'default',
+                'bottom_colour': 'default',
+                'base_text': ''
+            },{
                 'name': 'Berserker',
                 'image': '/BYOD/assets/img/bottle3.PNG',
-                'description': '1000ml',
-                'material': 'Metal'
-            }
-        ];
+                'material': 'Metal',
+                'cap_colour': 'default',
+                'base_colour': 'default',
+                'bottom_colour': 'default',
+                'base_text': ''
+            }];
 
-        $scope.bottles.isClicked = function (event) {
+        $scope.isClicked = function (event) {
             if (event.currentTarget.id !== null) {
-                var currentElement = document.getElementById(event.currentTarget.id);
+                BYODservice.saveBottle(event.currentTarget.id);
+
+            /*var currentElement = document.getElementById(event.currentTarget.id);
 
                 if (currentElement.className === 'deselected'  && !$('img').hasClass('selected')) {
                     currentElement.className = 'selected';
-                    currentElement.style.border = 'thin solid #000000';
+                    currentElement.style.border = 'thin solid red';
                 }
                 else{
                     currentElement.className = 'deselected';
                     currentElement.style.removeProperty('border');
-                }
+                }*/
+
             }
         };
     }
     ])
-    .controller('BYODControllerStep2', ['$scope', 'Global', function ($scope, Global) {
-// Original scaffolded code.
+    .controller('BYODControllerStep2', ['$scope', 'Global','BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-        $scope.package = {
-            name: 'BYOD'
+        $scope.retrievePickedBottle = function() {
+            $scope.bottle = BYODservice.getBottle();
+
+            console.log(BYODservice.getBottle());
         };
+
     }
     ]);
