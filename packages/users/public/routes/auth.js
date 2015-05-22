@@ -29,7 +29,7 @@ angular.module('mean.users').config(['$meanStateProvider',
         templateUrl: 'users/views/index.html'
       })
       .state('profile-overzicht', {
-        url: '/auth/profile/overzicht',
+        url: '/auth/profile/overzicht/:userID',
         templateUrl: 'users/views/profile-overzicht.html'
       })
       .state('profile-wachtwoord', {

@@ -12,11 +12,11 @@ var mongoose = require('mongoose'),
   templates = require('../template');
 
 /**
- * Get all the bestellingen
+ * Get all the orders
  */
-exports.getBetellingen = function(req, res) {
-  //
-  console.log('received a bestelling get request');
+exports.getBetellingen = function(req, res) {  //
+  console.log('Received a order request');
+
 
   var order1 ={
     id: '1',
@@ -39,6 +39,18 @@ exports.getBetellingen = function(req, res) {
 
   var orderList = [order1, order2, order3];
   res.json(orderList);
+};
+
+//Get the users profile information
+exports.getProfileInformation = function(req, res) {  //
+  console.log('Received a profile information request');
+  console.log('Profile ID: ' + req.params.userID);
+
+ var user = User.findById(req.params.userID);
+
+ console.log(user.name);
+
+  res.json(user);
 };
 
 /**

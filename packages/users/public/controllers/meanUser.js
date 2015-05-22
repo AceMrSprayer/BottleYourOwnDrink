@@ -137,7 +137,24 @@ angular.module('mean.users')
       };
     }
   ])
-  .controller('ProfileCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+  .controller('ProfileCtrlMain', ['$scope', '$rootScope', '$http', '$location', 'Global',
+    function($scope, $rootScope, $http, $location, Global) {
+      $scope.user = {};
+      $scope.global = Global;
+
+      var username = $scope.global.user._id;
+
+      $http.get('/auth/profile/overzicht/' + username).success(function(response){
+        console.log('Account informatie is binnen');
+        $scope.name = response.user.name;
+        $scope.username = response.user.username;
+        $scope.email = response.user.email;
+      }).error(function(){
+        console.log('Account informatie is niet opgehaald.');
+      });
+    }
+  ])
+  .controller('ProfileCtrlOrders', ['$scope', '$rootScope', '$http', '$location', 'Global',
     function($scope, $rootScope, $http, $location, Global) {
       $scope.user = {};
       $scope.global = Global;
@@ -151,6 +168,13 @@ angular.module('mean.users')
     });
     }
   ])
+    .controller('ProfileCtrlPassword', ['$scope', '$rootScope', '$http', '$location', 'Global',
+      function($scope, $rootScope, $http, $location, Global) {
+        $scope.user = {};
+        $scope.global = Global;
+
+      }
+    ])
   .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
     function($scope, $rootScope, $http, $location, $stateParams, Global) {
       $scope.user = {};
