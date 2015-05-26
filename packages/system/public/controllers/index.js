@@ -3,6 +3,7 @@
 angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
   function($scope, Global) {
     $scope.global = Global;
+    $scope.pageIndex = 'page-index';
     $scope.sites = {
       'makeapoint':{
         'name':'makeapoint',

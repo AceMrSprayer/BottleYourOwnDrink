@@ -5,6 +5,7 @@ angular.module('mean.theme')
 	  function($scope, Global) {
 // Original scaffolded code.
       $scope.global = Global;
+      $scope.pageIndex = 'page-theme';
       $scope.package = {
         name: 'theme'
       };

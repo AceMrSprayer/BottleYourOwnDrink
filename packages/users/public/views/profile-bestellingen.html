@@ -1,0 +1,63 @@
+<section>
+    <div class="page {{ pageIndex }}" ng-view></div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-1" data-ng-controller="ProfileCtrl">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Profiel van {{global.user.name}}</h3>
+                    <span class="pull-right">
+                        <!-- Tabs -->
+                        <ul class="nav panel-tabs">
+                            <li><a href="/#!/auth/profile/overzicht" data-toggle="tab">Overzicht</a></li>
+                            <li><a href="/#!/auth/profile/wachtwoord" data-toggle="tab">Wachtwoord veranderen</a></li>
+                            <li class="active"><a href="/#!/auth/profile/bestellingen" data-toggle="tab">Bestelling historie</a></li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab3">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> Hier zie je een overzicht van al je bestellingen die je
+                                    eerder hebt gemaakt.
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Datum</th>
+                                        <th>Hoeveelheid</th>
+                                        <th>Kosten</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>01-01-2015</td>
+                                        <td>1</td>
+                                        <td>20,-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>04-05-2014</td>
+                                        <td>2</td>
+                                        <td>120,-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>03-06-2015</td>
+                                        <td>3</td>
+                                        <td>30,-</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

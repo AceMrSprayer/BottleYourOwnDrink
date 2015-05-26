@@ -145,7 +145,7 @@ exports.resetpassword = function(req, res, next) {
         msg: 'Token invalid or expired'
       });
     }
-    req.assert('password', 'WAchtwoord moet tussen de 8 en 20 karakters zijn').len(8, 20);
+    req.assert('password', 'Wachtwoord moet tussen de 8 en 20 karakters zijn').len(8, 20);
     req.assert('confirmPassword', 'Wachtwoorden zijn niet gelijk').equals(req.body.password);
     var errors = req.validationErrors();
     if (errors) {

@@ -22,13 +22,24 @@ angular.module('mean.users').config(['$meanStateProvider',
 
       return deferred.promise;
     };
-
-
     // states for my app
     $meanStateProvider
       .state('auth', {
         url: '/auth',
         templateUrl: 'users/views/index.html'
+      })
+      //Routes for the profile page.
+      .state('profile-overzicht', {
+        url: '/auth/profile/overzicht',
+        templateUrl: 'users/views/profile-overzicht.html'
+      })
+      .state('profile-wachtwoord', {
+        url: '/auth/profile/wachtwoord',
+        templateUrl: 'users/views/profile-wachtwoord.html'
+      })
+      .state('profile-bestellingen', {
+        url: '/auth/profile/bestellingen',
+        templateUrl: 'users/views/profile-bestellingen.html'
       })
       .state('auth.login', {
         url: '/login',
