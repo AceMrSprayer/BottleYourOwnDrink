@@ -37,20 +37,20 @@ angular.module('mean.BYOD')
             }
         ];
 
-        $scope.bottles.isClicked = function (event) {
-            if (event.currentTarget.id !== null) {
-                var currentElement = document.getElementById(event.currentTarget.id);
-
-                if (currentElement.className === 'deselected'  && !$('img').hasClass('selected')) {
-                    currentElement.className = 'selected';
-                    currentElement.style.border = 'thin solid #000000';
-                }
-                else{
-                    currentElement.className = 'deselected';
-                    currentElement.style.removeProperty('border');
-                }
-            }
-        };
+        //$scope.bottles.isClicked = function (event) {
+        //    if (event.currentTarget.id !== null) {
+        //        var currentElement = document.getElementById(event.currentTarget.id);
+        //
+        //        if (currentElement.className === 'deselected'  && !$('img').hasClass('selected')) {
+        //            currentElement.className = 'selected';
+        //            currentElement.style.border = 'thin solid #000000';
+        //        }
+        //        else{
+        //            currentElement.className = 'deselected';
+        //            currentElement.style.removeProperty('border');
+        //        }
+        //    }
+        //};
     }
     ])
     .controller('BYODControllerStep2', ['$scope', 'Global', function ($scope, Global) {
