@@ -146,9 +146,11 @@ angular.module('mean.users')
 
       $http.get('/auth/profile/overzicht/' + username).success(function(response){
         console.log('Account informatie is binnen');
-        $scope.name = response.user.name;
-        $scope.username = response.user.username;
-        $scope.email = response.user.email;
+        console.dir(response);
+        console.log('User name: ' + response.name);
+        $scope.name = response.name;
+        $scope.username = response.username;
+        $scope.email = response.email;
       }).error(function(){
         console.log('Account informatie is niet opgehaald.');
       });
