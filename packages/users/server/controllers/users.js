@@ -14,31 +14,47 @@ var mongoose = require('mongoose'),
 /**
  * Get all the orders
  */
-exports.getBetellingen = function (req, res) {  //
+exports.getBetellingen = function (req, res) {
     console.log('Received a order request');
 
+    if (req.params.userID) {
+        console.log('Trying to find a specific user..');
+        var userID = mongoose.Types.ObjectId(req.params.userID);
+        User
+            .findOne({
+                _id: userID
+            })
+            .exec(function (err, user) {
+                if (err) console.log(err);
+                if (!user) console.log('User is niet gevonden!');
+                if (user) console.log('User is gevonden!');
+                res.send(user);
+            });
+    }
 
-    var order1 = {
-        id: '1',
-        date: '01-01-2015',
-        amount: '1',
-        cost: '10'
-    };
-    var order2 = {
-        id: '2',
-        date: '01-01-2015',
-        amount: '3',
-        cost: '30'
-    };
-    var order3 = {
-        id: '3',
-        date: '01-01-2015',
-        amount: '2',
-        cost: '20'
-    };
+};
 
-    var orderList = [order1, order2, order3];
-    res.json(orderList);
+/**
+ * Get all the orders
+ */
+exports.changePassword = function (req, res) {
+    console.log('Received a change password request');
+
+    if (req.params.userID) {
+        console.log('Trying to find a specific user..');
+        var userID = mongoose.Types.ObjectId(req.params.userID);
+        User
+            .findOne({
+                _id: userID
+            })
+            .exec(function (err, user) {
+                if (err) console.log(err);
+                if (!user) console.log('User is niet gevonden!');
+                if (user) console.log('User is gevonden!');
+                res.send(user);
+            });
+    }
+
 };
 
 //Get the users profile information
@@ -47,7 +63,6 @@ exports.getProfileInformation = function (req, res) {  //
     console.log('Profile ID: ' + req.params.userID);
 
     if (req.params.userID) {
-        console.log('Trying to find a specific user..');
         var userID = mongoose.Types.ObjectId(req.params.userID);
             User
                 .findOne({
@@ -57,7 +72,7 @@ exports.getProfileInformation = function (req, res) {  //
                     if (err) console.log(err);
                     if (!user) console.log('User is niet gevonden!');
                     if (user) console.log('User is gevonden!');
-                    res.send(user);
+                    res.send(user.orders);
                 });
     }
 

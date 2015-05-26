@@ -8,12 +8,13 @@
                     <span class="pull-right">
                         <!-- Tabs -->
                         <ul class="nav panel-tabs">
-                            <li><a href="/#!/auth/profile/overzicht" data-toggle="tab">Overzicht</a></li>
+                            <li><a href="/#!/auth/profile/overzicht/{{global.user._id}}" data-toggle="tab">Overzicht</a></li>
                             <li class="active"><a href="/#!/auth/profile/wachtwoord" data-toggle="tab">Wachtwoord veranderen</a></li>
-                            <li><a href="/#!/auth/profile/bestellingen" data-toggle="tab">Bestelling historie</a></li>
+                            <li><a href="/#!/auth/profile/bestellingen/{{global.user._id}}" data-toggle="tab">Bestelling historie</a></li>
                         </ul>
                     </span>
                 </div>
+                <form ng-submit="resetpassword()">
                 <div class="panel-body">
                     <div class="tab-content">
 
@@ -21,22 +22,23 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading"> Hier kan je een nieuw wachtwoord invoeren.</div>
                                 <label for="oldPass">Oud wachtwoord: </label>
-                                <input required id="oldPass" type="password" name="oldPass"
-                                       placeholder="Oud wachtwoord">
+                                <input id="oldPass" type="password" name="oldPass"
+                                       placeholder="Oud wachtwoord" ng-model="user.oldPassword">
                                 <br/>
                                 <label for="newPass">Nieuw wachtwoord: </label>
                                 <input required id="newPass" type="password" name="newPass"
-                                       placeholder="Nieuw wachtwoord">
+                                       placeholder="Nieuw wachtwoord" ng-model="user.password">
                                 <br/>
                                 <label for="newPassConfirm">Bevestig nieuw wachtwoord: </label>
                                 <input required id="newPassConfirm" type="password" name="newPassConfirm"
-                                       placeholder="Bevestig wachtwoord">
+                                       placeholder="Bevestig wachtwoord" ng-model="user.confirmPassword">
                                 <hr>
                                 <button class="btn btn-primary" type="submit">Update</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                    </form>
             </div>
         </div>
     </div>

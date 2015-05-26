@@ -10,8 +10,13 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   app.route('/auth/profile/overzicht/:userID')
       .get(users.getProfileInformation);
 
-  app.route('/auth/profile/bestellingen')
+  //Custom route for getting all orders that are associated to the user.
+  app.route('/auth/profile/bestellingen/:userID')
       .get(users.getBetellingen);
+
+  //Custom route for updating the user's password.
+  app.route('/changePassword/:userID')
+      .post(users.changePassword);
 
   app.route('/logout')
     .get(users.signout);

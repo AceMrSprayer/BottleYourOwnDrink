@@ -142,9 +142,9 @@ angular.module('mean.users')
       $scope.user = {};
       $scope.global = Global;
 
-      var username = $scope.global.user._id;
+      var userID = $scope.global.user._id;
 
-      $http.get('/auth/profile/overzicht/' + username).success(function(response){
+      $http.get('/auth/profile/overzicht/' + userID).success(function(response){
         console.log('Account informatie is binnen');
         console.dir(response);
         console.log('User name: ' + response.name);
@@ -161,10 +161,21 @@ angular.module('mean.users')
       $scope.user = {};
       $scope.global = Global;
 
+      var username = $scope.global.user._id;
+
     //Get all the bestellingen from the backend
-    $http.get('/auth/profile/bestellingen').success(function(response){
+    $http.get('/auth/profile/bestellingen/' + username).success(function(response){
       console.log('Bestellingen zijn binnen');
-      $scope.orderList = response;
+
+      //check if the orderList is empty.
+      //if(response.orderList.length == 0){
+      //  console.log('The user has never placed an order before.');
+      //  $scope.orderMessage = 'U heeft nooit bestellingen geplaatst.';
+      //}else{
+        console.dir(response);
+        $scope.orderList = response.orders;
+     // }
+
     }).error(function(){
       console.log('Er zijn geen bestellingen binnengekomen');
     });
@@ -175,7 +186,13 @@ angular.module('mean.users')
         $scope.user = {};
         $scope.global = Global;
 
-      }
+        //$scope.changeUserPassword() = function() {
+        //  $http.post('/changePassword/' + $scope.global.user._id, {
+        //    password: $scope.user.password,
+        //    oldPassword : $scope.user.oldPassword,
+        //    confirmPassword: $scope.user.confirmPassword
+        //  })
+        }
     ])
   .controller('ResetPasswordCtrl', ['$scope', '$rootScope', '$http', '$location', '$stateParams', 'Global',
     function($scope, $rootScope, $http, $location, $stateParams, Global) {
@@ -183,7 +200,7 @@ angular.module('mean.users')
       $scope.global = Global;
       $scope.global.registerForm = false;
       $scope.resetpassword = function() {
-        $http.post('/reset/' + $stateParams.tokenId, {
+        $http.post('/reset/' + $scope.global.user._id, {
           password: $scope.user.password,
           confirmPassword: $scope.user.confirmPassword
         })
