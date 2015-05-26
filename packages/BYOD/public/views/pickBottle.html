@@ -5,8 +5,7 @@
             <li ng-repeat="bottle in bottles">
              <span>
                   <figure>
-                      <img ng-click="isClicked($event)" class="deselected" src="{{bottle.image}}"
-                           id="{{bottle.name}}" width="40" height="80">
+                      <img ng-click="selection(bottle)" class="deselected" src="{{bottle.image}}" id="{{bottle.name}}">
                       <figcaption>{{bottle.name}}</figcaption>
                   </figure>
              </span>

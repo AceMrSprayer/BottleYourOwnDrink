@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.BYOD').factory('BYODservice', function () {
-    var bottle = {};
+    var bottle = [];
 
     return {
         saveBottle:function (data) {
