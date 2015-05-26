@@ -1,0 +1,54 @@
+<section class="welcome container-fluid" data-ng-controller="IndexController">
+    <div class="page {{ pageIndex }}" ng-view></div>
+    <div class="col-md-4 row">
+        <div class="container">
+             <form class="form-horizontal" role="form">
+                <fieldset>
+                    <h2>Payment</h2>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="name">Voornaam</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="name" id="first-name" placeholder="Voornaam">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="name">Achternaam</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="name" id="surname" placeholder="Achternaam">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="address">Verjaardag</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="birthday" id="birthday" placeholder="Verjaardag">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="address">Adres</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Adres">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="post-code">Postcode/City</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="postcode/city" id="postcode/city" placeholder="Postcode/City">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="post-code">Telefoon nummer</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="nummer" id="nummer" placeholder="Telefoon nummer">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label" for="post-code">Email</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
