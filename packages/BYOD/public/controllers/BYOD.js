@@ -7,7 +7,8 @@ angular.module('mean.BYOD')
       $scope.global = Global;
       $scope.pageIndex = 'page-byod';
       $scope.package = {
-        name: 'BYOD'
+        name: 'BYOD',
+          derp: 'test'
       };
     }
   ]);
