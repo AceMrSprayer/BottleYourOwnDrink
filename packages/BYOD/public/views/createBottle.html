@@ -2,13 +2,22 @@
     <div class="col-md-12 row">
         <script src="bower_components/fabric/dist/fabric.js"></script>
         <h1>Design your bottle</h1>
-        <p>picked bottle: {{bottle.name}}</p>
-        <p><input type="file" id="imageLoader" name="imageLoader" /></p>
-        <p><canvas id="canvas" width="500" height="400" style="border: 1px solid black"></canvas></p>
+
+        <p>Gekozen fles: {{bottle.name}}</p>
+
+        <p><input type="file" id="imageLoader" name="imageLoader"/></p>
+
+        <p>
+            <canvas id="canvas" width="230" height="504" style="border: 1px solid black"></canvas>
+        </p>
         <br>
-        <p><input type="text" ng-model="inputText" maxlength="120"> <button ng-click="addText(inputText)">Add text</button></p>
+
+        <p><input type="text" ng-model="inputText" maxlength="120">
+            <button ng-click="addText(inputText)">Voeg tekst toe</button>
+        </p>
         <p><a id="imageSaver" href="#">Save image</a></p>
         <br>
+
         <div style="background-color: red" ng-click="changeColour('red')">red</div>
         <div style="background-color: blue" ng-click="changeColour('blue')">blue</div>
         <div style="background-color: yellow" ng-click="changeColour('yellow')">yellow</div>

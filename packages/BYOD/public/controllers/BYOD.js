@@ -16,27 +16,21 @@ angular.module('mean.BYOD')
         $scope.bottles = [{
             'name': 'X-02',
             'image': '/BYOD/assets/img/bottle1.PNG',
-            'material': 'Plastic',
-            'cap_colour': 'red',
-            'base_colour': 'red',
-            'bottom_colour': 'red',
-            'base_text': ''
+            'imageTop': '',
+            'imageBase': '',
+            'imageBottom': ''
         }, {
             'name': 'Energizer',
             'image': '/BYOD/assets/img/bottle2.PNG',
-            'material': 'Metal',
-            'cap_colour': 'black',
-            'base_colour': 'black',
-            'bottom_colour': 'black',
-            'base_text': ''
+            'imageTop': '',
+            'imageBase': '',
+            'imageBottom': ''
         }, {
             'name': 'Berserker',
             'image': '/BYOD/assets/img/bottle3.PNG',
-            'material': 'Metal',
-            'cap_colour': 'white',
-            'base_colour': 'white',
-            'bottom_colour': 'white',
-            'base_text': ''
+            'imageTop': '',
+            'imageBase': '',
+            'imageBottom': ''
         }];
 
         /**
@@ -45,22 +39,20 @@ angular.module('mean.BYOD')
          * @param bottle
          */
         $scope.selection = function (bottle) {
-            if (event.currentTarget.id !== null) {
+            var currentElement = document.getElementById(event.currentTarget.id);
 
-                var currentElement = document.getElementById(event.currentTarget.id);
-
-                if (currentElement.className === 'deselected' && !$('img').hasClass('selected')) {
-                    currentElement.className = 'selected';
-                    currentElement.style.border = 'thin solid black';
-                    // Save bottle from this step in the BYOD service
-                    BYODservice.saveBottle(bottle);
-                }
-                else {
-                    currentElement.className = 'deselected';
-                    currentElement.style.removeProperty('border');
-                }
-
+            if (currentElement.className === 'deselected' && !$('img').hasClass('selected')) {
+                currentElement.className = 'selected';
+                currentElement.style.border = 'thin solid black';
+                // Save bottle from this step in the BYOD service
+                BYODservice.saveBottle(bottle);
             }
+            else {
+                currentElement.className = 'deselected';
+                currentElement.style.removeProperty('border');
+            }
+
+
         };
     }
     ])
@@ -70,9 +62,7 @@ angular.module('mean.BYOD')
         /**
          * The variables of this controller
          */
-        var text, imageSaver, imageLoader, canvas = new fabric.Canvas('canvas', {
-            backgroundColor: 'rgb(240,240,240)'
-        });
+        var text, imageSaver, imageLoader, canvas = new fabric.Canvas('canvas');
 
         /**
          * A function to retrieve the bottle saved in step 1 from BYOD service.
@@ -82,22 +72,26 @@ angular.module('mean.BYOD')
             //add image from retrieved bottle to canvas
             fabric.Image.fromURL($scope.bottle.image, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                //oImg.set( {width: 500, height: 400} );
+                oImg.set({width: 230, height: 504});
                 canvas.add(oImg);
             });
         };
 
         /**
          *  Function to change the bottle colour.
+         *  TODO: Change color based on selection of top,base or bottom
          * @param colour
          */
         $scope.changeColour = function (colour) {
-            document.getElementsByTagName('p')[0].style.color = colour;
-            //canvas.renderAll();
+            canvas.item(0).filters.pop();
+            canvas.item(0).filters.push(new fabric.Image.filters.Blend({color: colour}));
+            canvas.item(0).applyFilters(canvas.renderAll.bind(canvas));
+            canvas.renderAll();
         };
 
         /**
          * Function to add text to the bottle on the canvas
+         * TODO: Will always remove the second object of the canvas make this dynamic if possible
          * @param filledText
          */
         $scope.addText = function (filledText) {
@@ -144,10 +138,10 @@ angular.module('mean.BYOD')
          */
         function saveImage(e) {
             this.href = canvas.toDataURL({
-                format: 'jpeg',
-                quality: 0.8
+                format: 'png',
+                quality: 2.0
             });
-            this.download = 'test.png'
+            this.download = 'default.png'
         }
 
     }
