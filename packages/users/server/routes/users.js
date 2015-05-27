@@ -16,7 +16,7 @@ module.exports = function(MeanUser, app, auth, database, passport) {
    * Custom route for getting all the orders related to the current user. Executes within the user controller.
    */
   app.route('/auth/profile/bestellingen/:userID')
-      .get(users.getBetellingen);
+      .get(users.getProfileInformation);
 
   /**
    * Custom route for changing the user's password through a REST .post method.
