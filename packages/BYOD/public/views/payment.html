@@ -1,75 +1,95 @@
-<section class="welcome container-fluid" data-ng-controller="PaymentController">
+<section class="welcome container" data-ng-controller="PaymentController">
     <div class="page {{ pageIndex }}" ng-view></div>
-    <div class="col-md-4 row">
-        <div class="container">
-            <form class="form-horizontal" role="form">
-                <fieldset>
-                    <h2>Payment</h2>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="name">Voornaam</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="name" id="first-name" placeholder="Voornaam">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="name">Achternaam</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="name" id="surname" placeholder="Achternaam">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="address">address</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="birthday" id="birthday" placeholder="Verjaardag">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="address">Adres</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="address" id="address" placeholder="Adres">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="post-code">Postcode/City</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="postcode/city" id="postcode/city" placeholder="Postcode/City">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="post-code">Telefoon nummer</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="nummer" id="nummer" placeholder="Telefoon nummer">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="post-code">Email</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="newsletter">Sign up for newsletter</label>
-                        <div class="col-sm-2">
-                            <input type="checkbox" class="" name="newsletter" id="newsletter">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label" for="newsletter">Terms of Agreement</label>
-                        <div class="col-sm-2">
-                            <input type="checkbox" class="" name="agreement" id="agreement">
-                        </div>
-                    </div>
-                </fieldset>
-                </div>
-        </div>
-    <div class="col-md-5 row" style="float: right;">
-        <div class="" style="width: 100%; height: 100%;">
-            <img src="/BYOD/assets/img/BOTTLE.png" style="float: left; width: 30%;">
-            <div class="desc" style="float: left; height: 50%; width: 70%; margin-top: 50px;">Product description</div>
-            <div class="price" style="float: left; height: 25%; width: 30%; margin-top: 5px;">Price</div>
-            <input type="number" value="1" min="1" style="float: left; height: 25%; width: 15%; margin-top: 5px; margin-right:25%;" />
-        </div>
+    <div class="header_one">
+        <h1>Bottle Your Own Drink</h1>
     </div>
-    <div class="col-md-5 row" style="float: right;">
+    <div class="row" style="padding:20px;">
+        <form class="form-horizontal" role="form">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="firstname">Firstname</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstname" placeholder="Firstname" value="{{name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="lastname">Lastname</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastname" placeholder="Lastname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="date_of_birth">Date of Birth</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="date_of_birth" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="adress">Adress</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="adress" placeholder="Adress">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="zip">City Zip code</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="zip" placeholder="City zip code">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="email">Email</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" value="{{email}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Sign up for newsletter</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Terms of Agreement</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <img src="BYOD/assets/img/BOTTLE.png" class="img-responsive col-sm-4" alt="bottle" width="50px" height="50px">
+                    <div class="col-sm-8" style="margin-bottom: 20px">
+                        <p>Some description about the shittie bottle asdfafas Some description about the shittie bottle asdfafas</p>
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 20px; float: right;">
+                        <input type="text" class="form-control" id="price" placeholder="50e">
+                    </div>
+                    <div class="col-sm-2" style="margin-bottom: 20px; float: right">
+                        <input type="number" class="form-control" id="amount" min="1" value="1">
+                    </div>
+                </div>
+                <h3>Payment Method</h3>
+                <div class="form-group">
+                    <div class="jumbotron">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Ideal</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Paypal</label>
+                        </div>
+                        <div class="checkbox disabled">
+                            <label><input type="checkbox" value="" disabled>Credit card</label>
+                        </div>
+                        <div class="checkbox disabled">
+                            <label><input type="checkbox" value="" disabled>Coupon</label>
+                        </div>
+                        <button type="submit" class="btn btn-default" style="float: right">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     </div>
 </section>
