@@ -12,7 +12,7 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
 angular.module('mean.BYOD').config(['$meanStateProvider',
     function($meanStateProvider) {
         $meanStateProvider.state('Payment page', {
-            url: '/payment',
+            url: '/payment/:userID',
             templateUrl: 'BYOD/views/payment.html'
         });
     }
