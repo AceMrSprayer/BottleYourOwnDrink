@@ -5,18 +5,30 @@ var users = require('../controllers/users'),
     config = require('meanio').loadConfig();
 
 module.exports = function(MeanUser, app, auth, database, passport) {
-
-  //Custom route for getting the user's information on the profile page.
+  /**
+   * Custom route for getting the user's information on the profile page. Executes the method getProfileInformation within
+   * the users controller.
+   */
   app.route('/auth/profile/overzicht/:userID')
       .get(users.getProfileInformation);
 
-  //Custom route for getting all orders that are associated to the user.
+  /**
+   * Custom route for getting all the orders related to the current user. Executes within the user controller.
+   */
   app.route('/auth/profile/bestellingen/:userID')
       .get(users.getBetellingen);
 
-  //Custom route for updating the user's password.
+  /**
+   * Custom route for changing the user's password through a REST .post method.
+   */
   app.route('/changePassword/:userID')
       .post(users.changePassword);
+
+  /**
+   * Custom route for changing the user's profile information through a REST .post method.
+   */
+  app.route('/updateProfile/:userID')
+      .post(users.updateProfileInformation);
 
   app.route('/logout')
     .get(users.signout);

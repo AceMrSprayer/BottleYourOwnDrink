@@ -35,26 +35,62 @@ exports.getBetellingen = function (req, res) {
 };
 
 /**
+ * Update the users profile information and return the updated user object.
+ */
+exports.updateProfileInformation = function (req, res) {
+    console.log('Received a change profile information post');
+
+    if (req.params.userID) {
+        //User ID pushed into a ObjectId object
+        var userID = mongoose.Types.ObjectId(req.params.userID);
+        //Qeury variables set
+        var conditions = { _id : userID},
+            update = { email: req.body.email, username : req.params.username, name : req.params.name},
+            options = {};
+
+        User.update(conditions, update, options).exec(function(err){
+            console.log('User is updated trying to retrieve him.');
+            User
+                .findOne({
+                    _id: userID
+                })
+                .exec(function (err, user) {
+                    if (err) console.log(err);
+                    if (!user) console.log('User is not found!');
+                    if (user) console.log('User is retrieved sending user back..');
+                    res.send(user);
+                });
+        });
+    }
+};
+/**
  * Get all the orders
  */
 exports.changePassword = function (req, res) {
     console.log('Received a change password request');
 
     if (req.params.userID) {
-        console.log('Trying to find a specific user..');
-        var userID = mongoose.Types.ObjectId(req.params.userID);
-        User
-            .findOne({
-                _id: userID
-            })
-            .exec(function (err, user) {
-                if (err) console.log(err);
-                if (!user) console.log('User is niet gevonden!');
-                if (user) console.log('User is gevonden!');
-                res.send(user);
-            });
-    }
 
+        var userID = mongoose.Types.ObjectId(req.params.userID);
+
+        var conditions = { _id : userID},
+             update = { email: req.body.email, username : req.params.username, name : req.params.name},
+             options = {};
+
+        User.update(conditions, update, options).exec(function(err){
+            console.log('User is updated trying to retrieve him.');
+            User
+                .findOne({
+                    _id: userID
+                })
+                .exec(function (err, user) {
+                    if (err) console.log(err);
+                    if (!user) console.log('User is not found!');
+                    if (user) console.log('User is retrieved sending user back..');
+                    res.send(user);
+                });
+        });
+    }
 };
 
 //Get the users profile information
@@ -72,7 +108,7 @@ exports.getProfileInformation = function (req, res) {  //
                     if (err) console.log(err);
                     if (!user) console.log('User is niet gevonden!');
                     if (user) console.log('User is gevonden!');
-                    res.send(user.orders);
+                    res.send(user);
                 });
     }
 
