@@ -129,10 +129,10 @@ angular.module('mean.users')
                     text: $scope.user.email
                 })
                     .success(function (response) {
-                        $scope.response = response;
+                        $scope.validationError = response;
                     })
                     .error(function (error) {
-                        $scope.response = error;
+                        $scope.validationError = error;
                     });
             };
         }
@@ -178,19 +178,14 @@ angular.module('mean.users')
                 })
                     .success(function (response) {
                         console.dir(response);
-                        $scope.oldPassword = response.oldPassword;
-                        $scope.password = response.password;
-                        $scope.confirmPassword = response.confirmPassword;
-                        $scope.message = 'Uw wachtwoord is bijgewerkt!';
-                        $location.url('/auth/profile/wachtwoord/' + $scope.global.user._id);
-                    })
-                    .error(function (error) {
-                        if(error){
-                            console.dir(error);
+                        if(response.msg == 'Uw wachtwoord is nu bijgewerkt'){
+                            $scope.validationError = response.msg;
                         }else{
-                            $scope.message = 'Er is iets fout gegaan!';
-                            console.log('Error with resetting the users password');
+                            $scope.validationError = response;
                         }
+                    })
+                    .error(function (response) {
+                            $scope.validationError = response;
                     });
             };
         }])

@@ -52,34 +52,28 @@ exports.changePassword = function (req, res) {
 
     var errors = req.validationErrors();
     if (errors) {
-        return res.status(400).send(errors);
-    }
-
-    if (req.params.userID) {
+        return res.send(errors);
+    }else if (req.params.userID && !errors) {
 
         var userID = mongoose.Types.ObjectId(req.params.userID);
        // console.log('DEBUG.' + req.body.password + req.body.oldPassword + req.body.confirmPassword);
-
         console.log('Trying to hash the password.');
         //HASH the password
-        var hashedPassword = User.hashPassword(req.body.password);
-        console.log('Hash is complete, now storing the new password in the database');
+        //console.log('Hash is complete, now storing the new password in the database');
+
         var conditions = { _id : userID},
-            update = {hashed_password : hashedPassword},
+            update = {hashed_password : req.body.confirmPassword},
             options = {};
 
         User.update(conditions, update, options).exec(function(err){
-
-            User
-                .findOne({
-                    _id: userID
-                })
-                .exec(function (err, user) {
-                    if (err) console.log(err);
-                    if (!user) console.log('User is not found!');
-                    if (user) console.log('User is retrieved sending user back..');
-                    res.send(user);
+            if (err){
+                console.log(err);
+                res.send(err);
+            } else{
+                res.json({
+                    msg: 'Uw wachtwoord is nu bijgewerkt'
                 });
+            }
         });
     }
 };

@@ -22,7 +22,9 @@
                             <div class="tab-pane active" id="tab2">
                                 <div class="panel panel-default">
                                     <form ng-submit="changeUserPassword()" data-ng-controller="ProfileCtrlPassword">
-                                        <div class="alert alert-success animated fadeIn" ng-show="message">{{message}}
+                                        <div class="alert alert-success animated fadeIn" ng-show="successMessage">{{successMessage}}</div>
+                                        <div ng-repeat="error in validationError">
+                                            <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
                                         </div>
                                         <div class="panel-heading"> Hier kan je een nieuw wachtwoord invoeren.</div>
                                         <label for="oldPass">Oud wachtwoord: </label>
