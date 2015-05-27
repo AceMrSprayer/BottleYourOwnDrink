@@ -90,6 +90,22 @@ footer p {
     border-bottom-color: transparent;
 }
 
+.cont{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
+.payment_title{
+    text-align: left !important;
+}
+.left-side{
+    width: 50%;
+}
+.payment_form input{
+    float: right;
+    padding: 10px;
+}
+
 /* ANIMATIONS
 ============================================================================= */
 
