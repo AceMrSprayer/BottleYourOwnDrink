@@ -169,19 +169,28 @@ angular.module('mean.users')
             $scope.global = Global;
 
             $scope.changeUserPassword = function () {
-                console.log('User is trying to change his password.');
-                console.log('DEBUG: ' + $scope.user.password + ' ' +  $scope.user.oldPassword + '' + $scope.user.confirmPassword);
+                console.log('User is trying to change his password');
+                //console.log('DEBUG: ' + $scope.user.name + ' ' +  $scope.user.username + '' + $scope.user.email);
                 $http.post('/changePassword/' + $scope.global.user._id, {
-                    password: $scope.user.password,
                     oldPassword: $scope.user.oldPassword,
-                    confirmPassword: $scope.user.confirmPassword
+                    password: $scope.user.password,
+                    confirmPassword : $scope.user.confirmPassword
                 })
                     .success(function (response) {
-                        $rootScope.user = response.user;
-                        $rootScope.$emit('loggedin');
+                        console.dir(response);
+                        $scope.oldPassword = response.oldPassword;
+                        $scope.password = response.password;
+                        $scope.confirmPassword = response.confirmPassword;
+                        $scope.message = 'Uw wachtwoord is bijgewerkt!';
+                        $location.url('/auth/profile/wachtwoord/' + $scope.global.user._id);
                     })
                     .error(function (error) {
-                        console.log('Error with resetting the users password');
+                        if(error){
+                            console.dir(error);
+                        }else{
+                            $scope.message = 'Er is iets fout gegaan!';
+                            console.log('Error with resetting the users password');
+                        }
                     });
             };
         }])
@@ -215,7 +224,7 @@ angular.module('mean.users')
                         $scope.name = response.name;
                         $scope.username = response.username;
                         $scope.email = response.email;
-                        $scope.message = 'Account information is successfully updated.';
+                        $scope.message = 'Account informatie is succesvol geupdatet.';
                         $location.url('/auth/profile/overzicht/' + $scope.global.user._id);
                     })
                     .error(function (error) {

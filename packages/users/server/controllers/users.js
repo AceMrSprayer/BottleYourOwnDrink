@@ -12,29 +12,6 @@ var mongoose = require('mongoose'),
     templates = require('../template');
 
 /**
- * Get all the orders
- */
-exports.getBetellingen = function (req, res) {
-    console.log('Received a order request');
-
-    if (req.params.userID) {
-        console.log('Trying to find a specific user..');
-        var userID = mongoose.Types.ObjectId(req.params.userID);
-        User
-            .findOne({
-                _id: userID
-            })
-            .exec(function (err, user) {
-                if (err) console.log(err);
-                if (!user) console.log('User is niet gevonden!');
-                if (user) console.log('User is gevonden!');
-                res.send(user);
-            });
-    }
-
-};
-
-/**
  * Update the users profile information and return the updated user object.
  */
 exports.updateProfileInformation = function (req, res) {
@@ -44,7 +21,6 @@ exports.updateProfileInformation = function (req, res) {
         //User ID pushed into a ObjectId object
         var userID = mongoose.Types.ObjectId(req.params.userID);
         //Qeury variables set
-        //console.log('DEBUG: ' + req.body.email +  req.body.username + req.body.name);
         var conditions = { _id : userID},
             update = { email: req.body.email, username : req.body.username, name : req.body.name},
             options = {};
@@ -53,7 +29,7 @@ exports.updateProfileInformation = function (req, res) {
             console.log('User is updated trying to retrieve him.');
             User
                 .findOne({
-                    _id: userID
+                    _id : userID
                 })
                 .exec(function (err, user) {
                     if (err) console.log(err);
@@ -70,16 +46,30 @@ exports.updateProfileInformation = function (req, res) {
 exports.changePassword = function (req, res) {
     console.log('Received a change password request');
 
+    //Validating the req passwords
+    req.assert('password', 'Wachtwoord moet tussen de 8-20 karakters zijn.').len(8, 20);
+    req.assert('confirmPassword', 'Wachtwoorden zijn niet gelijk').equals(req.body.password);
+
+    var errors = req.validationErrors();
+    if (errors) {
+        return res.status(400).send(errors);
+    }
+
     if (req.params.userID) {
 
         var userID = mongoose.Types.ObjectId(req.params.userID);
+       // console.log('DEBUG.' + req.body.password + req.body.oldPassword + req.body.confirmPassword);
 
+        console.log('Trying to hash the password.');
+        //HASH the password
+        var hashedPassword = User.hashPassword(req.body.password);
+        console.log('Hash is complete, now storing the new password in the database');
         var conditions = { _id : userID},
-             update = { email: req.body.email, username : req.params.username, name : req.params.name},
-             options = {};
+            update = {hashed_password : hashedPassword},
+            options = {};
 
         User.update(conditions, update, options).exec(function(err){
-            console.log('User is updated trying to retrieve him.');
+
             User
                 .findOne({
                     _id: userID
