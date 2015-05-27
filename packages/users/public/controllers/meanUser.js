@@ -183,7 +183,7 @@ angular.module('mean.users')
                     .error(function (error) {
                         console.log('Error with resetting the users password');
                     });
-            }
+            };
         }])
     .controller('ProfileCtrlMain', ['$scope', '$rootScope', '$http', '$location', 'Global',
         function ($scope, $rootScope, $http, $location, Global) {
@@ -211,10 +211,11 @@ angular.module('mean.users')
                     email : $scope.user.email
                 })
                     .success(function (response) {
+                        console.dir(response);
                         $scope.name = response.name;
                         $scope.username = response.username;
                         $scope.email = response.email;
-                        $scope.message = "Account information is successfully updated.";
+                        $scope.message = 'Account information is successfully updated.';
                         $location.url('/auth/profile/overzicht/' + $scope.global.user._id);
                     })
                     .error(function (error) {
@@ -224,7 +225,7 @@ angular.module('mean.users')
                             console.log('Error with resetting the users password');
                         }
                     });
-            }
+            };
         }
     ])
 /**

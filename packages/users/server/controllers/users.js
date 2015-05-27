@@ -44,8 +44,9 @@ exports.updateProfileInformation = function (req, res) {
         //User ID pushed into a ObjectId object
         var userID = mongoose.Types.ObjectId(req.params.userID);
         //Qeury variables set
+        //console.log('DEBUG: ' + req.body.email +  req.body.username + req.body.name);
         var conditions = { _id : userID},
-            update = { email: req.body.email, username : req.params.username, name : req.params.name},
+            update = { email: req.body.email, username : req.body.username, name : req.body.name},
             options = {};
 
         User.update(conditions, update, options).exec(function(err){
