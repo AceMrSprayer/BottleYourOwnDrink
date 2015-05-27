@@ -6,7 +6,6 @@ angular.module('mean.BYOD').factory('BYODservice', function () {
     return {
         saveBottle:function (data) {
             bottle = data;
-            console.log(data);
         },
         getBottle:function () {
             return bottle;

@@ -16,21 +16,21 @@ angular.module('mean.BYOD')
         $scope.bottles = [{
             'name': 'X-02',
             'image': '/BYOD/assets/img/bottle1.PNG',
-            'imageTop': '',
-            'imageBase': '',
-            'imageBottom': ''
+            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
         }, {
             'name': 'Energizer',
             'image': '/BYOD/assets/img/bottle2.PNG',
-            'imageTop': '',
-            'imageBase': '',
-            'imageBottom': ''
+            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
         }, {
             'name': 'Berserker',
             'image': '/BYOD/assets/img/bottle3.PNG',
-            'imageTop': '',
-            'imageBase': '',
-            'imageBottom': ''
+            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
         }];
 
         /**
@@ -70,9 +70,19 @@ angular.module('mean.BYOD')
         $scope.retrievePickedBottle = function () {
             $scope.bottle = BYODservice.getBottle();
             //add image from retrieved bottle to canvas
-            fabric.Image.fromURL($scope.bottle.image, function (oImg) {
+            fabric.Image.fromURL($scope.bottle.imageTop, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({width: 230, height: 504});
+                oImg.set({width: 140, height: 85});
+                canvas.add(oImg);
+            });
+            fabric.Image.fromURL($scope.bottle.imageBase, function (oImg) {
+                oImg.set('selectable', false); // make object unselectable
+                oImg.set({top: 78, width: 140, height: 360});
+                canvas.add(oImg);
+            });
+            fabric.Image.fromURL($scope.bottle.imageBottom, function (oImg) {
+                oImg.set('selectable', false); // make object unselectable
+                oImg.set({top: 429, width: 140, height: 35});
                 canvas.add(oImg);
             });
         };
@@ -82,10 +92,10 @@ angular.module('mean.BYOD')
          *  TODO: Change color based on selection of top,base or bottom
          * @param colour
          */
-        $scope.changeColour = function (colour) {
-            canvas.item(0).filters.pop();
-            canvas.item(0).filters.push(new fabric.Image.filters.Blend({color: colour}));
-            canvas.item(0).applyFilters(canvas.renderAll.bind(canvas));
+        $scope.changeColour = function (colour, field) {
+            canvas.item(field).filters.pop();
+            canvas.item(field).filters.push(new fabric.Image.filters.Blend({color: colour}));
+            canvas.item(field).applyFilters(canvas.renderAll.bind(canvas));
             canvas.renderAll();
         };
 
@@ -97,8 +107,9 @@ angular.module('mean.BYOD')
         $scope.addText = function (filledText) {
             $scope.inputText = filledText;
             text = new fabric.Text($scope.inputText, {left: 100, top: 100});
-            if (canvas.item(1) != null) {
-                canvas.remove(canvas.item(1));
+            if (canvas.item(3) !== null) {
+                console.log("removing object....." + canvas.item(3));
+                canvas.remove(canvas.item(3));
                 canvas.add(text);
             } else {
                 canvas.add(text);
@@ -119,30 +130,30 @@ angular.module('mean.BYOD')
                 var img = new Image();
                 img.onload = function () {
                     var imgInstance = new fabric.Image(img, {
-                        scaleX: 0.2,
-                        scaleY: 0.2
-                    })
+                        scaleX: 0.1,
+                        scaleY: 0.1
+                    });
                     canvas.add(imgInstance);
-                }
+                };
                 img.src = event.target.result;
-            }
+            };
             reader.readAsDataURL(e.target.files[0]);
-        }
+        };
 
         imageSaver = document.getElementById('imageSaver');
         imageSaver.addEventListener('click', saveImage, false);
 
         /**
          * Function to save the canvas as an image to your computer.
-         * @param e
+         *
          */
-        function saveImage(e) {
+        function saveImage() {
             this.href = canvas.toDataURL({
                 format: 'png',
                 quality: 2.0
             });
-            this.download = 'default.png'
-        }
+            this.download = 'default.png';
+        };
 
     }
     ]);
