@@ -1,5 +1,8 @@
 'use strict';
 
+// User routes use users controller
+var BYOD = require('../controllers/BYOD');
+
 // The Package is passed automatically as first parameter
 module.exports = function(Theme, app, auth, database) {
 
@@ -15,4 +18,11 @@ module.exports = function(Theme, app, auth, database) {
       res.send(html);
     });
   });
+    /**
+     * Custom route for getting the user's information on the profile page. Executes the method getProfileInformation within
+     * the users controller.
+     */
+    app.route('/payment/:userID')
+        .get(BYOD.getProfileInformation);
 };
+
