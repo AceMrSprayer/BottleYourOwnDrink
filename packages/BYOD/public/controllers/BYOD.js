@@ -16,21 +16,21 @@ angular.module('mean.BYOD')
         $scope.bottles = [{
             'name': 'X-02',
             'image': '/BYOD/assets/img/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
+            'imageTop': '/BYOD/assets/img/bottleTop1.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase1.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom1.PNG'
         }, {
             'name': 'Energizer',
             'image': '/BYOD/assets/img/bottle2.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
+            'imageTop': '/BYOD/assets/img/bottleTop2.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase2.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom2.PNG'
         }, {
             'name': 'Berserker',
-            'image': '/BYOD/assets/img/bottle3.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom.PNG'
+            'image': '/BYOD/assets/img/bottle1.PNG',
+            'imageTop': '/BYOD/assets/img/bottleTop1.PNG',
+            'imageBase': '/BYOD/assets/img/bottleBase1.PNG',
+            'imageBottom': '/BYOD/assets/img/bottleBottom1.PNG'
         }];
 
         /**
@@ -69,20 +69,37 @@ angular.module('mean.BYOD')
          */
         $scope.retrievePickedBottle = function () {
             $scope.bottle = BYODservice.getBottle();
-            //add image from retrieved bottle to canvas
+            //add bottle top to canvas
             fabric.Image.fromURL($scope.bottle.imageTop, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({width: 140, height: 85});
+                if($scope.bottle.name === 'X-02'){
+                    oImg.set({width: 140, height: 85});
+                }
+                else if ($scope.bottle.name === 'Energizer') {
+                    oImg.set({width: 133, height: 83});
+                }
                 canvas.add(oImg);
             });
+            //add bottle base to canvas
             fabric.Image.fromURL($scope.bottle.imageBase, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({top: 78, width: 140, height: 360});
+                if($scope.bottle.name === 'X-02'){
+                    oImg.set({top: 78, width: 140, height: 360});
+                }
+                else if ($scope.bottle.name === 'Energizer') {
+                    oImg.set({top: 53, width: 133, height: 33});
+                }
                 canvas.add(oImg);
             });
+            //add bottle bottom to canvas
             fabric.Image.fromURL($scope.bottle.imageBottom, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({top: 429, width: 140, height: 35});
+                if($scope.bottle.name === 'X-02'){
+                    oImg.set({top: 429, width: 140, height: 35});
+                }
+                else if ($scope.bottle.name === 'Energizer') {
+                    oImg.set({top: 80, width: 133, height: 406});
+                }
                 canvas.add(oImg);
             });
         };
@@ -108,7 +125,7 @@ angular.module('mean.BYOD')
             $scope.inputText = filledText;
             text = new fabric.Text($scope.inputText, {left: 100, top: 100});
             if (canvas.item(3) !== null) {
-                console.log("removing object....." + canvas.item(3));
+                console.log('removing object.....' + canvas.item(3));
                 canvas.remove(canvas.item(3));
                 canvas.add(text);
             } else {
@@ -116,9 +133,6 @@ angular.module('mean.BYOD')
             }
             canvas.renderAll();
         };
-
-        imageLoader = document.getElementById('imageLoader');
-        imageLoader.addEventListener('change', handleImage, false);
 
         /**
          * Function to load image into the canvas this uses FileAPI from W3C
@@ -138,22 +152,24 @@ angular.module('mean.BYOD')
                 img.src = event.target.result;
             };
             reader.readAsDataURL(e.target.files[0]);
-        };
+        }
+        imageLoader = document.getElementById('imageLoader');
+        imageLoader.addEventListener('change', handleImage, false);
 
-        imageSaver = document.getElementById('imageSaver');
-        imageSaver.addEventListener('click', saveImage, false);
 
         /**
          * Function to save the canvas as an image to your computer.
          *
          */
-        function saveImage() {
+        var saveImage = function() {
             this.href = canvas.toDataURL({
                 format: 'png',
                 quality: 2.0
             });
             this.download = 'default.png';
         };
+        imageSaver = document.getElementById('imageSaver');
+        imageSaver.addEventListener('click', saveImage, false);
 
     }
     ]);
