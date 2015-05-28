@@ -16,7 +16,6 @@ var mongoose = require('mongoose'),
  */
 exports.updateProfileInformation = function (req, res) {
     console.log('Received a change profile information post');
-
     if (req.params.userID) {
         //User ID pushed into a ObjectId object
         var userID = mongoose.Types.ObjectId(req.params.userID);
@@ -94,8 +93,8 @@ exports.getProfileInformation = function (req, res) {  //
                 })
                 .exec(function (err, user) {
                     if (err) console.log(err);
-                    if (!user) console.log('User is niet gevonden!');
-                    if (user) console.log('User is gevonden!');
+                    if (!user) console.log('User is not found!');
+                    if (user) console.log('User is found!!');
                     res.send(user);
                 });
     }
