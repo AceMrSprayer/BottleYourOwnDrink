@@ -16,9 +16,8 @@ angular.module('mean.BYOD')
         function ($scope, $rootScope, $http, $location, Global) {
 // Original scaffolded code.
         $scope.global = Global;
-        var userID = $scope.global.user._id;
 
-        $http.get('/payment/' + userID).success(function (response) {
+        $http.get('/auth/profile/overzicht/' + $scope.global.user._id).success(function (response) {
             console.log('Account informatie is binnen');
             console.dir(response);
             $scope.name = response.name;
