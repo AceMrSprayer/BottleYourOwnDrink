@@ -41,7 +41,7 @@ exports.updateProfileInformation = function (req, res) {
     }
 };
 /**
- * Get all the orders
+ * Change the users password
  */
 exports.changePassword = function (req, res) {
     console.log('Received a change password request');
@@ -50,19 +50,22 @@ exports.changePassword = function (req, res) {
     req.assert('password', 'Wachtwoord moet tussen de 8-20 karakters zijn.').len(8, 20);
     req.assert('confirmPassword', 'Wachtwoorden zijn niet gelijk').equals(req.body.password);
 
+    //Send possible errors
     var errors = req.validationErrors();
     if (errors) {
         return res.send(errors);
     }else if (req.params.userID && !errors) {
 
         var userID = mongoose.Types.ObjectId(req.params.userID);
-       // console.log('DEBUG.' + req.body.password + req.body.oldPassword + req.body.confirmPassword);
         console.log('Trying to hash the password.');
         //HASH the password
-        //console.log('Hash is complete, now storing the new password in the database');
+        var salt = crypto.randomBytes(16).toString('base64');
 
+        var hashed_password =  crypto.pbkdf2Sync(req.body.password, salt, 10000, 64).toString('base64');
+
+        console.log('Hash is complete, now storing the new password in the database');
         var conditions = { _id : userID},
-            update = {hashed_password : req.body.confirmPassword},
+            update = {hashed_password : hashed_password, salt : salt},
             options = {};
 
         User.update(conditions, update, options).exec(function(err){

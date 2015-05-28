@@ -26,11 +26,6 @@
                                         <div ng-repeat="error in validationError">
                                             <div class="alert alert-danger animated fadeIn">{{error.msg}}</div>
                                         </div>
-                                        <div class="panel-heading"> Hier kan je een nieuw wachtwoord invoeren.</div>
-                                        <label for="oldPass">Oud wachtwoord: </label>
-                                        <input id="oldPass" type="password" name="oldPass"
-                                               placeholder="Oud wachtwoord" ng-model="user.oldPassword">
-                                        <br/>
                                         <label for="newPass">Nieuw wachtwoord: </label>
                                         <input required id="newPass" type="password" name="newPass"
                                                placeholder="Nieuw wachtwoord" ng-model="user.password">
