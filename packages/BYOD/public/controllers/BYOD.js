@@ -17,6 +17,9 @@ angular.module('mean.BYOD')
 // Original scaffolded code.
         $scope.global = Global;
 
+             //   var firstName = fullName.split(' ').slice(0, -1).join(' ');
+             //  var lastName = fullName.split(' ').slice(-1).join(' ');
+
         $http.get('/auth/profile/overzicht/' + $scope.global.user._id).success(function (response) {
             console.log('Account informatie is binnen');
             console.dir(response);
@@ -28,3 +31,8 @@ angular.module('mean.BYOD')
         });
     }
 ]);
+
+/*Code for going forward*/
+function Forward1() {
+    document.location="BackForward.htm";
+}

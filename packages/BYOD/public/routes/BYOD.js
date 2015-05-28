@@ -17,3 +17,12 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
         });
     }
 ]);
+
+angular.module('mean.BYOD').config(['$meanStateProvider',
+    function($meanStateProvider) {
+        $meanStateProvider.state('Payment confirmation page Paypal', {
+            url: '/payment/Paypal',
+            templateUrl: 'BYOD/views/payment.html'
+        });
+    }
+]);
