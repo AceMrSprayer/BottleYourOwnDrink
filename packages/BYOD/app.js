@@ -7,7 +7,7 @@
  */
 var Module = require('meanio').Module;
 
-var BYOD = new Module('BYOD');
+var BYOD = new Module('BYOD', ['ngRoute', 'ngAnimate']);
 
 /*
  * All MEAN packages require registration
@@ -19,7 +19,8 @@ BYOD.register(function(app, auth, database) {
   BYOD.routes(app, auth, database);
 
   BYOD.aggregateAsset('css', 'BYOD.css');
-  BYOD.angularDependencies(['mean.system']);
+  BYOD.angularDependencies(['mean.system', 'ngRoute', 'ngAnimate']);
+
 
   return BYOD;
 });

@@ -10,3 +10,21 @@ angular.module('mean.BYOD')
       };
     }
   ]);
+
+angular.module('mean.BYOD')
+    .controller('mainController',
+    function($scope) {
+    $scope.pageClass = 'page-home';
+});
+
+angular.module('mean.BYOD')
+    .controller('aboutController',
+    function($scope) {
+    $scope.pageClass = 'page-about';
+});
+
+angular.module('mean.BYOD')
+    .controller('contactController',
+    function($scope) {
+    $scope.pageClass = 'page-contact';
+});

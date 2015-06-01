@@ -6,7 +6,7 @@
 var Module = require('meanio').Module,
   favicon = require('serve-favicon');
 
-var SystemPackage = new Module('system');
+var SystemPackage = new Module('system', ['ngAnimate']);
 
 /*
  * All MEAN packages require registration
@@ -18,7 +18,7 @@ SystemPackage.register(function(app, auth, database) {
   SystemPackage.routes(app, auth, database);
 
   SystemPackage.aggregateAsset('css', 'common.css');
-  SystemPackage.angularDependencies(['ui.router', 'mean-factory-interceptor']);
+  SystemPackage.angularDependencies(['ui.router', 'mean-factory-interceptor', 'ngAnimate']);
 
   // The middleware in config/express will run before this code
 

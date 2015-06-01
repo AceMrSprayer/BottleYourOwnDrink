@@ -5,7 +5,7 @@
  */
 var Module = require('meanio').Module;
 
-var Theme = new Module('theme');
+var Theme = new Module('theme', ['ngAnimate']);
 
 /*
  * All MEAN packages require registration
