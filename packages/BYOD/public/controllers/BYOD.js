@@ -13,25 +13,29 @@ angular.module('mean.BYOD')
          * TODO: Making use of variables like this is quite ugly move it else where.
          * @type {{name: string, image: string, material: string, cap_colour: string, base_colour: string, bottom_colour: string, base_text: string}[]}
          */
-        $scope.bottles = [{
+        $scope.bottles = [
+            {
             'name': 'X-02',
             'image': '/BYOD/assets/img/bottle/bottle1.PNG',
             'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
             'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
             'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
-        }, {
+            },
+            {
             'name': 'Energizer',
             'image': '/BYOD/assets/img/bottle/bottle1.PNG',
             'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
             'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
             'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
-        }, {
+            },
+            {
             'name': 'Berserker',
             'image': '/BYOD/assets/img/bottle/bottle1.PNG',
             'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
             'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
             'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
-        }];
+            }
+        ];
 
         /**
          * This function will handle the selection of the bottles in step 1 of BYOD.
@@ -108,17 +112,12 @@ angular.module('mean.BYOD')
          */
         $scope.addText = function (filledText) {
             text = new fabric.Text(filledText, {left: 150, top: 100});
-            if (canvas.item(3) instanceof fabric.Text) {
-                console.log('removing object.....' + canvas.item(3));
-                canvas.remove(canvas.item(3));
-                canvas.add(text);
-            }
-            else if (canvas.item(4) instanceof fabric.Text) {
-                canvas.remove(canvas.item(4));
+            if (canvas.item(canvas.getObjects().length-1) instanceof fabric.Text) {
+                console.log('removing object.....' + canvas.item(canvas.getObjects().length-1));
+                canvas.remove(canvas.item(canvas.getObjects().length-1));
                 canvas.add(text);
             }
             else {
-                canvas.remove(canvas.item(5));
                 canvas.add(text);
             }
             canvas.renderAll();
@@ -162,6 +161,7 @@ angular.module('mean.BYOD')
         imageSaver = document.getElementById('imageSaver');
         imageSaver.addEventListener('click', saveImage, false);
 
+        //fix function to create an order and save it to the database
         $scope.createOrder = function () {
             console.log(canvas.toObject());
         }
@@ -169,12 +169,56 @@ angular.module('mean.BYOD')
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
+        var canvas = new fabric.Canvas('canvas');
+
+        // create a rectangle with angle=45
+        var rect = new fabric.Rect({
+            top: 134,
+            width: 200,
+            height: 66,
+            fill: 'white'
+        });
+        var rect2 = new fabric.Rect({
+            top: 68,
+            width: 200,
+            height: 66,
+            fill: 'white'
+        });
+        var rect3 = new fabric.Rect({
+            width: 200,
+            height: 68,
+            fill: 'white'
+        });
+
+        canvas.add(rect);
+        canvas.add(rect2);
+        canvas.add(rect3);
 
         $scope.fruits = [
-            {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/apple.jpg'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg'}
+            {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name' : 'banana'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/apple.jpg', 'id': 2, 'name' : 'apple'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name' : 'pineapple'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name' : 'strawberry'}
         ];
+
+        $scope.fruitSelection = function (data, selectionNumber) {
+            if(selectionNumber === 1){
+                if(data.id === 1 || data.id === 3){
+                    rect.set({ fill: 'yellow' });
+                }
+                else{
+                    rect.set({ fill: 'red' });
+                }
+            } else {
+                if(data.id === 1 || data.id === 3){
+                    rect2.set({ fill: 'yellow' });
+                }
+                else{
+                    rect2.set({ fill: 'red' });
+                }
+            }
+
+            canvas.renderAll();
+        }
     }
     ]);
