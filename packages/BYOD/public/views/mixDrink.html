@@ -1,0 +1,18 @@
+<section class="welcome container-fluid" data-ng-controller="BYODControllerStep3">
+    <div class="col-md-12 row">
+        <h1>Mix your drink</h1>
+        <div class="col-md-4">
+            <p><canvas style="border: solid 1px black" id="canvas" width="200" height="200"></canvas></p>
+        </div>
+        <div class="col-md-8">
+            <ul>
+                <li ng-repeat="fruit in fruits">
+                    <img src="{{fruit.imgsrc}}" width="150" height="150">
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+
+</section>

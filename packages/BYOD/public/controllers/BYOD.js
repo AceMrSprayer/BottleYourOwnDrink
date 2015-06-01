@@ -15,22 +15,22 @@ angular.module('mean.BYOD')
          */
         $scope.bottles = [{
             'name': 'X-02',
-            'image': '/BYOD/assets/img/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom1.PNG'
+            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
         }, {
             'name': 'Energizer',
-            'image': '/BYOD/assets/img/bottle2.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop2.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase2.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom2.PNG'
+            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
         }, {
             'name': 'Berserker',
-            'image': '/BYOD/assets/img/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottleBottom1.PNG'
+            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
         }];
 
         /**
@@ -72,42 +72,27 @@ angular.module('mean.BYOD')
             //add bottle top to canvas
             fabric.Image.fromURL($scope.bottle.imageTop, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                if($scope.bottle.name === 'X-02'){
-                    oImg.set({width: 140, height: 85});
-                }
-                else if ($scope.bottle.name === 'Energizer') {
-                    oImg.set({width: 133, height: 83});
-                }
+                oImg.set({width: 140, height: 85});
                 canvas.add(oImg);
             });
             //add bottle base to canvas
             fabric.Image.fromURL($scope.bottle.imageBase, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                if($scope.bottle.name === 'X-02'){
-                    oImg.set({top: 78, width: 140, height: 360});
-                }
-                else if ($scope.bottle.name === 'Energizer') {
-                    oImg.set({top: 53, width: 133, height: 33});
-                }
+                oImg.set({top: 78, width: 140, height: 360});
                 canvas.add(oImg);
             });
             //add bottle bottom to canvas
             fabric.Image.fromURL($scope.bottle.imageBottom, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                if($scope.bottle.name === 'X-02'){
-                    oImg.set({top: 429, width: 140, height: 35});
-                }
-                else if ($scope.bottle.name === 'Energizer') {
-                    oImg.set({top: 80, width: 133, height: 406});
-                }
+                oImg.set({top: 429, width: 140, height: 35});
                 canvas.add(oImg);
             });
         };
 
         /**
-         *  Function to change the bottle colour.
-         *  TODO: Change color based on selection of top,base or bottom
+         * A function to change to colour of the bottle
          * @param colour
+         * @param field
          */
         $scope.changeColour = function (colour, field) {
             canvas.item(field).filters.pop();
@@ -122,13 +107,18 @@ angular.module('mean.BYOD')
          * @param filledText
          */
         $scope.addText = function (filledText) {
-            $scope.inputText = filledText;
-            text = new fabric.Text($scope.inputText, {left: 100, top: 100});
-            if (canvas.item(3) !== null) {
+            text = new fabric.Text(filledText, {left: 150, top: 100});
+            if (canvas.item(3) instanceof fabric.Text) {
                 console.log('removing object.....' + canvas.item(3));
                 canvas.remove(canvas.item(3));
                 canvas.add(text);
-            } else {
+            }
+            else if (canvas.item(4) instanceof fabric.Text) {
+                canvas.remove(canvas.item(4));
+                canvas.add(text);
+            }
+            else {
+                canvas.remove(canvas.item(5));
                 canvas.add(text);
             }
             canvas.renderAll();
@@ -153,6 +143,7 @@ angular.module('mean.BYOD')
             };
             reader.readAsDataURL(e.target.files[0]);
         }
+
         imageLoader = document.getElementById('imageLoader');
         imageLoader.addEventListener('change', handleImage, false);
 
@@ -161,7 +152,7 @@ angular.module('mean.BYOD')
          * Function to save the canvas as an image to your computer.
          *
          */
-        var saveImage = function() {
+        var saveImage = function () {
             this.href = canvas.toDataURL({
                 format: 'png',
                 quality: 2.0
@@ -171,5 +162,19 @@ angular.module('mean.BYOD')
         imageSaver = document.getElementById('imageSaver');
         imageSaver.addEventListener('click', saveImage, false);
 
+        $scope.createOrder = function () {
+            console.log(canvas.toObject());
+        }
+    }
+    ])
+    .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
+        $scope.global = Global;
+
+        $scope.fruits = [
+            {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/apple.jpg'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg'},
+            {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg'}
+        ];
     }
     ]);

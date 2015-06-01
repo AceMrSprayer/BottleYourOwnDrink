@@ -15,6 +15,10 @@ module.exports = function (Theme, app, auth, database) {
         res.send('Create your bottle');
     });
 
+    app.get('/step3', function (req, res, next) {
+        res.send('Mix your drink');
+    });
+
 
     app.get('/theme/example/render', function (req, res, next) {
         Theme.render('index', {
