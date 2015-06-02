@@ -22,5 +22,24 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             url: '/payment/:userID',
             templateUrl: 'BYOD/views/payment.html'
         });
+
+      $meanStateProvider.state('page-home', {
+          url: '/page-home',
+          templateUrl: 'BYOD/views/page-home.html',
+          controller: 'mainController'
+      });
+
+      $meanStateProvider.state('page-about', {
+          url: '/page-about',
+          templateUrl: 'BYOD/views/page-about.html',
+          controller: 'aboutController'
+      });
+
+      $meanStateProvider.state('page-contact', {
+          url: '/page-contact',
+          templateUrl: 'BYOD/views/page-contact.html',
+          controller: 'contactController'
+      });
+
     }
 ]);
