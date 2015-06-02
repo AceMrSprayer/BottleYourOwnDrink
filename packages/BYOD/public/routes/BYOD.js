@@ -14,5 +14,9 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             url: '/step2',
             templateUrl: 'BYOD/views/createBottle.html'
         });
+        $meanStateProvider.state('Mix your drink', {
+            url: '/step3',
+            templateUrl: 'BYOD/views/mixDrink.html'
+        });
     }
 ]);

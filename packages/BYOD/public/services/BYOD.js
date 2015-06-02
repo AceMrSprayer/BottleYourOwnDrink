@@ -1,9 +1,14 @@
 'use strict';
 
-angular.module('mean.BYOD').factory('BYOD', [
-  function() {
+angular.module('mean.BYOD').factory('BYODservice', function () {
+    var bottle = [];
+
     return {
-      name: 'BYOD'
+        saveBottle:function (data) {
+            bottle = data;
+        },
+        getBottle:function () {
+            return bottle;
+        }
     };
-  }
-]);
+});
