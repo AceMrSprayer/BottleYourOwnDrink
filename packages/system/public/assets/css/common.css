@@ -86,8 +86,24 @@ footer p {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    background-color: rgba(255,255,255, .23);
+    background-color: rgb(255,255,255, .23);
     border-bottom-color: transparent;
+}
+
+.cont{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
+.payment_title{
+    text-align: left !important;
+}
+.left-side{
+    width: 50%;
+}
+.payment_form input{
+    float: right;
+    padding: 10px;
 }
 
 /* ANIMATIONS

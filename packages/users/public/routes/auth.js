@@ -30,15 +30,15 @@ angular.module('mean.users').config(['$meanStateProvider',
       })
       //Routes for the profile page.
       .state('profile-overzicht', {
-        url: '/auth/profile/overzicht',
+        url: '/auth/profile/overzicht/:userID',
         templateUrl: 'users/views/profile-overzicht.html'
       })
       .state('profile-wachtwoord', {
-        url: '/auth/profile/wachtwoord',
+        url: '/auth/profile/wachtwoord/:userID',
         templateUrl: 'users/views/profile-wachtwoord.html'
       })
       .state('profile-bestellingen', {
-        url: '/auth/profile/bestellingen',
+        url: '/auth/profile/bestellingen/:userID',
         templateUrl: 'users/views/profile-bestellingen.html'
       })
       .state('auth.login', {
