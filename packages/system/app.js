@@ -6,7 +6,7 @@
 var Module = require('meanio').Module,
   favicon = require('serve-favicon');
 
-var SystemPackage = new Module('system');
+var SystemPackage = new Module('system', ['ngAnimate']);
 
 /*
  * All MEAN packages require registration
