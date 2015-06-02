@@ -12,6 +12,26 @@ var mongoose = require('mongoose'),
     templates = require('../template');
 
 /**
+ * This function retrieves a single user that can be send back as JSON in a response.
+ *
+ * @param userID the filter for finding the user.
+ */
+function getSingleUser(userID){
+    //Create userID objectID
+    var id = mongoose.Types.ObjectId(userID);
+    User
+        .findOne({
+            _id: id
+        })
+        .exec(function (err, user) {
+            if (err) console.log(err);
+            if (!user) console.log('User is not found!');
+            if (user) console.log('User is found!!');
+            return user;
+        });
+}
+
+/**
  * Update the users profile information and return the updated user object.
  */
 exports.updateProfileInformation = function (req, res) {
@@ -80,26 +100,36 @@ exports.changePassword = function (req, res) {
     }
 };
 
-//Get the users profile information
+/**
+ *
+ * @param req contains information on the requesting page element.
+ * @param res This is the response that gets send back to the front end and
+ *           will be interpreted by the controller there
+ */
 exports.getProfileInformation = function (req, res) {  //
     console.log('Received a profile information request');
     console.log('Profile ID: ' + req.params.userID);
 
     if (req.params.userID) {
-        var userID = mongoose.Types.ObjectId(req.params.userID);
-            User
-                .findOne({
-                    _id: userID
-                })
-                .exec(function (err, user) {
-                    if (err) console.log(err);
-                    if (!user) console.log('User is not found!');
-                    if (user) console.log('User is found!!');
-                    res.send(user);
-                });
+        //TODO get the refactored version of the code below working.
+        //Get the current user.
+        //var user = getSingleUser(req.params.userID);
+        //Return the user
+        //res.send(getSingleUser(req.params.userID));
+        var id = mongoose.Types.ObjectId(req.params.userID);
+        User
+            .findOne({
+                _id: id
+            })
+            .exec(function (err, user) {
+                if (err) console.log(err);
+                if (!user) console.log('User is not found!');
+                if (user) console.log('User is found!!');
+                res.send(user);
+            });
     }
-
 };
+
 
 /**
  * Auth callback
