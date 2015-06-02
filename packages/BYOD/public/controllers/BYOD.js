@@ -200,7 +200,7 @@ angular.module('mean.BYOD')
             {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name' : 'pineapple'},
             {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name' : 'strawberry'}
         ];
-
+        
         $scope.fruitSelection = function (data, selectionNumber) {
             if(selectionNumber === 1){
                 if(data.id === 1 || data.id === 3){
@@ -221,4 +221,20 @@ angular.module('mean.BYOD')
             canvas.renderAll();
         };
     }
+    ])
+    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global',
+        function ($scope, $rootScope, $http, $location, Global) {
+            // Original scaffolded code.
+            $scope.global = Global;
+
+            $http.get('/auth/profile/overzicht/' + $scope.global.user._id).success(function (response) {
+                console.log('Account informatie is binnen');
+                console.dir(response);
+                $scope.name = response.name;
+                $scope.username = response.username;
+                $scope.email = response.email;
+            }).error(function () {
+                console.log('Account informatie is niet opgehaald.');
+            });
+        }
     ]);

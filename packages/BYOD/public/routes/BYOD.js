@@ -2,6 +2,8 @@
 
 angular.module('mean.BYOD').config(['$meanStateProvider',
     function ($meanStateProvider) {
+
+        //TODO change below routes to final routes
         $meanStateProvider.state('Home page', {
             url: '/home',
             templateUrl: 'BYOD/views/index.html'
@@ -23,23 +25,20 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             templateUrl: 'BYOD/views/payment.html'
         });
 
-      $meanStateProvider.state('page-home', {
-          url: '/page-home',
-          templateUrl: 'BYOD/views/page-home.html',
-          controller: 'mainController'
-      });
+        //FINAL ROUTES FOR THE BYOD FUNCTIONALITY
 
-      $meanStateProvider.state('page-about', {
-          url: '/page-about',
-          templateUrl: 'BYOD/views/page-about.html',
-          controller: 'aboutController'
-      });
-
-      $meanStateProvider.state('page-contact', {
-          url: '/page-contact',
-          templateUrl: 'BYOD/views/page-contact.html',
-          controller: 'contactController'
-      });
+        $meanStateProvider.state('Bottle step 1', {
+            url: '/bottle1',
+            templateUrl: 'BYOD/views/bottle1.html'
+        });
+        $meanStateProvider.state('Bottle step 2', {
+            url: '/bottle2',
+            templateUrl: 'BYOD/views/bottle2.html'
+        });
+        $meanStateProvider.state('Bottle step 3', {
+            url: '/bottle3',
+            templateUrl: 'BYOD/views/bottle3.html'
+        });
 
     }
 ]);

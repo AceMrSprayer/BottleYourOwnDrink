@@ -18,12 +18,17 @@
   <meta property="fb:admins" content="APP_ADMIN">
 
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-  <!-- Custom css file for integrating popups transitions.-->
+  <link rel="stylesheet" href="/bower_components/transition.js/css/transition-animations.css">
+  <link rel="stylesheet" href="/bower_components/bootstrap/plugins/slidingsidemenu/css/BootSideMenu.css">
+  <link rel="stylesheet" href="/bower_components/css/css.css">
 
-  <!--Script for enabling angular JS animations-->
+  <script src="/bower_components/jquery/src/jquery-1.11.3.js"></script>
+  <script src="/bower_components/bootstrap/js/bootstrap.js"></script>
   <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-route/angular-route.js"></script>
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
   <script src="/bower_components/fabric/dist/fabric.js"></script>
+  <script src="/bower_components/bootstrap/plugins/slidingsidemenu/js/BootSideMenu.js"></script>
 
   {% for file in aggregatedassets.header.css %}
     <link rel="stylesheet" href="{{file}}">
