@@ -169,30 +169,6 @@ angular.module('mean.BYOD')
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-        var canvas = new fabric.Canvas('canvas');
-
-        // create a rectangle with angle=45
-        var rect = new fabric.Rect({
-            top: 134,
-            width: 200,
-            height: 66,
-            fill: 'white'
-        });
-        var rect2 = new fabric.Rect({
-            top: 68,
-            width: 200,
-            height: 66,
-            fill: 'white'
-        });
-        var rect3 = new fabric.Rect({
-            width: 200,
-            height: 68,
-            fill: 'white'
-        });
-
-        canvas.add(rect);
-        canvas.add(rect2);
-        canvas.add(rect3);
 
         $scope.fruits = [
             {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name' : 'banana'},
@@ -200,27 +176,8 @@ angular.module('mean.BYOD')
             {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name' : 'pineapple'},
             {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name' : 'strawberry'}
         ];
-        
-        $scope.fruitSelection = function (data, selectionNumber) {
-            if(selectionNumber === 1){
-                if(data.id === 1 || data.id === 3){
-                    rect.set({ fill: 'yellow' });
-                }
-                else{
-                    rect.set({ fill: 'red' });
-                }
-            } else {
-                if(data.id === 1 || data.id === 3){
-                    rect2.set({ fill: 'yellow' });
-                }
-                else{
-                    rect2.set({ fill: 'red' });
-                }
-            }
-
-            canvas.renderAll();
-        };
     }
+
     ])
     .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global',
         function ($scope, $rootScope, $http, $location, Global) {
@@ -236,5 +193,43 @@ angular.module('mean.BYOD')
             }).error(function () {
                 console.log('Account informatie is niet opgehaald.');
             });
+
+            var price = $('#price').val();
+            //count the total sum
+            $('#productAmount').bind('keyup mouseup',function() {
+                var amount = $('#productAmount').val();
+                var totalsum = amount * price;
+                $('#totalsum').val(totalsum);
+            });
+            //Make sure you can select only one method
+            $('.paycheck').on('change', function() {
+                $('.paycheck').not(this).prop('checked', false);
+            });
+            //validations
+            $('.btn').click(function(e){
+                e.preventDefault();
+                var inputs = $('.form-control');
+                var inputs2 = $('.paycheck');
+                var terms = $('#terms');
+                var bad = 0;
+                var bad2 = 0;
+                inputs2.each(function(){
+                    if ($(this).prop('checked') == false) bad2++;
+                });
+                inputs.each(function(){
+                    if ($.trim(this.value) == "") bad++;
+                });
+                if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
+                    alert('Something is missing');
+                }else{
+                    alert('Everything is filled in');
+                }
+            });
         }
     ]);
+
+/*Code for going forward*/
+function Forward1() {
+    document.location="BackForward.htm";
+}
+
