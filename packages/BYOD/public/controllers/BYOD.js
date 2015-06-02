@@ -164,7 +164,7 @@ angular.module('mean.BYOD')
         //fix function to create an order and save it to the database
         $scope.createOrder = function () {
             console.log(canvas.toObject());
-        }
+        };
     }
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
@@ -219,6 +219,6 @@ angular.module('mean.BYOD')
             }
 
             canvas.renderAll();
-        }
+        };
     }
     ]);

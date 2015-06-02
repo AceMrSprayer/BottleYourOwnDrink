@@ -16,20 +16,20 @@ var mongoose = require('mongoose'),
  *
  * @param userID the filter for finding the user.
  */
-function getSingleUser(userID){
-    //Create userID objectID
-    var id = mongoose.Types.ObjectId(userID);
-    User
-        .findOne({
-            _id: id
-        })
-        .exec(function (err, user) {
-            if (err) console.log(err);
-            if (!user) console.log('User is not found!');
-            if (user) console.log('User is found!!');
-            return user;
-        });
-}
+//function getSingleUser(userID){
+//    //Create userID objectID
+//    var id = mongoose.Types.ObjectId(userID);
+//    User
+//        .findOne({
+//            _id: id
+//        })
+//        .exec(function (err, user) {
+//            if (err) console.log(err);
+//            if (!user) console.log('User is not found!');
+//            if (user) console.log('User is found!!');
+//            return user;
+//        });
+//}
 
 /**
  * Update the users profile information and return the updated user object.
