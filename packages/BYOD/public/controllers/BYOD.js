@@ -194,42 +194,42 @@ angular.module('mean.BYOD')
                 console.log('Account informatie is niet opgehaald.');
             });
 
-            var price = $('#price').val();
-            //count the total sum
-            $('#productAmount').bind('keyup mouseup',function() {
-                var amount = $('#productAmount').val();
-                var totalsum = amount * price;
-                $('#totalsum').val(totalsum);
-            });
-            //Make sure you can select only one method
-            $('.paycheck').on('change', function() {
-                $('.paycheck').not(this).prop('checked', false);
-            });
-            //validations
-            $('.btn').click(function(e){
-                e.preventDefault();
-                var inputs = $('.form-control');
-                var inputs2 = $('.paycheck');
-                var terms = $('#terms');
-                var bad = 0;
-                var bad2 = 0;
-                inputs2.each(function(){
-                    if ($(this).prop('checked') == false) bad2++;
-                });
-                inputs.each(function(){
-                    if ($.trim(this.value) == "") bad++;
-                });
-                if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
-                    alert('Something is missing');
-                }else{
-                    alert('Everything is filled in');
-                }
-            });
+            //var price = $('#price').val();
+            ////count the total sum
+            //$('#productAmount').bind('keyup mouseup',function() {
+            //    var amount = $('#productAmount').val();
+            //    var totalsum = amount * price;
+            //    $('#totalsum').val(totalsum);
+            //});
+            ////Make sure you can select only one method
+            //$('.paycheck').on('change', function() {
+            //    $('.paycheck').not(this).prop('checked', false);
+            //});
+            ////validations
+            //$('.btn').click(function(e){
+            //    e.preventDefault();
+            //    var inputs = $('.form-control');
+            //    var inputs2 = $('.paycheck');
+            //    var terms = $('#terms');
+            //    var bad = 0;
+            //    var bad2 = 0;
+            //    inputs2.each(function(){
+            //        if ($(this).prop('checked') == false) bad2++;
+            //    });
+            //    inputs.each(function(){
+            //        if ($.trim(this.value) == "") bad++;
+            //    });
+            //    if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
+            //        alert('Something is missing');
+            //    }else{
+            //        alert('Everything is filled in');
+            //    }
+            //});
         }
     ]);
 
 /*Code for going forward*/
-function Forward1() {
-    document.location="BackForward.htm";
-}
+//function Forward1() {
+//    document.location="BackForward.htm";
+//}
 
