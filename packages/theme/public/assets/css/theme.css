@@ -244,8 +244,26 @@
   margin-bottom:40px;
 }
 
+/*button colours*/
+.btnRed {
+    background-color: #FF5050;
+}
+.btnBlue {
+    background-color: #0099FF;
+}
+.btnGreen {
+    background-color: #00FF00;
+}
+.btnYellow {
+    background-color: #FFFF66;
+}
+.btnPurple {
+    background-color: #9933FF;
+}
+.btnOrange {
+    background-color: #FF9900;
+}
 /* Featured Sites */
-
 
 .featured-sites h4{
   font-size:24px;

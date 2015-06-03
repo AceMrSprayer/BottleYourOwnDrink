@@ -7,7 +7,6 @@ angular.module('mean.BYOD')
     ])
     .controller('BYODControllerStep1', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-
         /**
          * Here are our predifined bottles stored
          * TODO: Making use of variables like this is quite ugly move it else where.
@@ -15,48 +14,34 @@ angular.module('mean.BYOD')
          */
         $scope.bottles = [
             {
-            'name': 'X-02',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'X-02',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             },
             {
-            'name': 'Energizer',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'Energizer',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             },
             {
-            'name': 'Berserker',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'Berserker',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             }
         ];
 
         /**
          * This function will handle the selection of the bottles in step 1 of BYOD.
-         * TODO: Optimize this function && Make it possible to select another bottle so that it switches from previous selection to the new one
          * @param bottle
          */
         $scope.selection = function (bottle) {
-            var currentElement = document.getElementById(event.currentTarget.id);
-
-            if (currentElement.className === 'deselected' && !$('img').hasClass('selected')) {
-                currentElement.className = 'selected';
-                currentElement.style.border = 'thin solid black';
-                // Save bottle from this step in the BYOD service
-                BYODservice.saveBottle(bottle);
-            }
-            else {
-                currentElement.className = 'deselected';
-                currentElement.style.removeProperty('border');
-            }
-
-
+            BYODservice.saveBottle(bottle);
         };
     }
     ])
@@ -105,16 +90,32 @@ angular.module('mean.BYOD')
             canvas.renderAll();
         };
 
+        $scope.clearCanvas = function () {
+            var index, list = canvas.getObjects();
+            while (list.length > 3) {
+                for (index = 0; index < list.length; ++index) {
+                    if (index < 3) {
+                        canvas.item(index).filters.pop();
+                        canvas.item(index).applyFilters(canvas.renderAll.bind(canvas));
+                    }
+                    else if (index > 2 && canvas.item(index) instanceof fabric.Text || index > 2 && canvas.item(index) instanceof fabric.Image) {
+                        canvas.remove(canvas.item(index % list.length));
+                    }
+                    canvas.renderAll();
+                }
+                //canvas.renderAll();            }
+
+            }
+        };
+
         /**
          * Function to add text to the bottle on the canvas
-         * TODO: Will always remove the second object of the canvas make this dynamic if possible
          * @param filledText
          */
         $scope.addText = function (filledText) {
             text = new fabric.Text(filledText, {left: 150, top: 100});
-            if (canvas.item(canvas.getObjects().length-1) instanceof fabric.Text) {
-                console.log('removing object.....' + canvas.item(canvas.getObjects().length-1));
-                canvas.remove(canvas.item(canvas.getObjects().length-1));
+            if (canvas.item(canvas.getObjects().length - 1) instanceof fabric.Text) {
+                canvas.remove(canvas.item(canvas.getObjects().length - 1));
                 canvas.add(text);
             }
             else {
@@ -133,8 +134,8 @@ angular.module('mean.BYOD')
                 var img = new Image();
                 img.onload = function () {
                     var imgInstance = new fabric.Image(img, {
-                        scaleX: 0.1,
-                        scaleY: 0.1
+                        scaleX: 0.2,
+                        scaleY: 0.2
                     });
                     canvas.add(imgInstance);
                 };
@@ -169,57 +170,22 @@ angular.module('mean.BYOD')
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-        var canvas = new fabric.Canvas('canvas');
-
-        // create a rectangle with angle=45
-        var rect = new fabric.Rect({
-            top: 134,
-            width: 200,
-            height: 66,
-            fill: 'white'
-        });
-        var rect2 = new fabric.Rect({
-            top: 68,
-            width: 200,
-            height: 66,
-            fill: 'white'
-        });
-        var rect3 = new fabric.Rect({
-            width: 200,
-            height: 68,
-            fill: 'white'
-        });
-
-        canvas.add(rect);
-        canvas.add(rect2);
-        canvas.add(rect3);
+        //var canvas = new fabric.Canvas('canvas');
 
         $scope.fruits = [
-            {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name' : 'banana'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/apple.jpg', 'id': 2, 'name' : 'apple'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name' : 'pineapple'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name' : 'strawberry'}
+            {'imgsrc': '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name': 'banana'},
+            {'imgsrc': '/BYOD/assets/img/fruit/apple.jpg', 'id': 2, 'name': 'apple'},
+            {'imgsrc': '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name': 'pineapple'},
+            {'imgsrc': '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name': 'strawberry'}
         ];
-        
-        $scope.fruitSelection = function (data, selectionNumber) {
-            if(selectionNumber === 1){
-                if(data.id === 1 || data.id === 3){
-                    rect.set({ fill: 'yellow' });
-                }
-                else{
-                    rect.set({ fill: 'red' });
-                }
-            } else {
-                if(data.id === 1 || data.id === 3){
-                    rect2.set({ fill: 'yellow' });
-                }
-                else{
-                    rect2.set({ fill: 'red' });
-                }
-            }
 
-            canvas.renderAll();
-        };
+        $scope.dairy = [
+            {'imgsrc': '/BYOD/assets/img/dairy/chocmilk.jpg', 'id': 1, 'name': 'chocolate milk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/milk.jpg', 'id': 2, 'name': 'milk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/soymilk.jpg', 'id': 3, 'name': 'soymilk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/yoghurt.jpg', 'id': 4, 'name': 'yoghurt'}
+        ];
+
     }
     ])
     .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global',

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-ng-controller="BYODControllerStep1">
 
     <div class="row">
 
@@ -10,50 +10,10 @@
 
                     <div class="row">
 
-                        <div class="col-md-2">
+                        <div class="col-md-2" ng-repeat="bottle in bottles">
 
                             <a href="#bottle1" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle1">
-                            </a>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <a href="#bottle2" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle2">
-                            </a>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <a href="#bottle3" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle3">
-                            </a>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <a href="#bottle4" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle4">
-                            </a>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <a href="#bottle5" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle5">
-                            </a>
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <a href="#bottle6" class="thumbnail">
-                                <img src="http://pngimg.com/upload/bottle_PNG2090.png" alt="2" role="tab" data-toggle="tab" aria-controls="bottle6">
+                                <img src="{{bottle.image}}" ng-click="selection(bottle)" alt="2" role="tab" data-toggle="tab" aria-controls="bottle1">
                             </a>
 
                         </div>
@@ -77,8 +37,8 @@
 
             <nav>
                 <ul class="pager">
-                    <li class="previous"><a href="#!/bottle1"><span aria-hidden="true">&larr;</span> Older</a></li>
-                    <li class="next"><a href="#!/bottle3">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                    <li class="previous"><a href="#!/bottle1"><span aria-hidden="true">&larr;</span> Back</a></li>
+                    <li class="next"><a href="#!/bottle3">Next <span aria-hidden="true">&rarr;</span></a></li>
                 </ul>
             </nav>
 
