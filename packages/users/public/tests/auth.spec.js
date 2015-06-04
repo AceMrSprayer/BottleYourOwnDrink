@@ -51,6 +51,46 @@
         $httpBackend.verifyNoOutstandingRequest();
       });
 
+      //!!Custom tests for the profile pages!!
+
+      //Custom test for the profile dashboard page.
+
+      it('should retrieve a user and display the information', function() {
+
+        // test expected GET request
+        $httpBackend.when('GET', '/auth/profile/overzicht/:userID').respond(200, {
+          user: 'test',
+          name:  'Test',
+          username: 'testuser',
+          email: 'test@test.com'
+        });
+        $httpBackend.flush();
+        // test scope value
+        expect(scope.name).toEqual('test');
+        expect(scope.username).toEqual('Test');
+        expect(scope.email).toEqual('test@test.com');
+        expect($location.url()).toEqual('/auth/profile/overzicht/:userID');
+      });
+
+      //Custom test for the profile dashboard page.
+
+      it('should retrieve the user and extract the orders for display', function() {
+
+        // test expected GET request
+        $httpBackend.when('GET', '/auth/profile/overzicht/:userID').respond(200, {
+          user: 'test',
+         orders: {}
+        });
+        $httpBackend.flush();
+        // test scope value
+        expect(scope.name).toEqual('test');
+        expect(scope.username).toEqual('Test');
+        expect(scope.email).toEqual('test@test.com');
+        expect($location.url()).toEqual('/auth/profile/overzicht/:userID');
+      });
+
+
+
       it('should login with a correct user and password', function() {
 
         spyOn($rootScope, '$emit');

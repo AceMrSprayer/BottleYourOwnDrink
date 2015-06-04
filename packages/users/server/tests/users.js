@@ -22,7 +22,7 @@ function getRandomString(len) {
 
 var expect = require('expect.js'),
   	mongoose = require('mongoose'),
-  User = mongoose.model('User');
+    User = mongoose.model('User');
 
 /**
  * Globals

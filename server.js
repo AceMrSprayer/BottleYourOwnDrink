@@ -12,7 +12,6 @@ console.log = function(){
 var mean = require('meanio');
 var cluster = require('cluster');
 
-
 // Code to run if we're in the master process or if we are not in debug mode/ running tests
 
 if ((cluster.isMaster) &&
