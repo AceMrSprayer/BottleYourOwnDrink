@@ -48,7 +48,7 @@
     "serve-favicon": "2.2.0",
     "swig": "1.4.2",
     "view-helpers": "0.1.5",
-    "swagger-ui": "2.1.5"
+    "swagger-ui": "1.x"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
