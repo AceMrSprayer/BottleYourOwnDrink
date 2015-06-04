@@ -244,6 +244,13 @@
   margin-bottom:40px;
 }
 
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+    width: 5px;
+}
+
+
 /*button colours*/
 .btnRed {
     background-color: #FF5050;

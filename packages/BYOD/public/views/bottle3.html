@@ -23,12 +23,12 @@
 
                 <br>
                 <br>
-                <input type="file" id="imageLoader" name="imageLoader"/>
+                <input class="btn btn-primary btn-lg custom-file-input" type="file" id="imageLoader" name="imageLoader"/>
                 <a id="imageSaver" href="#">Save image</a>
                 <br>
                 <br>
-                <input type="text" ng-model="inputText" maxlength="120">
-                <button ng-click="addText(inputText)">Voeg tekst toe</button>
+                <input size="20" type="text" ng-model="inputText" maxlength="120">
+                <button class="btn btn-primary btn-lg" ng-click="addText(inputText)">Voeg tekst toe</button>
             </div>
 
 
@@ -43,11 +43,10 @@
 
             <div role="tabpanel">
 
-                <div class="col-md-8 col-md-offset-4">
-
-                    <a class="btn btn-default" href="#home" role="button" data-toggle="tab"></a>
-                    <a class="btn btn-default" href="#profile" role="button" data-toggle="tab"></a>
-                    <a class="btn btn-default" href="#messages" role="button" data-toggle="tab"></a>
+                <div class="col-md-8 col-md-offset-2">
+                    <a class="btn btn-default" id="id0"  href="#home" role="button" data-toggle="tab"></a> Selecteer de dop kleur &nbsp; &nbsp;
+                    <a class="btn btn-default" id="id1"  href="#profile" role="button" data-toggle="tab"></a> Selecteer de fles kleur &nbsp; &nbsp;
+                    <a class="btn btn-default" id="id2"  href="#messages" role="button" data-toggle="tab"></a> Selecteer de onderkant kleur &nbsp; &nbsp;
                 </div>
 
 
@@ -63,21 +62,27 @@
                             <div class="" data-toggle="buttons">
                                 <label class="btn btn-primary btnRed" ng-click="changeColour('#FF5050', 0)" >
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary btnBlue">
+                                <label class="btn btn-primary btnBlue" ng-click="changeColour('#0099FF', 0)" >
                                     <input type="radio" name="options" id="option2" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary btnGreen">
+                                <label class="btn btn-primary btnGreen" ng-click="changeColour('#00FF00', 0)" >
                                     <input type="radio" name="options" id="option3" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary btnYellow">
+                                <label class="btn btn-primary btnYellow" ng-click="changeColour('#FFFF66', 0)" >
                                     <input type="radio" name="options" id="option4" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary btnPurple">
+                                <label class="btn btn-primary btnPurple" ng-click="changeColour('#9933FF', 0)" >
                                     <input type="radio" name="options" id="option5" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary btnOrange">
+                                <label class="btn btn-primary btnOrange" ng-click="changeColour('#FF9900', 0)" >
                                     <input type="radio" name="options" id="option6" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
                                 <br>
 
@@ -93,23 +98,29 @@
                             <br>
 
                             <div class="" data-toggle="buttons">
-                                <label class="btn btn-primary active" ng-click="changeColour('#FF5050', 1)" >
+                                <label class="btn btn-primary btnRed" ng-click="changeColour('#FF5050', 1)" >
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnBlue" ng-click="changeColour('#0099FF', 1)" >
                                     <input type="radio" name="options" id="option2" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnGreen" ng-click="changeColour('#00FF00', 1)" >
                                     <input type="radio" name="options" id="option3" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnYellow" ng-click="changeColour('#FFFF66', 1)" >
                                     <input type="radio" name="options" id="option4" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnPurple" ng-click="changeColour('#9933FF', 1)" >
                                     <input type="radio" name="options" id="option5" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnOrange" ng-click="changeColour('#FF9900', 1)" >
                                     <input type="radio" name="options" id="option6" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
                                 <br>
 
@@ -125,23 +136,29 @@
                             <br>
 
                             <div class="" data-toggle="buttons">
-                                <label class="btn btn-primary active"  ng-click="changeColour('#FF5050', 2)" >
+                                <label class="btn btn-primary btnRed" ng-click="changeColour('#FF5050', 2)" >
                                     <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnBlue" ng-click="changeColour('#0099FF', 2)" >
                                     <input type="radio" name="options" id="option2" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnGreen" ng-click="changeColour('#00FF00', 2)" >
                                     <input type="radio" name="options" id="option3" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnYellow" ng-click="changeColour('#FFFF66', 2)" >
                                     <input type="radio" name="options" id="option4" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnPurple" ng-click="changeColour('#9933FF', 2)" >
                                     <input type="radio" name="options" id="option5" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
-                                <label class="btn btn-primary">
+                                <label class="btn btn-primary btnOrange" ng-click="changeColour('#FF9900', 2)" >
                                     <input type="radio" name="options" id="option6" autocomplete="off">
+                                    &nbsp; &nbsp;
                                 </label>
                                 <br>
 

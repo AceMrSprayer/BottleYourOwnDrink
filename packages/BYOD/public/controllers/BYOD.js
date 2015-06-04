@@ -8,9 +8,10 @@ angular.module('mean.BYOD')
     .controller('BYODControllerStep1', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
         /**
-         * Here are our predifined bottles stored
-         * TODO: Making use of variables like this is quite ugly move it else where.
-         * @type {{name: string, image: string, material: string, cap_colour: string, base_colour: string, bottom_colour: string, base_text: string}[]}
+         * Here are our predefined bottles stored. Because there are only three bottles these are stored in the frontend controllers.
+         * But it is possible to store these files as JSON elsewhere.
+         * We only store the name and images of a bottle.
+         * @type {{name: string, image: string, imageTop: string, imageBase: string, imageBottom: string}[]}
          */
         $scope.bottles = [
             {
@@ -38,6 +39,8 @@ angular.module('mean.BYOD')
 
         /**
          * This function will handle the selection of the bottles in step 1 of BYOD.
+         * It expects a bottle from the bottle list. This will get passed in the view and stored in the BYODservice
+         * this will make it possible to use the chosen bottle in a new view.
          * @param bottle
          */
         $scope.selection = function (bottle) {
@@ -48,80 +51,86 @@ angular.module('mean.BYOD')
     .controller('BYODControllerStep2', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
 
-        /**
-         * The variables of this controller
-         */
+
         var text, imageSaver, imageLoader, canvas = new fabric.Canvas('canvas');
 
         /**
-         * A function to retrieve the bottle saved in step 1 from BYOD service.
+         * A function to retrieve the bottle from step 1 and load the top,base and bottom of the bottle directly into the canvas.
          */
         $scope.retrievePickedBottle = function () {
             $scope.bottle = BYODservice.getBottle();
             //add bottle top to canvas
             fabric.Image.fromURL($scope.bottle.imageTop, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({width: 140, height: 85});
                 canvas.add(oImg);
             });
             //add bottle base to canvas
             fabric.Image.fromURL($scope.bottle.imageBase, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({top: 78, width: 140, height: 360});
                 canvas.add(oImg);
             });
             //add bottle bottom to canvas
             fabric.Image.fromURL($scope.bottle.imageBottom, function (oImg) {
                 oImg.set('selectable', false); // make object unselectable
-                oImg.set({top: 429, width: 140, height: 35});
                 canvas.add(oImg);
             });
         };
 
         /**
-         * A function to change to colour of the bottle
+         * A function to change to colour of the bottle using a variable for the colour and an id called field,
+         * which translates to the top base or bottom
          * @param colour
          * @param field
          */
         $scope.changeColour = function (colour, field) {
+            document.getElementById('id'+field).style.backgroundColor = colour;
             canvas.item(field).filters.pop();
             canvas.item(field).filters.push(new fabric.Image.filters.Blend({color: colour}));
             canvas.item(field).applyFilters(canvas.renderAll.bind(canvas));
             canvas.renderAll();
         };
 
+        /**
+         * Function to reset the canvas. It clears everything from the canvas except the bottle.
+         * It loops trough every object of the canvas and deletes it if it isn't the top base or bottom
+         */
         $scope.clearCanvas = function () {
             var index, list = canvas.getObjects();
-            while (list.length > 3) {
-                for (index = 0; index < list.length; ++index) {
+            while (list.length > 3 ||  canvas.item(0).filters.length > 0 || canvas.item(1).filters.length > 0 || canvas.item(2).filters.length > 0) {
+                for (index = 0; index < list.length; index++) {
                     if (index < 3) {
+                        document.getElementById('id'+ index).style.backgroundColor = '#FFFFFF';
                         canvas.item(index).filters.pop();
                         canvas.item(index).applyFilters(canvas.renderAll.bind(canvas));
                     }
                     else if (index > 2 && canvas.item(index) instanceof fabric.Text || index > 2 && canvas.item(index) instanceof fabric.Image) {
-                        canvas.remove(canvas.item(index % list.length));
+                        canvas.remove(canvas.item(index));
                     }
-                    canvas.renderAll();
                 }
-                //canvas.renderAll();            }
-
+                canvas.renderAll();
             }
         };
 
         /**
-         * Function to add text to the bottle on the canvas
+         * Function to add text to the bottle on the canvas. Whenever the user adds the text and re-enters something else
+         * The first entered text will be deleted first. If there isn't text on the canvas it will add it without deleting anything.
          * @param filledText
          */
         $scope.addText = function (filledText) {
-            text = new fabric.Text(filledText, {left: 150, top: 100});
-            if (canvas.item(canvas.getObjects().length - 1) instanceof fabric.Text) {
-                canvas.remove(canvas.item(canvas.getObjects().length - 1));
-                canvas.add(text);
+            var index, counter = canvas.getObjects().length , list = canvas.getObjects(), text = new fabric.Text(filledText, {left: 150, top: 100, fontFamily: 'Calibri'});
+
+            while (counter > 0) {
+                for (index = 0; index < list.length; index++) {
+                    if (canvas.item(index) instanceof fabric.Text) {
+                        canvas.remove(canvas.item(index));
+                    }
+                    else {
+                        canvas.add(text);
+                    }
+                }
+                canvas.renderAll();
+                counter--;
             }
-            else {
-                canvas.add(text);
-            }
-            canvas.renderAll();
         };
 
         /**
