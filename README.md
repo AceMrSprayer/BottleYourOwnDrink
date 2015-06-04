@@ -12,13 +12,12 @@ SETUP:
 
 1. Clone the directory into a folder on your system.
 2. Configure both MongoDB and Node.js according to the tutorials on their websites.
-3. Make sure the node_modules are installed. If not run 'npm install' in the project root.
-4. Make sure you have MEAN.CLI installed globally. If not run 'npm install -g mean-cli'.
+3. Open up a command line in the BottleYourOwnDrink root folder.
+4. Retrieve all front and backend dependicies with the command: 'npm install'
 5. Make sure that you have installed Gulp. If not run 'npm install gulp'.
 6. Start the MongoDB service -> leave this command window open.
-7. Open up a command line in the BottleYourOwnDrink root folder.
-8. Run the command "gulp" and the application will start up -> leave this command window open as well.
-9. The application will now be started on http://localhost:1337.
+7. Run the command "gulp" and the application will start up -> leave this command window open as well.
+8. The application will now be started on http://localhost:1337.
 
 Possible problems:
 
