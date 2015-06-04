@@ -16,20 +16,21 @@ var mongoose = require('mongoose'),
  *
  * @param userID the filter for finding the user.
  */
-//function getSingleUser(userID){
-//    //Create userID objectID
-//    var id = mongoose.Types.ObjectId(userID);
-//    User
-//        .findOne({
-//            _id: id
-//        })
-//        .exec(function (err, user) {
-//            if (err) console.log(err);
-//            if (!user) console.log('User is not found!');
-//            if (user) console.log('User is found!!');
-//            return user;
-//        });
-//}
+function getSingleUser(userID){
+    //Create userID objectID
+    var id = mongoose.Types.ObjectId(userID);
+    User
+        .findOne({
+            _id: id
+        })
+        .exec(function (err, user) {
+            if (err) console.log(err);
+            if (!user) console.log('User is not found!');
+            if (user) console.log('User is found!!');
+            console.dir(user);
+            return user;
+        });
+}
 
 /**
  * Update the users profile information and return the updated user object.
@@ -117,6 +118,12 @@ exports.getProfileInformation = function (req, res) {  //
         //Return the user
         //res.send(getSingleUser(req.params.userID));
         var id = mongoose.Types.ObjectId(req.params.userID);
+
+        console.log('TESTING method:');
+
+        var user = getSingleUser(id);
+        console.dir(user);
+
         User
             .findOne({
                 _id: id

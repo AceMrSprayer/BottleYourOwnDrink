@@ -64,7 +64,14 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
         controller: function () {
           window.location = '/logout';
         }
-      });      
+      });
+
+    //Swagger api page
+    $meanStateProvider
+        .state('api-docs', {
+          url: '/api-docs',
+          templateUrl: '/bower_components/swagger-ui/dist/index.html'
+        });
   }
 ]).config(['$locationProvider',
   function($locationProvider) {
