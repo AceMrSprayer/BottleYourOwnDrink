@@ -13,8 +13,7 @@
     "angular-ui-router": "#master",
     "web-bootstrap": "./node_modules/meanio/resources/web-bootstrap.js",
     "fileapi": "~2.0.11",
-    "fabric": "~1.5.0",
-    "swagger-ui": "~2.0.24"
+    "fabric": "~1.5.0"
   },
   "resolutions": {
     "jquery": "1.x"
