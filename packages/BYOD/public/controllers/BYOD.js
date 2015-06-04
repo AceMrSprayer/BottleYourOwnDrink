@@ -17,6 +17,8 @@ angular.module('mean.BYOD')
 // Original scaffolded code.
         $scope.global = Global;
             var price = $('#price').val();
+            var datalink = "";
+            var linkToConfirmation = "http://localhost:1337/#!/payment/"+$scope.global.user._id;
             //count the total sum
             $('#productAmount').bind('keyup mouseup',function() {
                 var amount = $('#productAmount').val();
@@ -26,6 +28,8 @@ angular.module('mean.BYOD')
             //Make sure you can select only one method
             $('.paycheck').on('change', function() {
                 $('.paycheck').not(this).prop('checked', false);
+                datalink = $(this).data('link');
+                linkToConfirmation = linkToConfirmation+"/"+datalink;
             });
             //validations
             $('.btn').click(function(e){
@@ -44,9 +48,10 @@ angular.module('mean.BYOD')
                 if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
                     alert('Something is missing');
                 }else{
-                    alert('Everything is filled in');
+                    window.open(linkToConfirmation);
                 }
             });
+
              //   var firstName = fullName.split(' ').slice(0, -1).join(' ');
              //  var lastName = fullName.split(' ').slice(-1).join(' ');
 
