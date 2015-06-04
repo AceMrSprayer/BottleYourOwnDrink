@@ -245,8 +245,6 @@ angular.module('mean.users')
             //Get all the bestellingen from the backend
             $http.get('/auth/profile/bestellingen/' + username).success(function (response) {
                 console.log('Bestellingen zijn binnen');
-
-                console.dir(response);
                 $scope.orderList = response.orders;
                 // }
 
