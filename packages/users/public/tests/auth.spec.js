@@ -51,6 +51,62 @@
         $httpBackend.verifyNoOutstandingRequest();
       });
 
+      //!!Custom tests for the profile pages!!
+
+      //Custom test for the profile dashboard page.
+
+      it('should retrieve a user and display the information', function() {
+
+        // test expected GET request
+        $httpBackend.when('GET', '/auth/profile/overzicht/:userID').respond(200, {
+          user: 'test',
+          name:  'Test',
+          username: 'testuser',
+          email: 'test@test.com'
+        });
+        $httpBackend.flush();
+        // test scope value
+        expect(scope.name).toEqual('test');
+        expect(scope.username).toEqual('Test');
+        expect(scope.email).toEqual('test@test.com');
+        expect($location.url()).toEqual('/auth/profile/overzicht/:userID');
+      });
+
+      //Custom test for the change profile information functionality
+
+      it('should display the updated information of the user.', function() {
+
+        // test expected GET request
+        $httpBackend.when('POST', '/updateProfile/:userID').respond(200, {
+            user: 'test',
+            name: 'test'
+        });
+        scope.changeUserInformation();
+        $httpBackend.flush();
+        // test scope value
+        expect(scope.name).toEqual('test');
+        expect($location.url()).toEqual('/auth/profile/overzicht/:userID');
+      });
+
+      //Custom test for the change profile information functionality
+
+      it('should display the orders of the current user', function() {
+
+        // test expected GET request
+        $httpBackend.when('GET', '/auth/profile/bestellingen/:userID').respond(200, {
+          "email": "test@test.com",
+          "username": "test",
+          "name": "test",
+          "orders": [{orderID : 1, orderDate : "01-01-2015", bottleType : "testBottle", orderAmount : 1, orderPrice : 10 }]
+        });
+        $httpBackend.flush();
+        // test scope value
+        expect(scope.orderList).to.not.be.empty();
+        expect($location.url()).toEqual('/auth/profile/bestellingen/:userID');
+      });
+
+
+
       it('should login with a correct user and password', function() {
 
         spyOn($rootScope, '$emit');

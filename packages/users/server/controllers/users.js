@@ -16,20 +16,20 @@ var mongoose = require('mongoose'),
  *
  * @param userID the filter for finding the user.
  */
-//function getSingleUser(userID){
-//    //Create userID objectID
-//    var id = mongoose.Types.ObjectId(userID);
-//    User
-//        .findOne({
-//            _id: id
-//        })
-//        .exec(function (err, user) {
-//            if (err) console.log(err);
-//            if (!user) console.log('User is not found!');
-//            if (user) console.log('User is found!!');
-//            return user;
-//        });
-//}
+function getSingleUser(userID) {
+    //Create userID objectID
+    var id = mongoose.Types.ObjectId(userID);
+    User
+        .findOne({
+            _id: id
+        })
+        .exec(function (err, user) {
+            if (err) console.log(err);
+            if (!user) console.log('User is not found!');
+            if (user) console.log('User is found!!');
+            return user;
+        });
+}
 
 /**
  * Update the users profile information and return the updated user object.
@@ -40,22 +40,14 @@ exports.updateProfileInformation = function (req, res) {
         //User ID pushed into a ObjectId object
         var userID = mongoose.Types.ObjectId(req.params.userID);
         //Qeury variables set
-        var conditions = { _id : userID},
-            update = { email: req.body.email, username : req.body.username, name : req.body.name},
+        var conditions = {_id: userID},
+            update = {email: req.body.email, username: req.body.username, name: req.body.name},
             options = {};
 
-        User.update(conditions, update, options).exec(function(err){
+        User.update(conditions, update, options).exec(function (err) {
             console.log('User is updated trying to retrieve him.');
-            User
-                .findOne({
-                    _id : userID
-                })
-                .exec(function (err, user) {
-                    if (err) console.log(err);
-                    if (!user) console.log('User is not found!');
-                    if (user) console.log('User is retrieved sending user back..');
-                    res.send(user);
-                });
+            var user = getSingleUser(userID);
+            res.send(user);
         });
     }
 };
@@ -73,30 +65,37 @@ exports.changePassword = function (req, res) {
     var errors = req.validationErrors();
     if (errors) {
         return res.send(errors);
-    }else if (req.params.userID && !errors) {
-
+    } else if (req.params.userID && !errors) {
         var userID = mongoose.Types.ObjectId(req.params.userID);
-        console.log('Trying to hash the password.');
         //HASH the password
-        var salt = crypto.randomBytes(16).toString('base64');
+         User
+            .findOne({
+                _id: userID
+            })
+            .exec(function (err, user) {
+                if (err) console.log(err);
+                if (!user) console.log('User is not found!');
+                if (user) console.log('User is found!!');
 
-        var hashed_password =  crypto.pbkdf2Sync(req.body.password, salt, 10000, 64).toString('base64');
+                var salt = user.salt;
+                var hashed_password = crypto.pbkdf2Sync(req.body.password, salt, 10000, 64).toString('base64');
 
-        console.log('Hash is complete, now storing the new password in the database');
-        var conditions = { _id : userID},
-            update = {hashed_password : hashed_password, salt : salt},
-            options = {};
+                console.log('Hash is complete, now storing the new password in the database');
+                var conditions = {_id: userID},
+                    update = {hashed_password: hashed_password},
+                    options = {};
 
-        User.update(conditions, update, options).exec(function(err){
-            if (err){
-                console.log(err);
-                res.send(err);
-            } else{
-                res.json({
-                    msg: 'Uw wachtwoord is nu bijgewerkt'
+                User.update(conditions, update, options).exec(function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.send(err);
+                    } else {
+                        res.json({
+                            msg: 'Uw wachtwoord is nu bijgewerkt'
+                        });
+                    }
                 });
-            }
-        });
+            });
     }
 };
 
@@ -111,11 +110,6 @@ exports.getProfileInformation = function (req, res) {  //
     console.log('Profile ID: ' + req.params.userID);
 
     if (req.params.userID) {
-        //TODO get the refactored version of the code below working.
-        //Get the current user.
-        //var user = getSingleUser(req.params.userID);
-        //Return the user
-        //res.send(getSingleUser(req.params.userID));
         var id = mongoose.Types.ObjectId(req.params.userID);
         User
             .findOne({
