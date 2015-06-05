@@ -20,10 +20,19 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             url: '/step3',
             templateUrl: 'BYOD/views/mixDrink.html'
         });
+
+        //PAYMENT ROUTES
+
         $meanStateProvider.state('Payment page', {
             url: '/payment/:userID',
             templateUrl: 'BYOD/views/payment.html'
         });
+        $meanStateProvider.state('payment completion page', {
+            url: '/payment/complete',
+            templateUrl: 'BYOD/views/confirmationIdeal.html'
+        });
+
+
 
         //FINAL ROUTES FOR THE BYOD FUNCTIONALITY
 

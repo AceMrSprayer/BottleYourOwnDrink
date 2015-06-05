@@ -205,15 +205,14 @@ angular.module('mean.BYOD')
                     bottle: testBottle
                 })
                     .success(function (response) {
-                        $scope.message = 'Uw order is sucessvol aangemaakt.';
-                        //TODO create routes for the completed
-                        $location.url('/payment/complete/' + $scope.global.user._id);
+                        $scope.message = response.msg;
+                        $location.url('/payment/complete/');
                     })
                     .error(function (error) {
                         if(error){
                             console.log(error);
                         }else{
-                            console.log('Something has gone wrong with changing the password.');
+                            console.log('Er is iets fout gegaan bij het maken van de nieuwe bestelling');
                         }
                     });
             };

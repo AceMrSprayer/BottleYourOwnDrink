@@ -140,7 +140,6 @@ exports.getProfileInformation = function (req, res) {  //
  */
 exports.createNewOrder = function (req, res) {  //
     console.log('Order placement call received');
-    console.log('Profile ID: ' + req.params.userID);
 
     if (req.params.userID) {
         var userID = mongoose.Types.ObjectId(req.params.userID);
@@ -153,11 +152,10 @@ exports.createNewOrder = function (req, res) {  //
                 if (!user) console.log('User is not found!');
                 if (user) console.log('User is found!!');
 
-                console.log('Hash is complete, now storing the new password in the database');
+                console.log('BottleType: ' + req.body.bottle.name);
                 //Order insertables
-
                 var orderID = 1,
-                    orderDate =  Date.now,
+                    //orderDate =  Date.now,
                     bottleType = 'Test bottle type',
                     orderAmount = 1,
                     orderPrice = 10,
@@ -176,7 +174,8 @@ exports.createNewOrder = function (req, res) {  //
                 console.log('Inserting new order into the user.');
                 //Queury updateables
                 var conditions = {_id: userID},
-                    update = { $push: {orderID: orderID, orderDate: orderDate, bottleType: bottleType, orderAmount: orderAmount, orderPrice: orderPrice, bottle : bottle}},
+                    //update = { $push: {orderID : orderID, orderDate: orderDate, bottleType: bottleType, orderAmount: orderAmount, orderPrice: orderPrice, bottle : bottle}},
+                    update = { $set: { 'orders.$.orderID' : orderID, 'orders.$.orderDate' : '01-01-2015', 'orders.$.bottleType' : bottleType, 'orders.$.orderAmount' : orderAmount, 'orders.$.orderPrice' : orderPrice, 'orders.$.bottle' : bottle} },
                     options = {};
 
                 User.update(conditions, update, options).exec(function (err) {
@@ -184,6 +183,7 @@ exports.createNewOrder = function (req, res) {  //
                         console.log(err);
                         res.send(err);
                     } else {
+                        console.log('Order has been added to the user.');
                         res.json({
                             msg: 'Uw bestelling is succesvol opgenomen'
                         });
