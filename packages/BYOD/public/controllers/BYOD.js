@@ -194,6 +194,30 @@ angular.module('mean.BYOD')
                 console.log('Account informatie is niet opgehaald.');
             });
 
+            $scope.createNewOrder = function () {
+                console.log('User is creating a new order');
+                //console.dir($scope.bottle);
+                var testBottle = {
+                    name: 'testBottle'
+                };
+
+                $http.post('/createOrder/' + $scope.global.user._id, {
+                    bottle: testBottle
+                })
+                    .success(function (response) {
+                        $scope.message = 'Uw order is sucessvol aangemaakt.';
+                        //TODO create routes for the completed
+                        $location.url('/payment/complete/' + $scope.global.user._id);
+                    })
+                    .error(function (error) {
+                        if(error){
+                            console.log(error);
+                        }else{
+                            console.log('Something has gone wrong with changing the password.');
+                        }
+                    });
+            };
+
             //var price = $('#price').val();
             ////count the total sum
             //$('#productAmount').bind('keyup mouseup',function() {

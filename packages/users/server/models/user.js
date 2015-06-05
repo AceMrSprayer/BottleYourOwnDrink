@@ -74,7 +74,7 @@ var UserSchema = new Schema({
     type: String,
     default: 'local'
   },
-  orders: [{orderID : Number, orderDate : Date, bottleType : String, orderAmount : Number, orderPrice : Number }],
+  orders: [{orderID : Number, orderDate : Date, bottleType : String, orderAmount : Number, orderPrice : Number, bottle: Object}],
   salt: String,
   resetPasswordToken: String,
   resetPasswordExpires: Date,

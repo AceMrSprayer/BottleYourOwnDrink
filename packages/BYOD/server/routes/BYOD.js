@@ -19,13 +19,4 @@ module.exports = function (Theme, app, auth, database) {
         res.send('Mix your drink');
     });
 
-
-    app.get('/theme/example/render', function (req, res, next) {
-        Theme.render('index', {
-            package: 'BYOD'
-        }, function (err, html) {
-            //Rendering a view from the Package server/views
-            res.send(html);
-        });
-    });
 };

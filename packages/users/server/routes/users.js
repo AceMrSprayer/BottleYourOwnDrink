@@ -31,6 +31,12 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   app.route('/updateProfile/:userID')
       .post(users.updateProfileInformation);
 
+  /**
+   * Custom route for creating a new order
+   */
+  app.route('/createOrder/:userID')
+      .post(users.createNewOrder);
+
   app.route('/logout')
     .get(users.signout);
   app.route('/users/me')

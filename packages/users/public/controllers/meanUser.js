@@ -208,7 +208,6 @@ angular.module('mean.users')
 
             $scope.changeUserInformation = function () {
                 console.log('User is trying to update his personal information');
-                //console.log('DEBUG: ' + $scope.user.name + ' ' +  $scope.user.username + '' + $scope.user.email);
                 $http.post('/updateProfile/' + $scope.global.user._id, {
                     name: $scope.user.name,
                     username: $scope.user.username,

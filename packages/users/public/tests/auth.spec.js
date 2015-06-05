@@ -94,10 +94,10 @@
 
         // test expected GET request
         $httpBackend.when('GET', '/auth/profile/bestellingen/:userID').respond(200, {
-          "email": "test@test.com",
-          "username": "test",
-          "name": "test",
-          "orders": [{orderID : 1, orderDate : "01-01-2015", bottleType : "testBottle", orderAmount : 1, orderPrice : 10 }]
+          email: 'test@test.com',
+          username: 'test',
+          name: 'test',
+          orders: [{orderID : 1, orderDate : '01-01-2015', bottleType : 'testBottle', orderAmount : 1, orderPrice : 10 }]
         });
         $httpBackend.flush();
         // test scope value

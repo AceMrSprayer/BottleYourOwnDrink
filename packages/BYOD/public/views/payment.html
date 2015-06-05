@@ -8,30 +8,35 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="firstname">Firstname</label>
+
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="firstname" placeholder="Firstname" value="{{name}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="lastname">Lastname</label>
+
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="lastname" placeholder="Lastname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="adress">Adress</label>
+
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="adress" placeholder="Adress">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="zip">City Zip code</label>
+
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="zip" placeholder="City zip code">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="email">Email</label>
+
                     <div class="col-sm-8">
                         <input type="email" class="form-control" id="email" placeholder="Enter email" value="{{email}}">
                     </div>
@@ -53,44 +58,49 @@
             </div>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <img src="BYOD/assets/img/BOTTLE.png" class="img-responsive col-sm-4" alt="bottle" width="50px" height="50px">
+                    <img src="BYOD/assets/img/BOTTLE.png" class="img-responsive col-sm-4" alt="bottle" width="50px"
+                         height="50px">
+
                     <div class="col-sm-8" style="margin-bottom: 20px">
                         <p>Some description about the bottle</p>
                     </div>
-                    <div class="col-sm-4"  style="float:right;">
+                    <div class="col-sm-4" style="float:right;">
                         <input type="text" id="price" ng-model="price" value="15" style="display: none;"/>
                     </div>
                     <div class="col-sm-8" style="margin-bottom: 20px; float: right">
                         <label class="control-label col-sm-8" for="zip">How many bottles?</label>
-                        <div class="col-sm-4"  style="float:right">
+
+                        <div class="col-sm-4" style="float:right">
                             <input type="number" id="productAmount" class="form-control" min="1" value="1">
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <label class="control-label col-sm-8" for="zip">Total sum</label>
-                        <div class="col-sm-4"  style="float:right">
+
+                        <div class="col-sm-4" style="float:right">
                             <input type="text" class="form-control" id="totalsum" readonly="readonly" value="15">
                         </div>
                     </div>
                 </div>
                 <h3>Payment Method</h3>
-                <div class="form-group">
-                    <div class="jumbotron">
-                        <div class="checkbox">
-                            <label><input type="checkbox" class="paycheck" />Ideal</label>
+
+                    <div class="form-group">
+                        <div class="jumbotron">
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="paycheck" ng-model="ideal"/>Ideal</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="paycheck" ng-model="paypal"/>Paypal</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="paycheck" ng-model="creditCard"/>Credit card</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" class="paycheck" ng-model="coupon"/>Coupon</label>
+                            </div>
+                            <button ng-click="createNewOrder()" type="submit" class="btn btn-default" style="float: right">Buy Now</button>
                         </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" class="paycheck" />Paypal</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" class="paycheck" />Credit card</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" class="paycheck" />Coupon</label>
-                        </div>
-                        <button type="submit" class="btn btn-default" style="float: right">Buy Now</button>
                     </div>
-                </div>
             </div>
         </form>
     </div>

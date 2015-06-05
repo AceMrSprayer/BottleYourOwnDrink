@@ -11,6 +11,11 @@ var mongoose = require('mongoose'),
     nodemailer = require('nodemailer'),
     templates = require('../template');
 
+exports.test = function (req, res) {  //
+    console.log('Received a front end request');
+    res.send('Request has arrived at the backend.');
+};
+
 /**
  * This function retrieves a single user that can be send back as JSON in a response.
  *
@@ -100,6 +105,7 @@ exports.changePassword = function (req, res) {
 };
 
 /**
+ *This retrieves a single user for the profile dashboard
  *
  * @param req contains information on the requesting page element.
  * @param res This is the response that gets send back to the front end and
@@ -124,6 +130,68 @@ exports.getProfileInformation = function (req, res) {  //
     }
 };
 
+
+/**
+ * This mmethod creates a new order within the user
+ *
+ * @param req contains information on the requesting page element.
+ * @param res This is the response that gets send back to the front end and
+ *           will be interpreted by the controller there
+ */
+exports.createNewOrder = function (req, res) {  //
+    console.log('Order placement call received');
+    console.log('Profile ID: ' + req.params.userID);
+
+    if (req.params.userID) {
+        var userID = mongoose.Types.ObjectId(req.params.userID);
+        User
+            .findOne({
+                _id: userID
+            })
+            .exec(function (err, user) {
+                if (err) console.log(err);
+                if (!user) console.log('User is not found!');
+                if (user) console.log('User is found!!');
+
+                console.log('Hash is complete, now storing the new password in the database');
+                //Order insertables
+
+                var orderID = 1,
+                    orderDate =  Date.now,
+                    bottleType = 'Test bottle type',
+                    orderAmount = 1,
+                    orderPrice = 10,
+                    bottle = {
+                        name: 'testBottle'
+                    };
+
+                //TODO use these variables
+                //var orderID = 1,
+                //    orderDate =  Date.now,
+                //    bottleType = req.body.bottleType,
+                //    orderAmount = req.body.orderAmount,
+                //    orderPrice = req.boddy.orderPrice,
+                //    bottle = req.body.bottle;
+
+                console.log('Inserting new order into the user.');
+                //Queury updateables
+                var conditions = {_id: userID},
+                    update = { $push: {orderID: orderID, orderDate: orderDate, bottleType: bottleType, orderAmount: orderAmount, orderPrice: orderPrice, bottle : bottle}},
+                    options = {};
+
+                User.update(conditions, update, options).exec(function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.send(err);
+                    } else {
+                        res.json({
+                            msg: 'Uw bestelling is succesvol opgenomen'
+                        });
+                    }
+                });
+            });
+    }
+};
 
 /**
  * Auth callback
