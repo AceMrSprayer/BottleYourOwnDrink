@@ -178,7 +178,7 @@ angular.module('mean.users')
                 })
                     .success(function (response) {
                         console.dir(response);
-                        if(response.msg == 'Uw wachtwoord is nu bijgewerkt'){
+                        if(response.msg === 'Uw wachtwoord is nu bijgewerkt'){
                             $scope.validationError = response.msg;
                         }else{
                             $scope.validationError = response;

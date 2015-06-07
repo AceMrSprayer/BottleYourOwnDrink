@@ -16,40 +16,75 @@ angular.module('mean.BYOD')
         function ($scope, $rootScope, $http, $location, Global) {
 // Original scaffolded code.
         $scope.global = Global;
-            var price = $('#price').val();
-            var datalink = "";
-            var linkToConfirmation = "http://localhost:1337/#!/payment/"+$scope.global.user._id;
-            //count the total sum
-            $('#productAmount').bind('keyup mouseup',function() {
-                var amount = $('#productAmount').val();
-                var totalsum = amount * price;
-                $('#totalsum').val(totalsum);
-            });
-            //Make sure you can select only one method
-            $('.paycheck').on('change', function() {
-                $('.paycheck').not(this).prop('checked', false);
-                datalink = $(this).data('link');
-                linkToConfirmation = linkToConfirmation+"/"+datalink;
-            });
-            //validations
-            $('.btn').click(function(e){
-                e.preventDefault();
-                var inputs = $('.form-control');
-                var inputs2 = $('.paycheck');
-                var terms = $('#terms');
-                var bad = 0;
-                var bad2 = 0;
-                inputs2.each(function(){
-                    if ($(this).prop('checked') == false) bad2++;
+            var link = '';
+            var linkToConfirmation = location.origin+'#!/payment/'+$scope.global.user._id;
+            $scope.entities = [{
+                name: 'one',
+                data: ('link', '/confirmation-paypal'),
+                label: 'Paypal',
+                checked: false
+            }, {
+                name: 'two',
+                data: ('link', '/confirmation-credit'),
+                label: 'Credit card',
+                checked: false
+            }, {
+                name: 'three',
+                data: ('link', '/confirmation-ideal'),
+                label: 'Ideal',
+                checked: false
+            }, {
+                name: 'four',
+                data: ('link', '/confirmation-coupon'),
+                label: 'Coupon',
+                checked: false
+            }
+            ];
+            //function for letting only one checkbox be checked
+            $scope.updateSelection = function(position, entities, obj) {
+                link = obj.target.attributes.data.value;
+                angular.forEach(entities, function(subscription, index) {
+                    if (position !== index)
+                        subscription.checked = false;
                 });
-                inputs.each(function(){
-                    if ($.trim(this.value) == "") bad++;
-                });
-                if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
-                    alert('Something is missing');
-                }else{
-                    window.open(linkToConfirmation);
+            };
+            //function for checking if any checkbxes are checked
+            $scope.checked = function() {
+                for(var e in $scope.entities) {
+                    var checkBox = $scope.entities[e];
+                    if(checkBox.checked)
+                        return true;
                 }
+                return false;
+            };
+            //validate zip code dutch style
+            $scope.zipPattern = (function() {
+                var regexp = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
+                return {
+                    test: function(value) {
+                        if( $scope.requireZip === false ) {
+                            return true;
+                        }
+                        return regexp.test(value);
+                    }
+                };
+            })();
+            //If the form is valid open the link to confirmation page
+            $scope.submitForm = function(isValid) {
+                // check to make sure the form is completely valid
+                if (isValid) {
+                    window.open(linkToConfirmation+link);
+                }
+
+            };
+            $(document).ready(function () {
+                //Calculate the total price and add it to the totalsum element
+                var price = $('#price').val();
+                $('#productAmount').bind('keyup mouseup', function () {
+                    var amount = $('#productAmount').val();
+                    var totalsum = amount * price;
+                    $('#totalsum').val(totalsum);
+                });
             });
 
              //   var firstName = fullName.split(' ').slice(0, -1).join(' ');
@@ -66,8 +101,3 @@ angular.module('mean.BYOD')
         });
     }
 ]);
-
-/*Code for going forward*/
-function Forward1() {
-    document.location="BackForward.htm";
-}
