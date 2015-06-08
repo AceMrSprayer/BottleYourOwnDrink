@@ -130,6 +130,35 @@ exports.getProfileInformation = function (req, res) {  //
     }
 };
 
+/**
+ * Change the users password
+ */
+exports.sendSwagger = function (req, res) {
+    //var swaggerJSON = 'users/swagger.json';
+    //console.dir(swaggerJSON);
+
+    var options = {
+        root: __dirname,
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    var fileName = 'swagger.json';
+
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(err.status).end();
+        }
+        else {
+            console.log('Sent:', fileName);
+        }
+    });
+    //res.sendfile('users/swagger.json');
+};
 
 /**
  * This mmethod creates a new order within the user
