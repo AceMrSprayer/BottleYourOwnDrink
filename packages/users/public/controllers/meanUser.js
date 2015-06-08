@@ -138,6 +138,18 @@ angular.module('mean.users')
         }
     ])
 /**
+ * This controller is used to request the swagger json file from the server.
+ */
+    .controller('SwaggerCtrl', ['$scope', '$rootScope', '$http', '$location', 'Global',
+        function ($scope, $rootScope, $http) {
+            $http.get('/api-docs')
+                .success(function (response) {
+                    console.log('Swagger GET call was successful');
+                    console.dir(response);
+                });
+        }
+    ])
+/**
  * This controller is used for binding the user information to the profile overzicht view. This controller
  * gets it information through a http REST get call.
  */

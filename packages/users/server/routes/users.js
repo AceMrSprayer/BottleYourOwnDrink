@@ -31,6 +31,13 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   app.route('/updateProfile/:userID')
       .post(users.updateProfileInformation);
 
+  /**
+   * Custom route for sending the Swagger JSON file.
+   */
+
+  app.route('/api-docs')
+      .get(users.sendSwagger);
+
   app.route('/logout')
     .get(users.signout);
   app.route('/users/me')

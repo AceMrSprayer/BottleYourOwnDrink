@@ -41,7 +41,12 @@ angular.module('mean.users').config(['$meanStateProvider',
         url: '/auth/profile/bestellingen/:userID',
         templateUrl: 'users/views/profile-bestellingen.html'
       })
-      .state('auth.login', {
+      //Swagger-ui route
+      .state('Swagger-ui', {
+        url: '/api-docs',
+        templateUrl: 'users/views/swagger.html'
+      })
+    .state('auth.login', {
         url: '/login',
         templateUrl: 'users/views/login.html',
         resolve: {
