@@ -7,6 +7,7 @@ angular.module('mean.BYOD')
     ])
     .controller('BYODControllerStep1', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
+
         /**
          * Here are our predefined bottles stored. Because there are only three bottles these are stored in the frontend controllers.
          * But it is possible to store these files as JSON elsewhere.
@@ -52,7 +53,7 @@ angular.module('mean.BYOD')
         $scope.global = Global;
 
 
-        var text, imageSaver, imageLoader, canvas = new fabric.Canvas('canvas');
+        var imageSaver, imageLoader, canvas = new fabric.Canvas('canvas');
 
         /**
          * A function to retrieve the bottle from step 1 and load the top,base and bottom of the bottle directly into the canvas.
@@ -83,7 +84,7 @@ angular.module('mean.BYOD')
          * @param field
          */
         $scope.changeColour = function (colour, field) {
-            document.getElementById('id'+field).style.backgroundColor = colour;
+            document.getElementById('id' + field).style.backgroundColor = colour;
             canvas.item(field).filters.pop();
             canvas.item(field).filters.push(new fabric.Image.filters.Blend({color: colour}));
             canvas.item(field).applyFilters(canvas.renderAll.bind(canvas));
@@ -96,10 +97,10 @@ angular.module('mean.BYOD')
          */
         $scope.clearCanvas = function () {
             var index, list = canvas.getObjects();
-            while (list.length > 3 ||  canvas.item(0).filters.length > 0 || canvas.item(1).filters.length > 0 || canvas.item(2).filters.length > 0) {
-                for (index = 0; index < list.length; index++) {
+            while (list.length > 3 || canvas.item(0).filters.length > 0 || canvas.item(1).filters.length > 0 || canvas.item(2).filters.length > 0) {
+                for (index = 0; index < list.length; index+=1) {
                     if (index < 3) {
-                        document.getElementById('id'+ index).style.backgroundColor = '#FFFFFF';
+                        document.getElementById('id' + index).style.backgroundColor = '#FFFFFF';
                         canvas.item(index).filters.pop();
                         canvas.item(index).applyFilters(canvas.renderAll.bind(canvas));
                     }
@@ -117,10 +118,14 @@ angular.module('mean.BYOD')
          * @param filledText
          */
         $scope.addText = function (filledText) {
-            var index, counter = canvas.getObjects().length , list = canvas.getObjects(), text = new fabric.Text(filledText, {left: 150, top: 100, fontFamily: 'Calibri'});
+            var index, counter = canvas.getObjects().length, list = canvas.getObjects(), text = new fabric.Text(filledText, {
+                left: 150,
+                top: 100,
+                fontFamily: 'Calibri'
+            });
 
             while (counter > 0) {
-                for (index = 0; index < list.length; index++) {
+                for (index = 0; index < list.length; index+=1) {
                     if (canvas.item(index) instanceof fabric.Text) {
                         canvas.remove(canvas.item(index));
                     }
@@ -129,7 +134,7 @@ angular.module('mean.BYOD')
                     }
                 }
                 canvas.renderAll();
-                counter--;
+                counter-=1;
             }
         };
 
@@ -171,9 +176,12 @@ angular.module('mean.BYOD')
         imageSaver = document.getElementById('imageSaver');
         imageSaver.addEventListener('click', saveImage, false);
 
-        //fix function to create an order and save it to the database
-        $scope.createOrder = function () {
-            console.log(canvas.toObject());
+        /**
+         * function to save the created bottle using a fabric function to turn the canvas in a SVG string
+         */
+        $scope.saveMadeBottle = function () {
+            var svgString = canvas.toSVG();
+            BYODservice.saveCreatedBottle(svgString);
         };
     }
     ])
@@ -197,10 +205,23 @@ angular.module('mean.BYOD')
 
     }
     ])
-    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global',
-        function ($scope, $rootScope, $http, $location, Global) {
+    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global','BYODservice',
+        function ($scope, $rootScope, $http, $location, Global, BYODservice) {
             // Original scaffolded code.
             $scope.global = Global;
+
+            var canvaspayment = new fabric.Canvas('canvaspayment'), svg = BYODservice.getCreatedBottle();
+
+            /**
+             * Load the bottle onto the canvas in payment view
+             */
+            $scope.retrieveMadeBottle = function () {
+                fabric.loadSVGFromString(svg, function(objects, options) {
+                    var obj = fabric.util.groupSVGElements(objects, options);
+                    obj.set('selectable', false);
+                    canvaspayment.add(obj).renderAll();
+                });
+            };
 
             $http.get('/auth/profile/overzicht/' + $scope.global.user._id).success(function (response) {
                 console.log('Account informatie is binnen');

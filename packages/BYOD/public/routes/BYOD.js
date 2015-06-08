@@ -32,6 +32,10 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             url: '/bottle3',
             templateUrl: 'BYOD/views/bottle3.html'
         });
+        $meanStateProvider.state('bottle step 4', {
+            url: '/bottle4',
+            templateUrl: 'BYOD/views/bottle4.html'
+        });
 
     }
 ]);

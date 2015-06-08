@@ -244,33 +244,8 @@
   margin-bottom:40px;
 }
 
-
-.custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-    width: 5px;
-}
-
-
-/*button colours*/
-.btnRed {
-    background-color: #FF5050;
-}
-.btnBlue {
-    background-color: #0099FF;
-}
-.btnGreen {
-    background-color: #00FF00;
-}
-.btnYellow {
-    background-color: #FFFF66;
-}
-.btnPurple {
-    background-color: #9933FF;
-}
-.btnOrange {
-    background-color: #FF9900;
-}
 /* Featured Sites */
+
 
 .featured-sites h4{
   font-size:24px;
@@ -283,4 +258,27 @@
 .featured-sites p, .featured-packages p {
   font-size:14px;
   margin-left:0;
+}
+
+.firstPage {
+    background-image: url(/theme/assets/img/home-bg.png);
+}
+
+.bottle1 {
+    background: rgba(252, 255, 0, 0.60);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle2 {
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle3 {
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle4{
+    background: rgba(252, 255, 0, 0.60);
+    background-image: url(/theme/assets/img/waterdrops.png);
 }

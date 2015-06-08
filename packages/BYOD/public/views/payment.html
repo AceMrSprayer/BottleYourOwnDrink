@@ -1,4 +1,4 @@
-<section class="welcome container" data-ng-controller="PaymentController">
+<section class="welcome container" data-ng-controller="PaymentController" data-ng-init="retrieveMadeBottle()">
     <div class="page {{ pageIndex }}" ng-view></div>
     <div class="header_one">
         <h1>Bottle Your Own Drink</h1>
@@ -52,8 +52,9 @@
                 </div>
             </div>
             <div class="col-sm-8">
+                <canvas id="canvaspayment" width="140" height="480"></canvas>
                 <div class="form-group">
-                    <img src="BYOD/assets/img/BOTTLE.png" class="img-responsive col-sm-4" alt="bottle" width="50px" height="50px">
+
                     <div class="col-sm-8" style="margin-bottom: 20px">
                         <p>Some description about the bottle</p>
                     </div>
@@ -88,6 +89,7 @@
                         <div class="checkbox">
                             <label><input type="checkbox" class="paycheck" />Coupon</label>
                         </div>
+
                         <button type="submit" class="btn btn-default" style="float: right">Buy Now</button>
                     </div>
                 </div>
