@@ -70,7 +70,7 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     $meanStateProvider
         .state('api-docs', {
           url: '/api-docs',
-          templateUrl: '/bower_components/swagger-ui/dist/index.html'
+          templateUrl: 'system/views/swagger.html'
         });
   }
 ]).config(['$locationProvider',
