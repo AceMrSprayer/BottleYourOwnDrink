@@ -17,25 +17,25 @@ angular.module('mean.BYOD')
 // Original scaffolded code.
         $scope.global = Global;
             var link = '';
-            var linkToConfirmation = location.origin+'#!/payment/'+$scope.global.user._id;
+            var linkToConfirmation = location.origin+'#!/betaling/'+$scope.global.user._id;
             $scope.entities = [{
                 name: 'one',
-                data: ('link', '/confirmation-paypal'),
+                data: ('link', '/confirmatie-paypal'),
                 label: 'Paypal',
                 checked: false
             }, {
                 name: 'two',
-                data: ('link', '/confirmation-credit'),
+                data: ('link', '/confirmatie-credit'),
                 label: 'Credit card',
                 checked: false
             }, {
                 name: 'three',
-                data: ('link', '/confirmation-ideal'),
+                data: ('link', '/confirmatie-ideal'),
                 label: 'Ideal',
                 checked: false
             }, {
                 name: 'four',
-                data: ('link', '/confirmation-coupon'),
+                data: ('link', '/confirmatie-coupon'),
                 label: 'Coupon',
                 checked: false
             }
