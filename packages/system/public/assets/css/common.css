@@ -54,3 +54,45 @@ footer p {
     /*border-color:#78FA89;*/
 /*}*/
 
+#stages{
+    width: 560px;
+    height: 165px;
+    margin: auto;
+    margin-top: 100px;
+    padding-top: 165px;
+    font-family: verdana, "sans-serif";
+    font-size: 9px;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5730a5', endColorstr='#6b21a8',GradientType=0 ); /* IE6-9 */
+}
+#stages ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+#stages li{
+    float: left;
+    width: 25%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
+#stages ul > li:before {
+    content: "•";
+    font-size: 50px;
+    line-height: 2px;
+    display: block;
+    color: #45d9f7;
+    background-color: #45d9f7;
+    margin: 0 0 15px 0;
+    text-shadow: 0px 0px 10px #45d9f7;
+}
+#stages ul > li.active:before {
+    color: #02accf;
+    text-shadow: 0px 0px 10px #45d9f7;
+}
+
+.homey {
+    background: url('/BYOD/assets/img/home-bg.png');
+
+}
+

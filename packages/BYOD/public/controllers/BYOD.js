@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.BYOD')
-	.controller('BYODController', ['$scope', 'Global',
+	.controller('BYODController', ['$scope', 'Global', 'ngAnimate',
 	  function($scope, Global) {
 // Original scaffolded code.
       $scope.global = Global;
@@ -9,21 +9,19 @@ angular.module('mean.BYOD')
         name: 'BYOD'
       };
     }
-  ]);
+  ])
 
-angular.module('mean.BYOD')
     .controller('mainController',
     function($scope) {
     $scope.pageClass = 'page-home';
-});
+        alert('hey');
+})
 
-angular.module('mean.BYOD')
     .controller('aboutController',
     function($scope) {
     $scope.pageClass = 'page-about';
-});
+})
 
-angular.module('mean.BYOD')
     .controller('contactController',
     function($scope) {
     $scope.pageClass = 'page-contact';

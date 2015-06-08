@@ -1,15 +1,20 @@
 <!-- Modal -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal" aria-hidden="true">
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal" aria-hidden="true" data-backdrop="static">
 
     <div class="modal-dialog">
 
         <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
+            <!--<div class="modal-header">-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span-->
+                        <!--aria-hidden="true">&times;</span></button>-->
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+            <!--</div>-->
+
+            <br>
+            <br>
+            <br>
+            <br>
 
             <div class="modal-body">
 
@@ -17,33 +22,47 @@
 
                     <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
 
-                    <h2>Login</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
 
-                    <form id="login_form" ng-submit="login()">
-                        <div class="input-wrapper">
-                            <input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">
-                            <div class="error_message">Please enter a correct info #</div>
-                            <span class="pic email"></span>
-                        </div>
-                        <div class="input-wrapper">
-                            <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
-                            <div class="error_message">Please enter a correct info #</div>
+                    <div class="col-md-6">
+
+                        <form id="login_form" ng-submit="login()">
+
+                            <div class="input-wrapper">
+
+                                <input required id="email_block" class="form-control" type="email" name="email" placeholder="Email Address" ng-model="user.email">
+                                <div class="error_message">Please enter a correct info #</div>
+                            </div>
+
+                            <div class="input-wrapper">
+                                <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
+                                <div class="error_message">Please enter a correct info #</div>
+
                 <span class="pic password {{input.iconClass}}" ng-click = "togglePasswordVisible()">
+
                       <div class="hide_text_password">
                           {{input.tooltipText}}
                       </div>
-                </span>
-                        </div>
-                        <div class="forgot_password">
-                            <a ui-sref='forgot-password'>Forgot your password?</a>
-                        </div>
-                        <div class="button_login">
-                            <button type="submit" class="submit_button">Login</button>
-                            <p>Don't have an account?</p>
-                            <a ui-sref='auth.register' >Sign up</a>
-                        </div>
 
-                    </form>
+                </span>
+                            </div>
+
+                            <div class="forgot_password">
+                                <a ui-sref='forgot-password'>Forgot your password?</a>
+                            </div>
+
+                            <div class="button_login">
+                                <button type="submit" class="submit_button">Login</button>
+                                <p>Don't have an account?</p>
+                                <a ui-sref='auth.register' >Sign up</a>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
                 </div>
 
 
