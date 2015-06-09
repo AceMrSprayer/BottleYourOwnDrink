@@ -15,31 +15,30 @@ angular.module('mean.BYOD')
          */
         $scope.bottles = [
             {
-            'name': 'X-02',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'X-02',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             },
             {
-            'name': 'Energizer',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'Energizer',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             },
             {
-            'name': 'Berserker',
-            'image': '/BYOD/assets/img/bottle/bottle1.PNG',
-            'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
-            'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
-            'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
+                'name': 'Berserker',
+                'image': '/BYOD/assets/img/bottle/bottle1.PNG',
+                'imageTop': '/BYOD/assets/img/bottle/bottleTop1.PNG',
+                'imageBase': '/BYOD/assets/img/bottle/bottleBase1.PNG',
+                'imageBottom': '/BYOD/assets/img/bottle/bottleBottom1.PNG'
             }
         ];
 
         /**
          * This function will handle the selection of the bottles in step 1 of BYOD.
-         * TODO: Optimize this function && Make it possible to select another bottle so that it switches from previous selection to the new one
          * @param bottle
          */
         $scope.selection = function (bottle) {
@@ -47,13 +46,19 @@ angular.module('mean.BYOD')
 
             if (currentElement.className === 'deselected' && !$('img').hasClass('selected')) {
                 currentElement.className = 'selected';
-                currentElement.style.border = 'thin solid black';
+                // Save bottle from this step in the BYOD service
+                BYODservice.saveBottle(bottle);
+            }
+            else if (currentElement.className === 'deselected' && $('img').hasClass('selected')) {
+                $('img').removeClass('selected');
+                $('img').addClass('deselected');
+                currentElement.className = 'selected';
                 // Save bottle from this step in the BYOD service
                 BYODservice.saveBottle(bottle);
             }
             else {
+                $('img').removeClass('selected');
                 currentElement.className = 'deselected';
-                currentElement.style.removeProperty('border');
             }
 
 
@@ -69,7 +74,7 @@ angular.module('mean.BYOD')
         var text, imageSaver, imageLoader, canvas = new fabric.Canvas('canvas');
 
         /**
-         * A function to retrieve the bottle saved in step 1 from BYOD service.
+         * A function to retrieve the bottle selected in step 1 from BYOD service.
          */
         $scope.retrievePickedBottle = function () {
             $scope.bottle = BYODservice.getBottle();
@@ -107,14 +112,12 @@ angular.module('mean.BYOD')
 
         /**
          * Function to add text to the bottle on the canvas
-         * TODO: Will always remove the second object of the canvas make this dynamic if possible
          * @param filledText
          */
         $scope.addText = function (filledText) {
             text = new fabric.Text(filledText, {left: 150, top: 100});
-            if (canvas.item(canvas.getObjects().length-1) instanceof fabric.Text) {
-                console.log('removing object.....' + canvas.item(canvas.getObjects().length-1));
-                canvas.remove(canvas.item(canvas.getObjects().length-1));
+            if (canvas.item(canvas.getObjects().length - 1) instanceof fabric.Text) {
+                canvas.remove(canvas.item(canvas.getObjects().length - 1));
                 canvas.add(text);
             }
             else {
@@ -163,18 +166,19 @@ angular.module('mean.BYOD')
 
         //fix function to create an order and save it to the database
         $scope.createOrder = function () {
-            console.log(canvas.toObject());
+            console.log(JSON.stringify(canvas));
+            BYODservice.saveOrder(JSON.stringify(canvas));
         };
     }
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
-
+        //var canvas = new fabric.Canvas('canvas');
         $scope.fruits = [
-            {'imgsrc' : '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name' : 'banana'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/apple.jpg', 'id': 2, 'name' : 'apple'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name' : 'pineapple'},
-            {'imgsrc' : '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name' : 'strawberry'}
+            {'imgsrc': '/BYOD/assets/img/fruit/banana.jpg', 'id': 1, 'name': 'banana'},
+            {'imgsrc': '/BYOD/assets/img/fruit/apple.jpg', 'id': 2, 'name': 'apple'},
+            {'imgsrc': '/BYOD/assets/img/fruit/pineapple.jpg', 'id': 3, 'name': 'pineapple'},
+            {'imgsrc': '/BYOD/assets/img/fruit/strawberry.jpg', 'id': 4, 'name': 'strawberry'}
         ];
     }
 
@@ -217,42 +221,16 @@ angular.module('mean.BYOD')
                     });
             };
 
-            //var price = $('#price').val();
-            ////count the total sum
-            //$('#productAmount').bind('keyup mouseup',function() {
-            //    var amount = $('#productAmount').val();
-            //    var totalsum = amount * price;
-            //    $('#totalsum').val(totalsum);
-            //});
-            ////Make sure you can select only one method
-            //$('.paycheck').on('change', function() {
-            //    $('.paycheck').not(this).prop('checked', false);
-            //});
-            ////validations
-            //$('.btn').click(function(e){
-            //    e.preventDefault();
-            //    var inputs = $('.form-control');
-            //    var inputs2 = $('.paycheck');
-            //    var terms = $('#terms');
-            //    var bad = 0;
-            //    var bad2 = 0;
-            //    inputs2.each(function(){
-            //        if ($(this).prop('checked') == false) bad2++;
-            //    });
-            //    inputs.each(function(){
-            //        if ($.trim(this.value) == "") bad++;
-            //    });
-            //    if (bad > 0 || $('#terms').prop('checked') == false || bad2 != 3){
-            //        alert('Something is missing');
-            //    }else{
-            //        alert('Everything is filled in');
-            //    }
-            //});
+        $scope.dairy = [
+            {'imgsrc': '/BYOD/assets/img/dairy/chocmilk.jpg', 'id': 1, 'name': 'chocolate milk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/milk.jpg', 'id': 2, 'name': 'milk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/soymilk.jpg', 'id': 3, 'name': 'soymilk'},
+            {'imgsrc': '/BYOD/assets/img/dairy/yoghurt.jpg', 'id': 4, 'name': 'yoghurt'}
+        ];
+
         }
+
     ]);
 
-/*Code for going forward*/
-//function Forward1() {
-//    document.location="BackForward.htm";
-//}
+
 

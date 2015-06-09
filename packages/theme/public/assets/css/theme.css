@@ -21,6 +21,9 @@
   color:#525252;
 }
 
+.selected {
+    border: thin solid black;
+}
 .welcome .info, .welcome .featured {
   float:left;
 }
