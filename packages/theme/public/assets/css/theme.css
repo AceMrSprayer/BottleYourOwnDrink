@@ -262,3 +262,26 @@
   font-size:14px;
   margin-left:0;
 }
+
+.firstPage {
+    background-image: url(/theme/assets/img/home-bg.png);
+}
+
+.bottle1 {
+    background: rgba(252, 255, 0, 0.60);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle2 {
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle3 {
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.bottle4{
+    background: rgba(252, 255, 0, 0.60);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}

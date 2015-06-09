@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('mean.BYOD').factory('BYODservice', function () {
-    var bottle = {}, order;
+
+    var bottle = {}, createdBottle = {};
 
     return {
         saveBottle:function (data) {
@@ -10,11 +11,11 @@ angular.module('mean.BYOD').factory('BYODservice', function () {
         getBottle:function () {
             return bottle;
         },
-        saveOrder:function (data) {
-            order = data;
+        saveCreatedBottle:function (data) {
+            createdBottle = data;
         },
-        getOrder:function () {
-            return order;
+        getCreatedBottle:function () {
+            return createdBottle;
         }
     };
 });

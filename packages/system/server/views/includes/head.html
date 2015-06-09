@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/bower_components/bootstrap/plugins/slidingsidemenu/css/BootSideMenu.css">
   <link rel="stylesheet" href="/bower_components/bootstrap/plugins/slidingsidemenu/css/css.css">
+    <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.css">
 
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -29,17 +30,17 @@
   <script src="/bower_components/fabric/dist/fabric.js"></script>
   <script src="/bower_components/bootstrap/plugins/slidingsidemenu/js/BootSideMenu.js"></script>
 
-  {% for file in aggregatedassets.header.css %}
+    {% for file in aggregatedassets.header.css %}
     <link rel="stylesheet" href="{{file}}">
-  {% endfor %}
+    {% endfor %}
 
-  {% for file in aggregatedassets.footer.css %}
+    {% for file in aggregatedassets.footer.css %}
     <link rel="stylesheet" href="{{file}}">
-  {% endfor %}
+    {% endfor %}
 
-  {% for file in aggregatedassets.header.js %}
+    {% for file in aggregatedassets.header.js %}
     <script type="text/javascript" src="{{file}}"></script>
-  {% endfor %}
+    {% endfor %}
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
