@@ -28,15 +28,17 @@ angular.module('mean.users').config(['$meanStateProvider',
         url: '/auth',
         templateUrl: 'users/views/index.html'
       })
-      //Routes for the profile page.
+      //Routes for the profile dashboard page.
       .state('profile-overzicht', {
         url: '/auth/profile/overzicht/:userID',
         templateUrl: 'users/views/profile-overzicht.html'
       })
+        //Custom route for the profile password page
       .state('profile-wachtwoord', {
         url: '/auth/profile/wachtwoord/:userID',
         templateUrl: 'users/views/profile-wachtwoord.html'
       })
+        //Custom route for the profile order page
       .state('profile-bestellingen', {
         url: '/auth/profile/bestellingen/:userID',
         templateUrl: 'users/views/profile-bestellingen.html'

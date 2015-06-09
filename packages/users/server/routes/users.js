@@ -10,13 +10,13 @@ module.exports = function(MeanUser, app, auth, database, passport) {
   * Custom route for getting the user's information on the profile page. Executes the method getProfileInformation within
   * the users controller.
   */
-  app.route('/auth/profile/overzicht/:userID')
+  app.route('/user/:userID')
       .get(users.getProfileInformation);
 
   /**
    * Custom route for getting all the orders related to the current user. Executes within the user controller.
    */
-  app.route('/auth/profile/bestellingen/:userID')
+  app.route('/user/:userID')
       .get(users.getProfileInformation);
 
   /**

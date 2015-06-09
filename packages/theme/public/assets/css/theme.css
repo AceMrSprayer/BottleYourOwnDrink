@@ -267,21 +267,23 @@
     background-image: url(/theme/assets/img/home-bg.png);
 }
 
-.bottle1 {
+.chooseoption {
     background: rgba(252, 255, 0, 0.60);
     background-image: url(/theme/assets/img/waterdrops.png);
 }
 
-.bottle2 {
+.createbottle {
     background: rgba(2, 172, 207, 0.75);
     background-image: url(/theme/assets/img/waterdrops.png);
 }
 
-.bottle3 {
+.choosebottle {
     background-image: url(/theme/assets/img/waterdrops.png);
 }
 
-.bottle4{
+.createdrink{
     background: rgba(252, 255, 0, 0.60);
     background-image: url(/theme/assets/img/waterdrops.png);
 }
+
+

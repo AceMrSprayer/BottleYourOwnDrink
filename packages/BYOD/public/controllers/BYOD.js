@@ -38,30 +38,6 @@ angular.module('mean.BYOD')
             }
         ];
 
-        /**
-         * This function will handle the selection of the bottles in step 1 of BYOD.
-         * @param bottle
-         */
-        $scope.selection = function (bottle) {
-            var currentElement = document.getElementById(event.currentTarget.id);
-
-            if (currentElement.className === 'deselected' && !$('img').hasClass('selected')) {
-                currentElement.className = 'selected';
-                // Save bottle from this step in the BYOD service
-                BYODservice.saveBottle(bottle);
-            }
-            else if (currentElement.className === 'deselected' && $('img').hasClass('selected')) {
-                $('img').removeClass('selected');
-                $('img').addClass('deselected');
-                currentElement.className = 'selected';
-                // Save bottle from this step in the BYOD service
-                BYODservice.saveBottle(bottle);
-            }
-            else {
-                $('img').removeClass('selected');
-                currentElement.className = 'deselected';
-            }
-
             /* It expects a bottle from the bottle list. This will get passed in the view and stored in the BYODservice
              * this will make it possible to use the chosen bottle in a new view.
              * @param bottle
@@ -69,9 +45,7 @@ angular.module('mean.BYOD')
             $scope.selection = function (bottle) {
                 BYODservice.saveBottle(bottle);
 
-            };
-        };
-        }
+        };}
     ])
     .controller('BYODControllerStep2', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
@@ -321,7 +295,7 @@ angular.module('mean.BYOD')
                 });
             };
 
-            $http.get('/auth/profile/overzicht/' + $scope.global.user._id).success(function (response) {
+            $http.get('/user/' + $scope.global.user._id).success(function (response) {
                 console.log('Account informatie is binnen');
                 console.dir(response);
                 $scope.name = response.name;

@@ -149,28 +149,7 @@ angular.module('mean.users')
                 });
         }
     ])
-/**
- * This controller is used for binding the user information to the profile overzicht view. This controller
- * gets it information through a http REST get call.
- */
-    .controller('ProfileCtrlMain', ['$scope', '$rootScope', '$http', '$location', 'Global',
-        function ($scope, $rootScope, $http, $location, Global) {
-            $scope.user = {};
-            $scope.global = Global;
 
-            var userID = $scope.global.user._id;
-
-            $http.get('/auth/profile/overzicht/' + userID).success(function (response) {
-                console.log('Account informatie is binnen');
-                console.dir(response);
-                $scope.name = response.name;
-                $scope.username = response.username;
-                $scope.email = response.email;
-            }).error(function () {
-                console.log('Account informatie is niet opgehaald.');
-            });
-        }
-    ])
 /**
  * The controller that is responsible for managing the change password page within the profile. The content
  * of the password inputs is send to the backend of the application through a http REST post.
@@ -208,7 +187,7 @@ angular.module('mean.users')
 
             var userID = $scope.global.user._id;
 
-            $http.get('/auth/profile/overzicht/' + userID).success(function (response) {
+            $http.get('/user/' + userID).success(function (response) {
                 console.log('Account informatie is binnen');
                 console.dir(response);
                 $scope.name = response.name;
@@ -254,7 +233,7 @@ angular.module('mean.users')
             var username = $scope.global.user._id;
 
             //Get all the bestellingen from the backend
-            $http.get('/auth/profile/bestellingen/' + username).success(function (response) {
+            $http.get('/user/' + username).success(function (response) {
                 console.log('Bestellingen zijn binnen');
                 $scope.orderList = response.orders;
                 // }

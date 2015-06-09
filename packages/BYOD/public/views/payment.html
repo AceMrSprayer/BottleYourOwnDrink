@@ -1,4 +1,4 @@
-<section class="welcome container" data-ng-controller="PaymentController">
+<section class="welcome container" data-ng-controller="PaymentController" data-ng-init="retrieveMadeBottle()">
     <div class="page {{ pageIndex }}" ng-view></div>
     <div class="header_one">
         <h1>Bottle Your Own Drink</h1>
@@ -57,7 +57,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
+                <canvas id="canvaspayment" width="140" height="480"></canvas>
+            </div>>
+            <div class="col-sm-4">
                 <div class="form-group">
                     <div class="col-sm-4"  style="float:right;">
                         <input type="text" id="price" ng-model="price" value="15" style="display: none;"/>

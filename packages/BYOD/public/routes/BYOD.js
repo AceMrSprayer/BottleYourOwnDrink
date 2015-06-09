@@ -3,15 +3,9 @@
 angular.module('mean.BYOD').config(['$meanStateProvider',
     function ($meanStateProvider) {
 
-        //TODO change below routes to final routes
         $meanStateProvider.state('Home page', {
-            url: '/home',
+            url: '/',
             templateUrl: 'BYOD/views/index.html'
-        });
-
-        $meanStateProvider.state('Mix your drink', {
-            url: '/step3',
-            templateUrl: 'BYOD/views/mixDrink.html'
         });
 
         //PAYMENT ROUTES
@@ -20,12 +14,25 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
             url: '/betaling/:userID',
             templateUrl: 'BYOD/views/payment.html'
         });
-        $meanStateProvider.state('payment completion page', {
-            url: '/payment/complete',
+
+        //PAYMENT CONFIRMATION ROUTES
+
+        $meanStateProvider.state('Payment confirmation page Paypal', {
+            url: '/betaling/:userID/confirmatie-paypal',
+            templateUrl: 'BYOD/views/confirmationPaypal.html'
+        });
+        $meanStateProvider.state('Payment confirmation page Ideal', {
+            url: '/betaling/:userID/confirmatie-ideal',
             templateUrl: 'BYOD/views/confirmationIdeal.html'
         });
-
-
+        $meanStateProvider.state('Payment confirmation page Coupon', {
+            url: '/betaling/:userID/confirmatie-coupon',
+            templateUrl: 'BYOD/views/confirmationCoupon.html'
+        });
+        $meanStateProvider.state('Payment confirmation page Credit', {
+            url: '/betaling/:userID/confirmatie-credit',
+            templateUrl: 'BYOD/views/confirmationCredit.html'
+        });
 
         //FINAL ROUTES FOR THE BYOD FUNCTIONALITY
 
@@ -49,38 +56,3 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
     }
 ]);
 
-angular.module('mean.BYOD').config(['$meanStateProvider',
-    function($meanStateProvider) {
-        $meanStateProvider.state('Payment confirmation page Paypal', {
-            url: '/betaling/:userID/confirmatie-paypal',
-            templateUrl: 'BYOD/views/confirmationPaypal.html'
-        });
-    }
-]);
-
-angular.module('mean.BYOD').config(['$meanStateProvider',
-    function($meanStateProvider) {
-        $meanStateProvider.state('Payment confirmation page Ideal', {
-            url: '/betaling/:userID/confirmatie-ideal',
-            templateUrl: 'BYOD/views/confirmationIdeal.html'
-        });
-    }
-]);
-
-angular.module('mean.BYOD').config(['$meanStateProvider',
-    function($meanStateProvider) {
-        $meanStateProvider.state('Payment confirmation page Coupon', {
-            url: '/betaling/:userID/confirmatie-coupon',
-            templateUrl: 'BYOD/views/confirmationCoupon.html'
-        });
-    }
-]);
-
-angular.module('mean.BYOD').config(['$meanStateProvider',
-    function($meanStateProvider) {
-        $meanStateProvider.state('Payment confirmation page Credit', {
-            url: '/betaling/:userID/confirmatie-credit',
-            templateUrl: 'BYOD/views/confirmationCredit.html'
-        });
-    }
-]);
