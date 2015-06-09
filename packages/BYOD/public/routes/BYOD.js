@@ -30,19 +30,19 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
         //FINAL ROUTES FOR THE BYOD FUNCTIONALITY
 
         $meanStateProvider.state('Bottle step 1', {
-            url: '/bottle1',
+            url: '/choose/option',
             templateUrl: 'BYOD/views/bottle1.html'
         });
         $meanStateProvider.state('Bottle step 2', {
-            url: '/bottle2',
+            url: '/choose/bottle',
             templateUrl: 'BYOD/views/bottle2.html'
         });
         $meanStateProvider.state('Bottle step 3', {
-            url: '/bottle3',
+            url: '/create/bottle',
             templateUrl: 'BYOD/views/bottle3.html'
         });
         $meanStateProvider.state('bottle step 4', {
-            url: '/bottle4',
+            url: '/create/drink',
             templateUrl: 'BYOD/views/bottle4.html'
         });
 

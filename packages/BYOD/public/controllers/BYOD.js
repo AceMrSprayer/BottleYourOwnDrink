@@ -210,7 +210,7 @@ angular.module('mean.BYOD')
         };
     }
     ])
-    .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
+    .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global) {
         $scope.global = Global;
         //var canvas = new fabric.Canvas('canvas');
 
@@ -235,6 +235,78 @@ angular.module('mean.BYOD')
         function ($scope, $rootScope, $http, $location, Global, BYODservice) {
             // Original scaffolded code.
             $scope.global = Global;
+
+            var link = '';
+            var linkToConfirmation = location.origin+'#!/betaling/'+$scope.global.user._id;
+            $scope.entities = [{
+                name: 'one',
+                data: ('link', '/confirmatie-paypal'),
+                label: 'Paypal',
+                checked: false
+            }, {
+                name: 'two',
+                data: ('link', '/confirmatie-credit'),
+                label: 'Credit card',
+                checked: false
+            }, {
+                name: 'three',
+                data: ('link', '/confirmatie-ideal'),
+                label: 'Ideal',
+                checked: false
+            }, {
+                name: 'four',
+                data: ('link', '/confirmatie-coupon'),
+                label: 'Coupon',
+                checked: false
+            }
+            ];
+
+            //function for letting only one checkbox be checked
+            $scope.updateSelection = function(position, entities, obj) {
+                link = obj.target.attributes.data.value;
+                angular.forEach(entities, function(subscription, index) {
+                    if (position !== index)
+                        subscription.checked = false;
+                });
+            };
+            //function for checking if any checkbxes are checked
+            $scope.checked = function() {
+                for(var e in $scope.entities) {
+                    var checkBox = $scope.entities[e];
+                    if(checkBox.checked)
+                        return true;
+                }
+                return false;
+            };
+            //validate zip code dutch style
+            $scope.zipPattern = (function() {
+                var regexp = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
+                return {
+                    test: function(value) {
+                        if( $scope.requireZip === false ) {
+                            return true;
+                        }
+                        return regexp.test(value);
+                    }
+                };
+            })();
+            //If the form is valid open the link to confirmation page
+            $scope.submitForm = function(isValid) {
+                // check to make sure the form is completely valid
+                if (isValid) {
+                    window.open(linkToConfirmation+link);
+                }
+
+            };
+            $(document).ready(function () {
+                //Calculate the total price and add it to the totalsum element
+                var price = $('#price').val();
+                $('#productAmount').bind('keyup mouseup', function () {
+                    var amount = $('#productAmount').val();
+                    var totalsum = amount * price;
+                    $('#totalsum').val(totalsum);
+                });
+            });
 
             var canvaspayment = new fabric.Canvas('canvaspayment'), svg = BYODservice.getCreatedBottle();
 
