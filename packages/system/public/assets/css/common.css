@@ -117,6 +117,14 @@ footer p {
     background: rgba(2, 172, 207, 0.75);
     background-image: url(/theme/assets/img/waterdrops.png);
 }
+.authprofilebestellingen-userID{
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+.betaling-userID{
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
 .panel-body{
     background-color: white;
 }
