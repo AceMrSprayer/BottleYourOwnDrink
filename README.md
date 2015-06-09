@@ -21,7 +21,8 @@ SETUP:
 
 Possible problems:
 
-Common troubleshooting answers can be found here: http://meanjs.org/docs.html
+Common troubleshooting answers can be found here: http://learn.mean.io/. This page describes the structure and use of
+all the different components within this MEAN stack.
 
 -ERR: Git is not found. Check if the Git PATH variable is correct and not corrupt.
 -ERR: ECONRESET. Then you should npm config set registry 'http://registry.npmjs.org'. This will change HTTPS to HTTP.
