@@ -1,10 +1,10 @@
+/*globals angular, fabric, FileReader, $ */
 'use strict';
 
 angular.module('mean.BYOD')
     .controller('BYODController', ['$scope', 'Global', function ($scope, Global) {
         $scope.global = Global;
-    }
-    ])
+    }])
     .controller('BYODControllerStep1', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
 
@@ -38,15 +38,15 @@ angular.module('mean.BYOD')
             }
         ];
 
-            /* It expects a bottle from the bottle list. This will get passed in the view and stored in the BYODservice
-             * this will make it possible to use the chosen bottle in a new view.
-             * @param bottle
-             */
-            $scope.selection = function (bottle) {
-                BYODservice.saveBottle(bottle);
+        /* It expects a bottle from the bottle list. This will get passed in the view and stored in the BYODservice
+         * this will make it possible to use the chosen bottle in a new view.
+         * @param bottle
+         */
+        $scope.selection = function (bottle) {
+            BYODservice.saveBottle(bottle);
 
-        };}
-    ])
+        };
+    }])
     .controller('BYODControllerStep2', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
 
@@ -90,19 +90,18 @@ angular.module('mean.BYOD')
         };
 
 
-         /* Function to reset the canvas. It clears everything from the canvas except the bottle.
+        /* Function to reset the canvas. It clears everything from the canvas except the bottle.
          * It loops trough every object of the canvas and deletes it if it isn't the top base or bottom
          */
         $scope.clearCanvas = function () {
             var index, list = canvas.getObjects();
             while (list.length > 3 || canvas.item(0).filters.length > 0 || canvas.item(1).filters.length > 0 || canvas.item(2).filters.length > 0) {
-                for (index = 0; index < list.length; index+=1) {
+                for (index = 0; index < list.length; index += 1) {
                     if (index < 3) {
                         document.getElementById('id' + index).style.backgroundColor = '#FFFFFF';
                         canvas.item(index).filters.pop();
                         canvas.item(index).applyFilters(canvas.renderAll.bind(canvas));
-                    }
-                    else if (index > 2 && canvas.item(index) instanceof fabric.Text || index > 2 && canvas.item(index) instanceof fabric.Image) {
+                    } else if (((index > 2) && (canvas.item(index) instanceof fabric.Text)) || ((index > 2) && (canvas.item(index) instanceof fabric.Image))) {
                         canvas.remove(canvas.item(index));
                     }
                 }
@@ -123,16 +122,15 @@ angular.module('mean.BYOD')
             });
 
             while (counter > 0) {
-                for (index = 0; index < list.length; index+=1) {
+                for (index = 0; index < list.length; index += 1) {
                     if (canvas.item(index) instanceof fabric.Text) {
                         canvas.remove(canvas.item(index));
-                    }
-                    else {
+                    } else {
                         canvas.add(text);
                     }
                 }
                 canvas.renderAll();
-                counter-=1;
+                counter -= 1;
             }
         };
 
@@ -164,15 +162,16 @@ angular.module('mean.BYOD')
          * Function to save the canvas as an image to your computer.
          *
          */
-        var saveImage = function () {
+        function SaveImage() {
             this.href = canvas.toDataURL({
                 format: 'png',
                 quality: 2.0
             });
             this.download = 'default.png';
-        };
+        }
+
         imageSaver = document.getElementById('imageSaver');
-        imageSaver.addEventListener('click', saveImage, false);
+        imageSaver.addEventListener('click', SaveImage, false);
 
 
         /**
@@ -182,8 +181,7 @@ angular.module('mean.BYOD')
             var svgString = canvas.toSVG();
             BYODservice.saveCreatedBottle(svgString);
         };
-    }
-    ])
+    }])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global) {
         $scope.global = Global;
         //var canvas = new fabric.Canvas('canvas');
@@ -203,72 +201,41 @@ angular.module('mean.BYOD')
             {'imgsrc': '/BYOD/assets/img/dairy/yoghurt.jpg', 'id': 4, 'name': 'yoghurt'}
         ];
 
-    }
-    ])
-    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global','BYODservice',
+    }])
+    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global', 'BYODservice',
         function ($scope, $rootScope, $http, $location, Global, BYODservice) {
             // Original scaffolded code.
             $scope.global = Global;
 
-            var link = '';
-            var linkToConfirmation = location.origin+'#!/betaling/'+$scope.global.user._id;
-            $scope.entities = [{
-                name: 'one',
-                data: ('link', '/confirmatie-paypal'),
-                label: 'Paypal',
-                checked: false
-            }, {
-                name: 'two',
-                data: ('link', '/confirmatie-credit'),
-                label: 'Credit card',
-                checked: false
-            }, {
-                name: 'three',
-                data: ('link', '/confirmatie-ideal'),
-                label: 'Ideal',
-                checked: false
-            }, {
-                name: 'four',
-                data: ('link', '/confirmatie-coupon'),
-                label: 'Coupon',
-                checked: false
-            }
-            ];
+            var link = '', linkToConfirmation = location.origin + '#!/betaling/' + $scope.global.user._id, canvaspayment = new fabric.Canvas('canvaspayment'), svg = BYODservice.getCreatedBottle();
 
             //function for letting only one checkbox be checked
-            $scope.updateSelection = function(position, entities, obj) {
+            $scope.updateSelection = function (position, entities, obj) {
                 link = obj.target.attributes.data.value;
-                angular.forEach(entities, function(subscription, index) {
-                    if (position !== index)
+                angular.forEach(entities, function (subscription, index) {
+                    if (position !== index) {
                         subscription.checked = false;
+                    }
                 });
             };
-            //function for checking if any checkbxes are checked
-            $scope.checked = function() {
-                for(var e in $scope.entities) {
-                    var checkBox = $scope.entities[e];
-                    if(checkBox.checked)
-                        return true;
-                }
-                return false;
-            };
+
             //validate zip code dutch style
-            $scope.zipPattern = (function() {
+            $scope.zipPattern = (function () {
                 var regexp = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
                 return {
-                    test: function(value) {
-                        if( $scope.requireZip === false ) {
+                    test: function (value) {
+                        if ($scope.requireZip === false) {
                             return true;
                         }
                         return regexp.test(value);
                     }
                 };
-            })();
+            }());
             //If the form is valid open the link to confirmation page
-            $scope.submitForm = function(isValid) {
+            $scope.submitForm = function (isValid) {
                 // check to make sure the form is completely valid
                 if (isValid) {
-                    window.open(linkToConfirmation+link);
+                    window.open(linkToConfirmation + link);
                 }
 
             };
@@ -276,19 +243,16 @@ angular.module('mean.BYOD')
                 //Calculate the total price and add it to the totalsum element
                 var price = $('#price').val();
                 $('#productAmount').bind('keyup mouseup', function () {
-                    var amount = $('#productAmount').val();
-                    var totalsum = amount * price;
+                    var amount = $('#productAmount').val(), totalsum = amount * price;
                     $('#totalsum').val(totalsum);
                 });
             });
-
-            var canvaspayment = new fabric.Canvas('canvaspayment'), svg = BYODservice.getCreatedBottle();
 
             /**
              * Load the bottle onto the canvas in payment view
              */
             $scope.retrieveMadeBottle = function () {
-                fabric.loadSVGFromString(svg, function(objects, options) {
+                fabric.loadSVGFromString(svg, function (objects, options) {
                     var obj = fabric.util.groupSVGElements(objects, options);
                     obj.set('selectable', false);
                     canvaspayment.add(obj).renderAll();
@@ -320,18 +284,11 @@ angular.module('mean.BYOD')
                         $location.url('/payment/complete/');
                     })
                     .error(function (error) {
-                        if(error){
+                        if (error) {
                             console.log(error);
-                        }else{
+                        } else {
                             console.log('Er is iets fout gegaan bij het maken van de nieuwe bestelling');
                         }
                     });
             };
-
-        }
-
-    ]);
-
-
-
-
+        }]);
