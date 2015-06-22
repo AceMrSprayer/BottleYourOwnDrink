@@ -203,16 +203,15 @@
 
                 <div class="col-md-2">
 
-                    <a type="button" class="btn btn-primary btn-lg btn-info" href="#!/choose/bottle"><i
+                    <a type="button" class="btn btn-primary btn-lg btn-info" href="#!/mixDrink2"><i
                             class="fa fa-arrow-left"></i> | VORIGE</a>
 
                 </div>
 
                 <div class="col-md-2 col-md-offset-8">
 
-                    <button type="button" class="btn btn-primary btn-lg btn-lg btn-info" data-toggle="modal" data-target="#bevestiging">
-                        <i class="fa fa-arrow-right"></i> | VOLGENDE
-                    </button>
+                    <a type="button" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}"><i
+                            class="fa fa-arrow-left"></i> | VOLGENDE</a>
 
                 </div>
 
@@ -222,30 +221,5 @@
 
     </div>
 
-    <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="margin-top: 75%">
-                <div class="modal-body">
-                    <div class="row">
-
-                        <div class="col-md-2 col-md-offset-2">
-
-                            <a type="button" class="btn btn-primary btn-lg btn-info" href="/#!/create/drink" data-dismiss="modal">DRINKEN</a>
-
-                        </div>
-
-                        <div class="col-md-2 col-md-offset-2">
-
-                            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
+</div>
 

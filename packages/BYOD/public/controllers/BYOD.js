@@ -182,6 +182,11 @@ angular.module('mean.BYOD')
             var svgString = canvas.toSVG();
             BYODservice.saveCreatedBottle(svgString);
         };
+
+        $scope.close = function (myModal) {
+            $('#myModal').modal('toggle');
+            console.log('hey');
+        };
     }
     ])
     .controller('BYODControllerStep3', ['$scope', 'Global', 'BYODservice', function ($scope, Global) {

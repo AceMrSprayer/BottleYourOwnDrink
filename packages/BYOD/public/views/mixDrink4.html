@@ -198,11 +198,37 @@
 
         <div class="col-md-2 col-md-offset-8">
 
-            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
-
+            <button type="button" class="btn btn-primary btn-lg btn-lg btn-info" data-toggle="modal" data-target="#bevestiging">
+                <i class="fa fa-arrow-right"></i> | VOLGENDE
+            </button>
 
         </div>
 
+    </div>
+
+    <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="margin-top: 75%">
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-2 col-md-offset-2">
+
+                            <a type="button" class="btn btn-primary btn-lg btn-info" data-dismiss="modal" href="/#!/mixDrink2">FLES</a>
+
+                        </div>
+
+                        <div class="col-md-2 col-md-offset-2">
+
+                            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
