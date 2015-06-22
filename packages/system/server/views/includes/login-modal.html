@@ -5,41 +5,80 @@
 
         <div class="modal-content">
 
-            <div class="modal-body">
+            <div class="modal-body" style="margin-top: 40%;">
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
 
                 <div data-ng-controller="LoginCtrl">
 
                     <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
 
-                    <h2>Login</h2>
+                    <!--<h2>Login</h2>-->
 
                     <form id="login_form" ng-submit="login()">
-                        <div class="input-wrapper">
-                            <input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">
-                            <div class="error_message">Please enter a correct info #</div>
-                            <span class="pic email"></span>
+
+                        <div class="row">
+
+                            <div class="col-md-8">
+
+                                <div class="input-wrapper">
+                                    <!--<input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">-->
+                                    <input type="email" class="form-control" id="email_block" name="email" placeholder="E-mailadres" ng-model="user.email">
+
+                                    <div class="error_message">Please enter a correct info #</div>
+                                    <!--<span class="pic email"></span>-->
+                                </div>
+
+                                <br>
+
+                                <div class="input-wrapper">
+                                    <!--<input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">-->
+                                    <input type="password" class="form-control" id="password_block" name="password" placeholder="Wachtwoord" ng-model="user.password">
+                                    <div class="error_message">Please enter a correct info #</div>
+
+                                    <!--<span class="pic password {{input.iconClass}}" ng-click = "togglePasswordVisible()">-->
+                                    <!--<div class="hide_text_password">-->
+                                    <!--{{input.tooltipText}}-->
+                                    <!--</div>-->
+                                    <!--</span>-->
+
+                                </div>
+
+                            </div>
+
+
+
                         </div>
-                        <div class="input-wrapper">
-                            <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
-                            <div class="error_message">Please enter a correct info #</div>
-                <span class="pic password {{input.iconClass}}" ng-click = "togglePasswordVisible()">
-                      <div class="hide_text_password">
-                          {{input.tooltipText}}
-                      </div>
-                </span>
-                        </div>
-                        <div class="forgot_password">
-                            <a ui-sref='forgot-password'>Forgot your password?</a>
-                        </div>
-                        <div class="button_login">
-                            <button type="submit" class="submit_button">Login</button>
-                            <p>Don't have an account?</p>
-                            <a ui-sref='auth.register' >Sign up</a>
-                        </div>
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Ingelogd blijven
+                                    </label>
+                                </div>
+
+                                <div class="forgot_password">
+                                    <a ui-sref='forgot-password' style="color: #e1e1e1">Wachtwoord vergeten?</a>
+                                </div>
+
+                        <br>
+
+                        <form class="form-inline">
+
+                            <div class="form-group">
+
+                                <div class="button_login">
+                                    <!--<button type="submit" class="submit_button">Login</button>-->
+                                    <button class="btn btn-primary btn-lg btn-info" type="submit">Login</button>
+                                </div>
+
+                            </div>
+
+
+
+                        </form>
+
+
 
                     </form>
                 </div>
