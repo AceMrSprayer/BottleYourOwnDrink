@@ -183,8 +183,7 @@ angular.module('mean.BYOD')
             BYODservice.saveCreatedBottle(svgString);
         };
 
-        $scope.close = function (myModal) {
-            $('#myModal').modal('toggle');
+        $scope.close = function () {
             console.log('hey');
         };
     }
