@@ -118,6 +118,25 @@ footer p {
     background-image: url(/theme/assets/img/waterdrops.png);
 }
 
+.flowchoosebottle{
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.flowcreatebottle{
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.betaling-userID{
+    background: rgba(2, 172, 207, 0.75);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
+.flowcreatedrink{
+    background: rgba(252, 255, 0, 0.60);
+    background-image: url(/theme/assets/img/waterdrops.png);
+}
+
 .panel-body{
     background-color: white;
 }
