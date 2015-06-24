@@ -54,25 +54,22 @@ angular.module('mean.BYOD').config(['$meanStateProvider',
         });
 
 
-        $meanStateProvider.state('Drink mix1', {
-            url: '/mixDrink',
-            templateUrl: 'BYOD/views/mixDrink.html'
+        $meanStateProvider.state('Flow 2 choose bottle', {
+            url: '/flow/choose/bottle',
+            templateUrl: 'BYOD/views/chooseBottle2.html'
         });
 
-        $meanStateProvider.state('Drink mix2', {
-            url: '/mixDrink2',
-            templateUrl: 'BYOD/views/mixDrink2.html'
+        $meanStateProvider.state('Flow 2 create bottle', {
+            url: '/flow/create/bottle',
+            templateUrl: 'BYOD/views/createBottle2.html'
         });
 
-        $meanStateProvider.state('Drink mix3', {
-            url: '/mixDrink3',
-            templateUrl: 'BYOD/views/mixDrink3.html'
+        $meanStateProvider.state('Flow 2 create drink', {
+            url: '/flow/create/drink',
+            templateUrl: 'BYOD/views/createDrink2.html'
         });
 
-        $meanStateProvider.state('Drink mix4', {
-            url: '/mixDrink4',
-            templateUrl: 'BYOD/views/mixDrink4.html'
-        });
+
 
     }
 ]);

@@ -1,9 +1,28 @@
 'use strict';
 
 angular.module('mean.BYOD')
-    .controller('BYODController', ['$scope', 'Global', function ($scope, Global) {
-        $scope.global = Global;
-    }
+    .controller('BYODController', ['$scope', '$rootScope', '$location', '$http', 'Global',
+        function ($scope, $rootScope, $location, $http, Global) {
+            // Original scaffolded code.
+            $scope.global = Global;
+
+            $scope.setPreviousPage = function () {
+               $scope.previousPage = '#!' + $location.path();
+            };
+
+            $scope.closeModalPayment = function(){
+                $location.path('/betaling/' + $scope.global.user._id);
+            };
+
+            $scope.closeModalDrink = function(){
+                $location.path('/flow/create/drink');
+            };
+
+            $scope.closeModalBottle = function(){
+                $location.path('/flow/choose/bottle');
+            };
+        }
+
     ])
     .controller('BYODControllerStep1', ['$scope', 'Global', 'BYODservice', function ($scope, Global, BYODservice) {
         $scope.global = Global;
@@ -209,8 +228,8 @@ angular.module('mean.BYOD')
 
     }
     ])
-    .controller('PaymentController', ['$scope', '$rootScope', '$http', '$location', 'Global','BYODservice',
-        function ($scope, $rootScope, $http, $location, Global, BYODservice) {
+    .controller('PaymentController', ['$scope', '$rootScope', '$location', '$http', 'Global','BYODservice',
+        function ($scope, $rootScope, $location, $http, Global, BYODservice) {
             // Original scaffolded code.
             $scope.global = Global;
 

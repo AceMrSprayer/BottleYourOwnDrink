@@ -192,43 +192,30 @@
 
         <div class="col-md-2">
 
-            <a type="button" class="btn btn-primary btn-lg btn-info" href="#!/create/bottle"><i class="fa fa-arrow-left"></i> | VORIGE</a>
+            <a type="button" class="btn btn-primary btn-lg btn-info" href="/#!/create/bottle"><i class="fa fa-arrow-left"></i> | VORIGE</a>
 
         </div>
 
         <div class="col-md-2 col-md-offset-8">
 
-            <button type="button" class="btn btn-primary btn-lg btn-lg btn-info" data-toggle="modal" data-target="#bevestiging">
-                <i class="fa fa-arrow-right"></i> | VOLGENDE
+            <a type="button" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}"><i
+                    class="fa fa-arrow-right"></i> | AFREKENEN</a>
             </button>
 
         </div>
 
     </div>
 
-    <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="margin-top: 75%">
-                <div class="modal-body">
-                    <div class="row">
 
-                        <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-7 col-md-offset-2">
 
-                            <a type="button" class="btn btn-primary btn-lg btn-info" data-dismiss="modal" href="/#!/mixDrink2">FLES</a>
+        <h3 style="text-align: center">
+            Hier kan je je eigen drankje mixen. Er zijn verschillende soorten drank types waaruit je kan kiezen en ook soorten
 
-                        </div>
+            <br/>
+            Als je later nog de andere optie wilt nemen dan kan dat of je kan je huidige product afrekenen.
+        </h3>
 
-                        <div class="col-md-2 col-md-offset-2">
-
-                            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>

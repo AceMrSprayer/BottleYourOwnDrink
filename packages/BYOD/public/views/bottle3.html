@@ -40,7 +40,7 @@
 
                 </div>
                 <br>
-                <a id="imageSaver" href="#">Save image</a>
+                <a id="imageSaver" href="#" style="color: #ffffff">Fles design downloaden</a>
             </div>
 
 
@@ -224,19 +224,43 @@
 
     <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content" style="margin-top: 75%">
+            <div class="modal-content" style="margin-top: 40%; background: none">
                 <div class="modal-body">
+
+                    <div class="row" style="text-align: center; color: white">
+
+                        <H3>
+                            GEFELICITEERD JE HEBT JE EIGEN FLES GEMAAKT!
+                        </H3>
+
+                        <br/>
+
+                        <p>
+                        Je kunt nu je fles bestellen, druk hieronder op afrekeken om naar de winkelwagen te gaan.
+                        </p>
+
+                        <br/>
+
+                        <p>
+                           Je kan zelf ook nog een drankje mixen, klik hiervoor op de 'DRINKEN' knop hieronder.
+                        </p>
+
+                        <h3>
+                            IK WIL
+                        </h3>
+
+                    </div>
                     <div class="row">
 
                         <div class="col-md-2 col-md-offset-2">
 
-                            <a type="button" class="btn btn-primary btn-lg btn-info" ng-click="close()" data-dismiss="modal">DRINKEN</a>
+                            <a type="button" class="btn btn-primary btn-lg btn-info" ng-click="closeModalDrink()" data-dismiss="modal">DRINKEN</a>
 
                         </div>
 
-                        <div class="col-md-2 col-md-offset-2">
+                        <div class="col-md-2 col-md-offset-3">
 
-                            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
+                            <a type="button" ng-click="closeModalPayment()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
 
                         </div>
 

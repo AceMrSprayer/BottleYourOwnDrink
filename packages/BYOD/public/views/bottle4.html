@@ -192,26 +192,78 @@
 
         <div class="col-md-2">
 
-            <a type="button" class="btn btn-primary btn-lg btn-info" href="#!/create/bottle"><i class="fa fa-arrow-left"></i> | VORIGE</a>
+            <a type="button" class="btn btn-primary btn-lg btn-info" href="{{previousPage}}"><i class="fa fa-arrow-left"></i> | VORIGE</a>
 
         </div>
 
         <div class="col-md-2 col-md-offset-8">
 
-            <a type="button" ng-click="saveMadeBottle()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
-
+            <button type="button" class="btn btn-primary btn-lg btn-lg btn-info" data-toggle="modal" data-target="#bevestiging">
+                <i class="fa fa-arrow-right"></i> | VOLGENDE
+            </button>
 
         </div>
 
     </div>
 
-    <div class="row">
+    <div class="modal fade" id="bevestiging" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="margin-top: 40%; background: none">
+                <div class="modal-body">
 
-        <div class="col-md-4 col-md-offset-4" style="margin-bottom: 100px;">
-            <h3 style="text-align: center">
-                Hier kan je je eigen drankje maken. Je kan kiezen tussen verschillende type drankjes en vervolgens kan je de inhoud van het drankje kiezen.
-            </h3>
+                    <div class="row" style="text-align: center; color: white">
+
+                        <H3>
+                            GEFELICITEERD JE HEBT JE EIGEN DRANKJE GEMIXT!
+                        </H3>
+
+                        <br/>
+
+                        <p>
+                            Je kunt nu je drankje bestellen, druk hieronder op afrekeken om naar de winkelwagen te gaan.
+                        </p>
+
+                        <br/>
+
+                        <p>
+                            Je kan zelf ook nog een designen, klik hiervoor op de 'FLES' knop hieronder.
+                        </p>
+
+                        <h3>
+                            IK WIL
+                        </h3>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-2 col-md-offset-2">
+
+                            <a type="button" class="btn btn-primary btn-lg btn-info" ng-click="closeModalBottle()" data-dismiss="modal">FLES</a>
+
+                        </div>
+
+                        <div class="col-md-2 col-md-offset-3">
+
+                            <a type="button" ng-click="closeModalPayment()" class="btn btn-primary btn-lg btn-info" href="/#!/betaling/{{global.user._id}}" data-dismiss="modal">AFREKENEN</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </div>
+
+    <div class="col-md-7 col-md-offset-2">
+
+        <h3 style="text-align: center">
+            Hier kan je je eigen drankje mixen. Er zijn verschillende soorten drank types waaruit je kan kiezen en ook soorten
+
+            <br/>
+            Als je later nog de andere optie wilt nemen dan kan dat of je kan je huidige product afrekenen.
+        </h3>
+
     </div>
 
 </div>
